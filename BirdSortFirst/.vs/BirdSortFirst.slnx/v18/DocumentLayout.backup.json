@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scripts\\basebranch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\basebranch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scripts\\basebird.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\basebird.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scripts\\branchtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\branchtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "BranchTest.cs",
+              "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BranchTest.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\BranchTest.cs",
+              "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BranchTest.cs",
+              "RelativeToolTip": "Assets\\Scripts\\BranchTest.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-18T07:26:40.993Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BaseBranch.cs",
+              "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBranch.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\BaseBranch.cs",
+              "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBranch.cs",
+              "RelativeToolTip": "Assets\\Scripts\\BaseBranch.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAIwBoAAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-17T07:31:03.974Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "BaseBird.cs",
+              "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBird.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\BaseBird.cs",
+              "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBird.cs",
+              "RelativeToolTip": "Assets\\Scripts\\BaseBird.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAqwAIAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-17T09:37:55.879Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
