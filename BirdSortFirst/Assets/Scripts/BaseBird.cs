@@ -3,7 +3,7 @@ using UnityEngine;
 public class BaseBird : MonoBehaviour
 {
     public BaseBranch currentBranch;
-    public BaseBranch targetBranch;
+    public int ID;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -16,4 +16,9 @@ public class BaseBird : MonoBehaviour
     {
         
     }
+    private void OnMouseDown()
+    {
+        Debug.Log("click: " + gameObject.name);
+    }
+    
 }

@@ -52,6 +52,7 @@
     <Compile Include="Assets\Scripts\BaseBird.cs" />
     <Compile Include="Assets\Scripts\BranchTest.cs" />
     <Compile Include="Assets\Scripts\BaseBranch.cs" />
+    <Compile Include="Assets\Scripts\GameDesignerDemo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
