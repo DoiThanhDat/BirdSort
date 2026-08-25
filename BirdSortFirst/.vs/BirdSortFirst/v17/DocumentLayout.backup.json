@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|d:\\bird sort gplay\\birdsort\\birdsortfirst\\assets\\scripts\\basebird.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\basebird.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "BaseBird.cs",
+              "DocumentMoniker": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBird.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\BaseBird.cs",
+              "ToolTip": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBird.cs",
+              "RelativeToolTip": "Assets\\Scripts\\BaseBird.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-25T16:07:18.674Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

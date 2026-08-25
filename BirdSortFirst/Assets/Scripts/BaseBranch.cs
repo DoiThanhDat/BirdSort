@@ -91,7 +91,7 @@ public class BaseBranch : MonoBehaviour
         {
             if (birds.Count > 0)
             {
-                selectedBranch = this; 
+                selectedBranch = this;
                 Debug.Log("Đã chọn cành nguồn: " + gameObject.name);
             }
         }
@@ -108,7 +108,10 @@ public class BaseBranch : MonoBehaviour
                 selectedBranch = null;
             }
         }
-        
+        if (FindFirstObjectByType<BranchTest>().SetGameFinishedState()) ;
+        {
+            return;
+        }
     }
     #endregion
 
@@ -129,6 +132,7 @@ public class BaseBranch : MonoBehaviour
                     }
                     Destroy(gameObject);
                     FindFirstObjectByType<BranchTest>().AddCompletedBranch();
+                    
                 }
             }
         }

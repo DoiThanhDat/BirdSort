@@ -105,6 +105,7 @@ public class GameDesignerDemo : MonoBehaviour
 
             }
         }
+        FindFirstObjectByType<BranchTest>().SetGameOverState(true);
         Debug.Log("Game Over!!!");
     }
     #endregion

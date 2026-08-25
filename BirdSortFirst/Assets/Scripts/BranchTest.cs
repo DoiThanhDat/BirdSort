@@ -5,23 +5,40 @@ using System.Collections;
 
 public class BranchTest : MonoBehaviour
 {
-    public static BaseBranch selectedBranch = null;
-
+    public static BaseBranch selectedBranch = null;     
     int m_score;
     bool m_isGameOver;
     public int totalBranchSets;
     int completedBranch;
     bool isGameFinished;
 
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
+
+    #region Check Dieu Kien Thang 
     public void AddCompletedBranch ()
     {
         completedBranch++;
-        if (completedBranch >= totalBranchSets)
-        {
-            isGameFinished = true;
-        }
     }
-   
+    public void CheckIsGameFinished()
+    {
+        if (completedBranch >=  totalBranchSets) 
+            isGameFinished = true;
+    }
+    public bool SetGameFinishedState()
+    {
+        return isGameFinished;
+    }
+    #endregion
+
     #region Set diem, Set game over
     public void SetScore(int value)
         { m_score = value; }
