@@ -1,10 +1,7 @@
 using UnityEngine;
 
-public class BaseBird : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
-    public BaseBranch currentBranch;
-    public int ID;
-    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

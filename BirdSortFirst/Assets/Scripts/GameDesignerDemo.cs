@@ -14,6 +14,7 @@ public class GameDesignerDemo : MonoBehaviour
     List<BaseBird> spawnedObject = new List<BaseBird>();
     public List<BaseBranch> branchList = new List<BaseBranch>();
 
+                                                                                                                                                                                                                                                                                                
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -28,9 +29,7 @@ public class GameDesignerDemo : MonoBehaviour
     {
         
     }
-
-    
-
+    #region Spawn && Distribute Birds
     public void SpawnBirds(int totalTypes = 3)
     {
         for (int currentID = 0; currentID < totalTypes; currentID++) 
@@ -64,7 +63,6 @@ public class GameDesignerDemo : MonoBehaviour
             }
         }
     }
-   
     public void DistributeBirds()
     {
         
@@ -83,4 +81,32 @@ public class GameDesignerDemo : MonoBehaviour
             }
         }
     }
+    #endregion
+    #region Check Game Over
+    public void CheckGameOver()
+    {
+        foreach (BaseBranch branches in branchList)
+        {
+            if (branches != null && branches.birds.Count == 0)
+            {
+                return;
+            }
+        }
+        for (int i = 0; i < branchList.Count; i++)
+        {
+            for (int j = 0; j < branchList.Count; j++)
+            {
+                if (i == j)
+                    continue;
+                else if (branchList[j].birds.Count >= branchList[j].capacity)
+                    continue;
+                else if (branchList[i].CheckTopBird().ID == branchList[j].CheckTopBird().ID)
+                    return;
+
+            }
+        }
+        Debug.Log("Game Over!!!");
+    }
+    #endregion
+
 }

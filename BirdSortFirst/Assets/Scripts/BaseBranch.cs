@@ -8,7 +8,7 @@ public class BaseBranch : MonoBehaviour
     public static BaseBranch selectedBranch = null;
     public float birdRange;
     public int capacity;
-    List<BaseBird> birds = new List<BaseBird> ();
+    public List<BaseBird> birds = new List<BaseBird> ();
     public bool isRightBranch;
 
     
@@ -23,19 +23,22 @@ public class BaseBranch : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+    #region Add, Remove & Update Bird Position
     public void AddBird (BaseBird bird )
     {
         birds.Add ( bird );
         bird.currentBranch = this;
     }
+
     public void RemoveBird (BaseBird bird)
     {
         birds.Remove ( bird );
         bird.currentBranch = null;
     }
-   public void UpdateBirdPosition()
+    
+    public void UpdateBirdPosition()
     {
         if (isRightBranch == false)
         {
@@ -56,7 +59,9 @@ public class BaseBranch : MonoBehaviour
                 birds[i].transform.position = birdPosition;
             }
     }
-   
+    #endregion
+
+    #region Move Bird To 
     public void MoveBirdTo(BaseBranch sourceBranch, BaseBranch targetBranch)
     {
             List<BaseBird> MovinBird = sourceBranch.CheckColor(); //gán hàm
@@ -74,11 +79,14 @@ public class BaseBranch : MonoBehaviour
             sourceBranch.UpdateBirdPosition();
             targetBranch.UpdateBirdPosition();
             }
+            FindFirstObjectByType<GameDesignerDemo>().CheckGameOver();
+        CheckPoint();
     }
-   
+    #endregion
+
+    #region On Mouse Down
     private void OnMouseDown()
     {
-        CheckBirdOnBranch();
         if (selectedBranch == null)
         {
             if (birds.Count > 0)
@@ -100,40 +108,39 @@ public class BaseBranch : MonoBehaviour
                 selectedBranch = null;
             }
         }
-    }
-    
-    public void CheckBirdOnBranch()
-    {
-        int demCungMau = 0;
-        if (birds.Count == 0)
-            Debug.Log("Canh khong co chim");
-        else if (birds.Count > 0 && birds.Count <= capacity)
-        {
-            for(int i = birds.Count - 1; i > 0 ; i--)
-            {
-                if (birds[birds.Count - 1].ID == birds[i - 1].ID)
-                {
-                   demCungMau++;
-                    if (demCungMau == capacity-1)
-                    {
-                        foreach (BaseBird bird in birds)
-                        {
-                            Destroy(bird.gameObject);
-                        }
-                        Destroy(gameObject);
-                    }
-                }
-                if (birds[birds.Count - 1].ID != birds[i - 1].ID)
-                {
-                    break;
-                }
-
-            }
-        }
         
     }
-    
-    public List<BaseBird> CheckColor()
+    #endregion
+
+    #region Check Point
+    public void CheckPoint()
+    {
+        int demCungMau = 0;
+        for (int i = birds.Count - 1; i > 0; i--)
+        {
+            if (birds[birds.Count - 1].ID == birds[i - 1].ID)
+            {
+                demCungMau++;
+                if (demCungMau == capacity - 1)
+                {
+                    foreach (BaseBird bird in birds)
+                    {
+                        Destroy(bird.gameObject);
+                    }
+                    Destroy(gameObject);
+                    FindFirstObjectByType<BranchTest>().AddCompletedBranch();
+                }
+            }
+        }
+
+    }
+
+
+
+    #endregion
+
+    #region Check Color
+public List<BaseBird> CheckColor()
     {
         List<BaseBird> BirdsToMove = new List<BaseBird>();
         if (birds.Count == 0)
@@ -158,5 +165,17 @@ public class BaseBranch : MonoBehaviour
         }
         return BirdsToMove;
     }
-    
+    #endregion
+
+    #region Check Top Bird
+    public BaseBird CheckTopBird()
+    {
+        if (birds.Count == 0)
+            return null;
+        else if (birds.Count > 0 && birds.Count <= capacity)
+            return birds[birds.Count-1];
+        else return null;
+    }
+    #endregion
+
 }
