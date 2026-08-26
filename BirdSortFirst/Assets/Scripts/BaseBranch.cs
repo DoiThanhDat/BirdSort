@@ -11,8 +11,6 @@ public class BaseBranch : MonoBehaviour
     public List<BaseBird> birds = new List<BaseBird> ();
     public bool isRightBranch;
     BranchTest m_gc;
-    
-    
   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -25,6 +23,7 @@ public class BaseBranch : MonoBehaviour
     {
         
     }
+    
     #region Add, Remove & Update Bird Position
     public void AddBird (BaseBird bird )
     {
@@ -45,7 +44,7 @@ public class BaseBranch : MonoBehaviour
             for (int i = 0; i < birds.Count; i++)
             {
                 float yPos = (float)(transform.position.y + 0.5f);
-                float xPos = (float)(transform.position.x + i * birdRange);
+                float xPos = (float)(transform.position.x - 2 + i * birdRange);
                 Vector3 birdPosition = new Vector3(xPos, yPos, 0);
                 birds[i].transform.position = birdPosition;
             }
@@ -54,7 +53,7 @@ public class BaseBranch : MonoBehaviour
             for (int i = 0;i < birds.Count;i++)
             {
                 float yPos = (float)(transform.position.y + 0.5f);
-                float xPos = (float)((transform.position.x + (-i) * birdRange));
+                float xPos = (float)((transform.position.x + 2 + (-i) * birdRange));
                 Vector3 birdPosition = new Vector3(xPos, yPos, 0);
                 birds[i].transform.position = birdPosition;
             }
@@ -135,9 +134,6 @@ public class BaseBranch : MonoBehaviour
         }
 
     }
-
-
-
     #endregion
 
     #region Check Color
