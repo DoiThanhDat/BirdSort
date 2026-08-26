@@ -1,7 +1,31 @@
+using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-   
+    public Text scoreText;
+    public GameObject gameOverPanel;
+    public GameObject winPanel;
+    public void SetScoreText(string text)
+    {
+        if (scoreText)
+        {
+            scoreText.text = text;
+        }
+    }
+    public void ShowGameOverPanel (bool isShow)
+    {
+        if (gameOverPanel)
+        {
+            gameOverPanel.SetActive(isShow);
+        }
+    }
+    public void ShowWinPanel(bool isShow)
+    {
+        if (winPanel)
+        {
+            winPanel.SetActive(isShow);
+        }
+    }
 }

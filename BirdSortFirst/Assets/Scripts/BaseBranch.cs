@@ -10,20 +10,20 @@ public class BaseBranch : MonoBehaviour
     public int capacity;
     public List<BaseBird> birds = new List<BaseBird> ();
     public bool isRightBranch;
-
+    BranchTest m_gc;
     
     
   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
- 
+        m_gc = FindAnyObjectByType<BranchTest>();
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
     }
     #region Add, Remove & Update Bird Position
     public void AddBird (BaseBird bird )
@@ -87,12 +87,13 @@ public class BaseBranch : MonoBehaviour
     #region On Mouse Down
     private void OnMouseDown()
     {
+        if (m_gc.IsGameOver() || m_gc.SetGameFinishedState())
+            return;
         if (selectedBranch == null)
         {
             if (birds.Count > 0)
             {
                 selectedBranch = this;
-                Debug.Log("Đã chọn cành nguồn: " + gameObject.name);
             }
         }
         else
@@ -100,17 +101,12 @@ public class BaseBranch : MonoBehaviour
             if (selectedBranch == this)
             {
                 selectedBranch = null;
-                Debug.Log("Hủy chọn cành");
             }
             else
             {
                 MoveBirdTo(selectedBranch, this);
                 selectedBranch = null;
             }
-        }
-        if (FindFirstObjectByType<BranchTest>().SetGameFinishedState()) ;
-        {
-            return;
         }
     }
     #endregion
@@ -131,10 +127,11 @@ public class BaseBranch : MonoBehaviour
                         Destroy(bird.gameObject);
                     }
                     Destroy(gameObject);
-                    FindFirstObjectByType<BranchTest>().AddCompletedBranch();
-                    
+                    m_gc.AddCompletedBranch();
+                    m_gc.ScoreIncrement();
                 }
             }
+            m_gc.CheckIsGameFinished(true);
         }
 
     }
