@@ -48,6 +48,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BaseBranch
   birdRange: 1.5
   capacity: 4
+  birds: []
+  isRightBranch: 0
+  moveSpeed: 8
 --- !u!212 &8871303083973438599
 SpriteRenderer:
   serializedVersion: 2

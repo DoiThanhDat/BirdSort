@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
 using Unity.VisualScripting;
+using DG.Tweening;
 
 public class BaseBranch : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class BaseBranch : MonoBehaviour
     public List<BaseBird> birds = new List<BaseBird> ();
     public bool isRightBranch;
     BranchTest m_gc;
+    public float moveSpeed;
+    public static bool isMoving = false;
   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,36 +42,112 @@ public class BaseBranch : MonoBehaviour
     
     public void UpdateBirdPosition()
     {
-        if (isRightBranch == false)
+        for (int i = 0; i < birds.Count; i++)
         {
-            for (int i = 0; i < birds.Count; i++)
+            if (isRightBranch == false)
             {
                 float yPos = (float)(transform.position.y + 0.5f);
                 float xPos = (float)(transform.position.x - 2 + i * birdRange);
                 Vector3 birdPosition = new Vector3(xPos, yPos, 0);
                 birds[i].transform.position = birdPosition;
             }
-        }
-        if (isRightBranch)
-            for (int i = 0;i < birds.Count;i++)
+            else if (isRightBranch == true)
             {
-                float yPos = (float)(transform.position.y + 0.5f);
+                 float yPos = (float)(transform.position.y + 0.5f);
                 float xPos = (float)((transform.position.x + 2 + (-i) * birdRange));
                 Vector3 birdPosition = new Vector3(xPos, yPos, 0);
                 birds[i].transform.position = birdPosition;
             }
+        }
+    }
+    /*
+       if (isRightBranch == false)
+       {
+           for (int i = 0; i < birds.Count; i++)
+           {
+               float yPos = (float)(transform.position.y + 0.5f);
+               float xPos = (float)(transform.position.x - 2 + i * birdRange);
+               Vector3 birdPosition = new Vector3(xPos, yPos, 0);
+               birds[i].transform.position = birdPosition;
+           }
+       }
+       if (isRightBranch)
+           for (int i = 0;i < birds.Count;i++)
+           {
+               float yPos = (float)(transform.position.y + 0.5f);
+               float xPos = (float)((transform.position.x + 2 + (-i) * birdRange));
+               Vector3 birdPosition = new Vector3(xPos, yPos, 0);
+               birds[i].transform.position = birdPosition;
+           }
+       */
+    #endregion
+
+    //Mới: Lambda Expression
+    #region Update Bird Posion With Tween
+    public void UpdateBirdPositionWithTween(System.Action onAllMovesComplated = null)
+    {
+        if (birds.Count  == 0)
+        {
+            onAllMovesComplated?.Invoke();
+            return;
+        }
+        else if (birds.Count > 0 && birds.Count <= capacity)
+        {
+            if (isRightBranch == false)
+            {
+                int completedMoveBird = 0;
+                for (int i = 0; i < birds.Count; i++)
+                {
+                    float yPos = (float)(transform.position.y + 0.5f);
+                    float xPos = (float)(transform.position.x - 2 + i * birdRange);
+                    Vector3 targetPosition = new Vector3(xPos, yPos, 0);
+                    float distanceMove = Vector3.Distance(birds[i].transform.position, targetPosition);
+                    float moveDuration = (float)distanceMove / moveSpeed;
+                    birds[i].transform.DOMove(targetPosition, moveDuration).OnComplete(() =>
+                    {
+                        completedMoveBird++;
+                        if (completedMoveBird == birds.Count)
+                        {
+                            onAllMovesComplated?.Invoke();
+                        }
+                    });
+                }
+            }
+            if (isRightBranch)
+            {
+                int completedMoveBird = 0;
+                for (int i = 0; i < birds.Count; i++)
+                {
+                    float yPos = (float)(transform.position.y + 0.5f);
+                    float xPos = (float)((transform.position.x + 2 + (-i) * birdRange));
+                    Vector3 targetPosition = new Vector3(xPos, yPos, 0);
+                    float distanceMove = Vector3.Distance(birds[i].transform.position, targetPosition);
+                    float moveDuration = (float)distanceMove / moveSpeed;
+                    birds[i].transform.DOMove(targetPosition, moveDuration).OnComplete(() =>
+                    {
+                        completedMoveBird++;
+                        if (completedMoveBird == birds.Count)
+                        {
+                            onAllMovesComplated?.Invoke();
+                        }
+                    });
+                }
+            }
+        }
     }
     #endregion
 
+    //Hàm mới: Mathf.Min
     #region Move Bird To 
     public void MoveBirdTo(BaseBranch sourceBranch, BaseBranch targetBranch)
     {
-            List<BaseBird> MovinBird = sourceBranch.CheckColor(); //gán hàm
+            List<BaseBird> MovinBird = sourceBranch.CheckColor(); //gán hàm BirdsToMove vừa return ở CheckColor(); 
             int emptySlots = targetBranch.capacity - targetBranch.birds.Count;
             int birdsToEmptySlot = Mathf.Min(MovinBird.Count, emptySlots);
             bool canMove = emptySlots > 0 && (targetBranch.birds.Count == 0 || (targetBranch.birds[targetBranch.birds.Count - 1].ID == MovinBird[0].ID));
             if (canMove)
             {
+            isMoving = true;
                 for (int i = 0; i < birdsToEmptySlot; i++)
                 {
                     BaseBird birdToMove = sourceBranch.birds[sourceBranch.birds.Count - 1];
@@ -76,17 +155,19 @@ public class BaseBranch : MonoBehaviour
                     targetBranch.birds.Add(birdToMove);
                 }
             sourceBranch.UpdateBirdPosition();
-            targetBranch.UpdateBirdPosition();
+            targetBranch.UpdateBirdPositionWithTween(() => {
+                isMoving = false;
+                targetBranch.CheckPoint();
+                FindFirstObjectByType<GameDesignerDemo>().CheckGameOver();
+            });
             }
-            FindFirstObjectByType<GameDesignerDemo>().CheckGameOver();
-        CheckPoint();
     }
     #endregion
 
     #region On Mouse Down
     private void OnMouseDown()
     {
-        if (m_gc.IsGameOver() || m_gc.SetGameFinishedState())
+        if (m_gc.IsGameOver() || m_gc.SetGameFinishedState() || isMoving)
             return;
         if (selectedBranch == null)
         {
