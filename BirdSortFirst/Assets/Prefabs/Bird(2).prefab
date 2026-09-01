@@ -12,9 +12,13 @@ PrefabInstance:
       propertyPath: ID
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5115953906944111064, guid: b480a90359571434fb548e3e3780b663, type: 3}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6177330917492373000, guid: b480a90359571434fb548e3e3780b663, type: 3}
       propertyPath: m_Name
-      value: Bird(2) Variant
+      value: Bird(2)
       objectReference: {fileID: 0}
     - target: {fileID: 7975925454548140809, guid: b480a90359571434fb548e3e3780b663, type: 3}
       propertyPath: m_Color.b

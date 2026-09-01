@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseBird
   currentBranch: {fileID: 0}
-  colorOfBird: 2
   ID: 0
+  moveSpeed: 5
 --- !u!212 &7975925454548140809
 SpriteRenderer:
   serializedVersion: 2

@@ -69,7 +69,6 @@ public class GameDesignerDemo : MonoBehaviour
         
         for (int i = 0; i < branchList.Count; i++)
         {
-            
             for (int j = 0; j < 4; j ++)
             {
                 if (spawnedObject.Count == 0)
@@ -101,7 +100,7 @@ public class GameDesignerDemo : MonoBehaviour
                     continue;
                 else if (branchList[j].birds.Count >= branchList[j].capacity)
                     continue;
-                else if (branchList[i].CheckTopBird().ID == branchList[j].CheckTopBird().ID)
+                else if (branchList[i].CheckTopBird() == branchList[j].CheckTopBird())
                     return;
 
             }

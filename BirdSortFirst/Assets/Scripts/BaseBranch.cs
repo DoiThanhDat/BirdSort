@@ -6,15 +6,13 @@ using DG.Tweening;
 
 public class BaseBranch : MonoBehaviour
 {
-    public static BaseBranch selectedBranch = null;
     public float birdRange;
     public int capacity;
     public List<BaseBird> birds = new List<BaseBird> ();
     public bool isRightBranch;
     BranchTest m_gc;
     public float moveSpeed;
-    public static bool isMoving = false;
-  
+    
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -27,21 +25,10 @@ public class BaseBranch : MonoBehaviour
         
     }
     
-    #region Add, Remove & Update Bird Position
-    public void AddBird (BaseBird bird )
-    {
-        birds.Add ( bird );
-        bird.currentBranch = this;
-    }
-
-    public void RemoveBird (BaseBird bird)
-    {
-        birds.Remove ( bird );
-        bird.currentBranch = null;
-    }
-    
+    #region Update Bird Position
     public void UpdateBirdPosition()
     {
+        if (birds == null || birds.Count == 0) return;
         for (int i = 0; i < birds.Count; i++)
         {
             if (isRightBranch == false)
@@ -60,134 +47,14 @@ public class BaseBranch : MonoBehaviour
             }
         }
     }
-    /*
-       if (isRightBranch == false)
-       {
-           for (int i = 0; i < birds.Count; i++)
-           {
-               float yPos = (float)(transform.position.y + 0.5f);
-               float xPos = (float)(transform.position.x - 2 + i * birdRange);
-               Vector3 birdPosition = new Vector3(xPos, yPos, 0);
-               birds[i].transform.position = birdPosition;
-           }
-       }
-       if (isRightBranch)
-           for (int i = 0;i < birds.Count;i++)
-           {
-               float yPos = (float)(transform.position.y + 0.5f);
-               float xPos = (float)((transform.position.x + 2 + (-i) * birdRange));
-               Vector3 birdPosition = new Vector3(xPos, yPos, 0);
-               birds[i].transform.position = birdPosition;
-           }
-       */
+   
     #endregion
 
-    //Mới: Lambda Expression
-    #region Update Bird Posion With Tween
-    public void UpdateBirdPositionWithTween(System.Action onAllMovesComplated = null)
-    {
-        if (birds.Count  == 0)
-        {
-            onAllMovesComplated?.Invoke();
-            return;
-        }
-        else if (birds.Count > 0 && birds.Count <= capacity)
-        {
-            if (isRightBranch == false)
-            {
-                int completedMoveBird = 0;
-                for (int i = 0; i < birds.Count; i++)
-                {
-                    float yPos = (float)(transform.position.y + 0.5f);
-                    float xPos = (float)(transform.position.x - 2 + i * birdRange);
-                    Vector3 targetPosition = new Vector3(xPos, yPos, 0);
-                    float distanceMove = Vector3.Distance(birds[i].transform.position, targetPosition);
-                    float moveDuration = (float)distanceMove / moveSpeed;
-                    birds[i].transform.DOMove(targetPosition, moveDuration).OnComplete(() =>
-                    {
-                        completedMoveBird++;
-                        if (completedMoveBird == birds.Count)
-                        {
-                            onAllMovesComplated?.Invoke();
-                        }
-                    });
-                }
-            }
-            if (isRightBranch)
-            {
-                int completedMoveBird = 0;
-                for (int i = 0; i < birds.Count; i++)
-                {
-                    float yPos = (float)(transform.position.y + 0.5f);
-                    float xPos = (float)((transform.position.x + 2 + (-i) * birdRange));
-                    Vector3 targetPosition = new Vector3(xPos, yPos, 0);
-                    float distanceMove = Vector3.Distance(birds[i].transform.position, targetPosition);
-                    float moveDuration = (float)distanceMove / moveSpeed;
-                    birds[i].transform.DOMove(targetPosition, moveDuration).OnComplete(() =>
-                    {
-                        completedMoveBird++;
-                        if (completedMoveBird == birds.Count)
-                        {
-                            onAllMovesComplated?.Invoke();
-                        }
-                    });
-                }
-            }
-        }
-    }
-    #endregion
-
-    //Hàm mới: Mathf.Min
-    #region Move Bird To 
-    public void MoveBirdTo(BaseBranch sourceBranch, BaseBranch targetBranch)
-    {
-            List<BaseBird> MovinBird = sourceBranch.CheckColor(); //gán hàm BirdsToMove vừa return ở CheckColor(); 
-            int emptySlots = targetBranch.capacity - targetBranch.birds.Count;
-            int birdsToEmptySlot = Mathf.Min(MovinBird.Count, emptySlots);
-            bool canMove = emptySlots > 0 && (targetBranch.birds.Count == 0 || (targetBranch.birds[targetBranch.birds.Count - 1].ID == MovinBird[0].ID));
-            if (canMove)
-            {
-            isMoving = true;
-                for (int i = 0; i < birdsToEmptySlot; i++)
-                {
-                    BaseBird birdToMove = sourceBranch.birds[sourceBranch.birds.Count - 1];
-                    sourceBranch.birds.RemoveAt(sourceBranch.birds.Count - 1);
-                    targetBranch.birds.Add(birdToMove);
-                }
-            sourceBranch.UpdateBirdPosition();
-            targetBranch.UpdateBirdPositionWithTween(() => {
-                isMoving = false;
-                targetBranch.CheckPoint();
-                FindFirstObjectByType<GameDesignerDemo>().CheckGameOver();
-            });
-            }
-    }
-    #endregion
-
+ 
     #region On Mouse Down
     private void OnMouseDown()
     {
-        if (m_gc.IsGameOver() || m_gc.SetGameFinishedState() || isMoving)
-            return;
-        if (selectedBranch == null)
-        {
-            if (birds.Count > 0)
-            {
-                selectedBranch = this;
-            }
-        }
-        else
-        {
-            if (selectedBranch == this)
-            {
-                selectedBranch = null;
-            }
-            else
-            {
-                MoveBirdTo(selectedBranch, this);
-                selectedBranch = null;
-            }
-        }
+       m_gc.OnClickedBranch(this);
     }
     #endregion
 
@@ -217,8 +84,44 @@ public class BaseBranch : MonoBehaviour
     }
     #endregion
 
+
+    // (*)Code mới:
+    #region Get Slot Position
+    public Vector3 GetSlotPosition(int i)
+    {
+        float yPos = transform.position.y;
+        float xPos;
+        if (isRightBranch == false)
+        {
+            {
+                yPos = (float)(transform.position.y + 0.5f);
+                xPos = (float)(transform.position.x - 3.5f + (i * birdRange));
+            }
+        }
+        else
+        {
+            {
+                yPos = (float)(transform.position.y + 0.5f);
+                xPos = (float)(transform.position.x + 3.5f - (i * birdRange));
+            }
+        }
+        return new Vector3(xPos, yPos, 0);
+    }
+    #endregion
+
+    #region Check Top Bird ID
+    public int CheckTopBird()
+    {
+        if (birds.Count == 0)
+            return -1;
+        else if (birds.Count > 0 && birds.Count <= capacity)
+            return birds[birds.Count-1].ID;
+        else return -1;
+    }
+    #endregion
+
     #region Check Color
-public List<BaseBird> CheckColor()
+    public List<BaseBird> CheckColor()
     {
         List<BaseBird> BirdsToMove = new List<BaseBird>();
         if (birds.Count == 0)
@@ -229,8 +132,8 @@ public List<BaseBird> CheckColor()
         }
         if (birds.Count > 1 && birds.Count <= capacity)
         {
-            int targetID = birds[birds.Count-1].ID;
-            for (int i = birds.Count -1; i >= 0; i--)
+            int targetID = birds[birds.Count - 1].ID;
+            for (int i = birds.Count - 1; i >= 0; i--)
             {
                 if (birds[i].ID == targetID)
                 {
@@ -245,14 +148,17 @@ public List<BaseBird> CheckColor()
     }
     #endregion
 
-    #region Check Top Bird
-    public BaseBird CheckTopBird()
+    #region Add, Remove Bird
+    public void AddBird(BaseBird bird)
     {
-        if (birds.Count == 0)
-            return null;
-        else if (birds.Count > 0 && birds.Count <= capacity)
-            return birds[birds.Count-1];
-        else return null;
+        birds.Add(bird);
+        bird.currentBranch = this;
+    }
+
+    public void RemoveBird(BaseBird bird)
+    {
+        birds.Remove(bird);
+        bird.currentBranch = null;
     }
     #endregion
 
