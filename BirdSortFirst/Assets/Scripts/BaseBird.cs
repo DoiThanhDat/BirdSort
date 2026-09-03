@@ -9,7 +9,7 @@ public class BaseBird : MonoBehaviour
     public float moveSpeed;
     public const string FLY = "fly";
     public const string GROUNDING = "ground";
-    public const string IDLE = "ilde";
+    public const string IDLE = "idle";
 
     [SerializeField] protected SkeletonGraphic body;
     public SkeletonGraphic Body => body;

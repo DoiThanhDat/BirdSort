@@ -14,6 +14,7 @@ public class GameDesignerDemo : MonoBehaviour
     BranchTest m_gc;
     List<BaseBird> spawnedObject = new List<BaseBird>();
     public List<BaseBranch> branchList = new List<BaseBranch>();
+    [SerializeField] Transform canvasTransform;
 
                                                                                                                                                                                                                                                                                                 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,18 +25,12 @@ public class GameDesignerDemo : MonoBehaviour
         DistributeBirds();
        
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     #region Spawn && Distribute Birds
     public void SpawnBirds(int totalTypes = 3)
     {
-        for (int currentID = 0; currentID < totalTypes; currentID++) 
+        for (int currentID = 1; currentID <= totalTypes; currentID++) 
         {
-            if (currentID == 0)
+            if (currentID == 1)
             {
                 for (int i = 3; i >= 0; i--)
                 {
@@ -44,7 +39,7 @@ public class GameDesignerDemo : MonoBehaviour
                     spawnedObject.Add(birdSpawnNew);
                 }
             }
-            if (currentID == 1)
+            if (currentID == 2)
             {
                 for (int i = 3; i >= 0; i--)
                 {
@@ -53,7 +48,7 @@ public class GameDesignerDemo : MonoBehaviour
                     spawnedObject.Add(birdSpawnNew);
                 }
             }
-            if (currentID == 2)
+            if (currentID == 3)
             {
                 for (int i = 3; i >= 0; i--)
                 {
