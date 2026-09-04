@@ -67,4 +67,18 @@ public class BaseBird : MonoBehaviour
     }
     #endregion
 
+    public void ChangeSkin(string skinName)
+    {
+        if (body == null || body.Skeleton == null) //Tranh loi
+            return;
+        body.Skeleton.SetSkin(skinName);
+        body.Skeleton.SetSlotsToSetupPose();
+        body.LateUpdate();
+    }
+    public void SetSkinByID(int index)
+    {
+        this.ID = index;
+        string birdSkin = $"skin-{index}";
+        ChangeSkin(birdSkin);
+    }
 }

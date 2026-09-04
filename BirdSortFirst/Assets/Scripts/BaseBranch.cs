@@ -11,7 +11,6 @@ public class BaseBranch : MonoBehaviour
     public List<BaseBird> birds = new List<BaseBird> ();
     public bool isRightBranch;
     BranchTest m_gc;
-    public float moveSpeed;
     
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -34,16 +33,16 @@ public class BaseBranch : MonoBehaviour
             if (isRightBranch == false)
             {
                 float yPos = (float)(transform.position.y + 0.5f);
-                float xPos = (float)(transform.position.x - 2 + i * birdRange);
-                Vector3 birdPosition = new Vector3(xPos, yPos, 0);
-                birds[i].transform.position = birdPosition;
+                float xPos = (float)(transform.position.x - 1.85f + i * birdRange);
+                Vector3 birdPosition = new Vector3(xPos, yPos, 0f);
+                birds[i].transform.localPosition = birdPosition;
             }
             else if (isRightBranch == true)
             {
                  float yPos = (float)(transform.position.y + 0.5f);
-                float xPos = (float)((transform.position.x + 2 + (-i) * birdRange));
-                Vector3 birdPosition = new Vector3(xPos, yPos, 0);
-                birds[i].transform.position = birdPosition;
+                float xPos = (float)((transform.position.x + 1.85f + (-i) * birdRange));
+                Vector3 birdPosition = new Vector3(xPos, yPos, 0f);
+                birds[i].transform.localPosition = birdPosition;
             }
         }
     }
@@ -95,17 +94,17 @@ public class BaseBranch : MonoBehaviour
         {
             {
                 yPos = (float)(transform.position.y + 0.5f);
-                xPos = (float)(transform.position.x - 3.5f + (i * birdRange));
+                xPos = (float)(transform.position.x - 1.85f + (i * birdRange));
             }
         }
         else
         {
             {
                 yPos = (float)(transform.position.y + 0.5f);
-                xPos = (float)(transform.position.x + 3.5f - (i * birdRange));
+                xPos = (float)(transform.position.x + 1.85f - (i * birdRange));
             }
         }
-        return new Vector3(xPos, yPos, 0);
+        return new Vector3(xPos, yPos, 0f);
     }
     #endregion
 
@@ -151,12 +150,14 @@ public class BaseBranch : MonoBehaviour
     #region Add, Remove Bird
     public void AddBird(BaseBird bird)
     {
+        bird.transform.SetParent(this.transform, false);
         birds.Add(bird);
         bird.currentBranch = this;
     }
 
     public void RemoveBird(BaseBird bird)
     {
+        bird.transform.parent = null;
         birds.Remove(bird);
         bird.currentBranch = null;
     }

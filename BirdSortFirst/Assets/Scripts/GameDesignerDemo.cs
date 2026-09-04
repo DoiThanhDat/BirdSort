@@ -28,14 +28,16 @@ public class GameDesignerDemo : MonoBehaviour
     #region Spawn && Distribute Birds
     public void SpawnBirds(int totalTypes = 3)
     {
+        spawnedObject.Clear();
         for (int currentID = 1; currentID <= totalTypes; currentID++) 
         {
             if (currentID == 1)
             {
                 for (int i = 3; i >= 0; i--)
                 {
-                    BaseBird birdSpawnNew = Instantiate(birdsSpawned0);
-                    birdSpawnNew.ID = currentID;
+                    BaseBird birdSpawnNew = Instantiate(birdsSpawned0, canvasTransform);
+                    birdSpawnNew.ID= currentID;
+                    birdSpawnNew.SetSkinByID(currentID);
                     spawnedObject.Add(birdSpawnNew);
                 }
             }
@@ -43,8 +45,9 @@ public class GameDesignerDemo : MonoBehaviour
             {
                 for (int i = 3; i >= 0; i--)
                 {
-                    BaseBird birdSpawnNew = Instantiate(birdsSpawned1);
+                    BaseBird birdSpawnNew = Instantiate(birdsSpawned1,canvasTransform);
                     birdSpawnNew.ID = currentID;
+                    birdSpawnNew.SetSkinByID(currentID);
                     spawnedObject.Add(birdSpawnNew);
                 }
             }
@@ -52,8 +55,9 @@ public class GameDesignerDemo : MonoBehaviour
             {
                 for (int i = 3; i >= 0; i--)
                 {
-                    BaseBird birdSpawnNew = Instantiate(birdsSpawned2);
+                    BaseBird birdSpawnNew = Instantiate(birdsSpawned2,canvasTransform);
                     birdSpawnNew.ID = currentID;
+                    birdSpawnNew.SetSkinByID(currentID);
                     spawnedObject.Add(birdSpawnNew);
                 }
             }
@@ -72,8 +76,8 @@ public class GameDesignerDemo : MonoBehaviour
                 BaseBird SelectedBird = spawnedObject[randomMau];
                 spawnedObject.RemoveAt(randomMau);
                 branchList[i].AddBird(SelectedBird);
-                branchList[i].UpdateBirdPosition();
             }
+            branchList[i].UpdateBirdPosition();
         }
     }
     #endregion
