@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
+using UnityEditor.Tilemaps;
 using UnityEngine;
 
 public class GameDesignerDemo : MonoBehaviour
@@ -11,19 +12,32 @@ public class GameDesignerDemo : MonoBehaviour
     public BaseBird birdsSpawned0;
     public BaseBird birdsSpawned1;
     public BaseBird birdsSpawned2;
+    public BaseBranch branchSpawned0;
     BranchTest m_gc;
     List<BaseBird> spawnedObject = new List<BaseBird>();
     public List<BaseBranch> branchList = new List<BaseBranch>();
     [SerializeField] Transform canvasTransform;
+    [SerializeField] List<Transform> branchSpawnPoint = new List<Transform>();
 
                                                                                                                                                                                                                                                                                                 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         m_gc = FindAnyObjectByType<BranchTest>();
+        SpawnBranch();
+       
+    }
+    public void SpawnBranch()
+    {
+        for (int i = 0; i < branchSpawnPoint.Count; i++)
+        {
+            BaseBranch branchSpawnNew = Instantiate(branchSpawned0, branchSpawnPoint[i]);
+            branchSpawnNew.transform.localPosition = Vector3.zero;
+            branchSpawnNew.transform.rotation = Quaternion.identity;
+           
+        }
         SpawnBirds();
         DistributeBirds();
-       
     }
     #region Spawn && Distribute Birds
     public void SpawnBirds(int totalTypes = 3)
