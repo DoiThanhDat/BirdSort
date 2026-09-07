@@ -1107,7 +1107,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -48, y: 98}
+  m_AnchoredPosition: {x: -52, y: 98}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1258610577
@@ -1189,8 +1189,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a1aef23d4ab77bc48b458630f0173392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BranchTest
-  gamePlayCanvas: {fileID: 1137419990}
-  isMoving: 0
   totalBranchSets: 3
 --- !u!1 &1391463562
 GameObject:
@@ -1385,15 +1383,13 @@ MonoBehaviour:
   birdsSpawned1: {fileID: 1965166821034886773, guid: 03e13ecf08d418a47aa928274c69b9c6, type: 3}
   birdsSpawned2: {fileID: 5941324338538489759, guid: b0381c2c6f11eed44a1ba9a9d985266d, type: 3}
   branchSpawned0: {fileID: 3813528025097713464, guid: 10995f9ba8b418d4ca40b227a2739683, type: 3}
-  branchListRight: []
-  branchListLeft: []
+  branchList: []
   canvasTransform: {fileID: 1137419991}
-  branchSpawnPointRight:
-  - {fileID: 1191150049}
-  - {fileID: 1870410371}
-  branchSpawnPointLeft:
+  branchSpawnPoint:
   - {fileID: 377397001}
   - {fileID: 1258610578}
+  - {fileID: 1191150049}
+  - {fileID: 1870410371}
 --- !u!4 &1625916779
 Transform:
   m_ObjectHideFlags: 0
@@ -1758,7 +1754,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -49, y: -19}
+  m_AnchoredPosition: {x: -52, y: -19}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2044141779

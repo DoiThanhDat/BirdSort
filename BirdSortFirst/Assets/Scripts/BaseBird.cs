@@ -5,19 +5,25 @@ using Spine.Unity;
 public class BaseBird : MonoBehaviour
 {
     public BaseBranch currentBranch;
+    RectTransform recttr;
     public int ID;
     public float moveSpeed;
     public const string FLY = "fly";
-    public const string GROUNDING = "ground";
+    public const string GROUNDING = "grounding";
     public const string IDLE = "idle";
 
     [SerializeField] protected SkeletonGraphic body;
     public SkeletonGraphic Body => body;
 
+    private void Awake()
+    {
+        recttr = GetComponent<RectTransform>();
+    }
     private void Start()
     {
         PlayIdle();
     }
+
     #region Idle, Fly && Grounding
     public void PlayIdle()
     {
@@ -51,22 +57,28 @@ public class BaseBird : MonoBehaviour
     #region Move To
     public void MoveTo(Vector3 targetPosition, System.Action onMoveCompleted = null)
     {
-        transform.DOKill();
+        if (recttr == null) recttr = GetComponent<RectTransform>();
+        recttr.DOKill();
         if (body != null && body.Skeleton != null)
         {
             body.Skeleton.ScaleX = (targetPosition.x < transform.position.x) ? -1f : 1f;
-        }    
+        }
         PlayFly();
         float distance = Vector3.Distance(transform.position, targetPosition);
         float moveDuration = distance / moveSpeed;
-        transform.DOMove(targetPosition, moveDuration).OnComplete(() =>
+        recttr.DOAnchorPos(targetPosition, moveDuration).OnComplete(() =>
         {
+            if (body != null && body.Skeleton != null)
+            {
+                body.Skeleton.ScaleX = (targetPosition.x < transform.position.x) ? -1f : 1f;
+            }
             PlayGrounding();
             onMoveCompleted?.Invoke();
         });
     }
     #endregion
 
+    #region Change & Set Skin
     public void ChangeSkin(string skinName)
     {
         if (body == null || body.Skeleton == null) //Tranh loi
@@ -81,4 +93,5 @@ public class BaseBird : MonoBehaviour
         string birdSkin = $"skin-{index}";
         ChangeSkin(birdSkin);
     }
+    #endregion
 }

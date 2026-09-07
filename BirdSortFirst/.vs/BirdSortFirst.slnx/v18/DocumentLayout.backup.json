@@ -3,20 +3,20 @@
   "WorkspaceRootPath": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scripts\\basebranch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\basebranch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scripts\\gamedesignerdemo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamedesignerdemo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scripts\\branchtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\branchtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scripts\\basebranch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\basebranch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scripts\\basebird.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\basebird.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scripts\\gamedesignerdemo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamedesignerdemo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scripts\\branchtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\branchtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,21 +30,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "BranchTest.cs",
-              "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BranchTest.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\BranchTest.cs",
-              "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BranchTest.cs",
-              "RelativeToolTip": "Assets\\Scripts\\BranchTest.cs",
-              "ViewState": "AgIAADkAAAAAAAAAAADwv14AAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-24T07:37:09.71Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Document",
               "DocumentIndex": 4,
@@ -53,22 +40,22 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\UIManager.cs",
               "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\UIManager.cs",
               "RelativeToolTip": "Assets\\Scripts\\UIManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAnAAAAAAAAAA==",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAQwBsAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-25T09:28:57.05Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BaseBranch.cs",
-              "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBranch.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\BaseBranch.cs",
-              "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBranch.cs",
-              "RelativeToolTip": "Assets\\Scripts\\BaseBranch.cs",
-              "ViewState": "AgIAADEAAAAAAAAAAAAYwGcAAAA8AAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "BranchTest.cs",
+              "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BranchTest.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\BranchTest.cs",
+              "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BranchTest.cs",
+              "RelativeToolTip": "Assets\\Scripts\\BranchTest.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAUwFkAAAARAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-28T01:40:25.063Z",
+              "WhenOpened": "2026-08-24T07:37:09.71Z",
               "EditorCaption": ""
             },
             {
@@ -79,22 +66,35 @@
               "RelativeDocumentMoniker": "Assets\\Scripts\\BaseBird.cs",
               "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBird.cs",
               "RelativeToolTip": "Assets\\Scripts\\BaseBird.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAABcAAAAAAAAAAAAswD8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-26T08:45:28.001Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
+              "Title": "BaseBranch.cs",
+              "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBranch.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\BaseBranch.cs",
+              "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBranch.cs",
+              "RelativeToolTip": "Assets\\Scripts\\BaseBranch.cs",
+              "ViewState": "AgIAAJYAAAAAAAAAAAAiwK4AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-07T03:46:34.593Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
               "Title": "GameDesignerDemo.cs",
               "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\GameDesignerDemo.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameDesignerDemo.cs",
               "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\GameDesignerDemo.cs",
               "RelativeToolTip": "Assets\\Scripts\\GameDesignerDemo.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAYwGgAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAkwBYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-01T05:36:52.772Z",
+              "WhenOpened": "2026-09-04T02:05:50.796Z",
               "EditorCaption": ""
             }
           ]

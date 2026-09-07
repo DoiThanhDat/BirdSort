@@ -11,11 +11,16 @@ public class BaseBranch : MonoBehaviour
     public List<BaseBird> birds = new List<BaseBird> ();
     public bool isRightBranch;
     BranchTest m_gc;
-    
+
+    #region start && update
+    void Awake()
+    {
+        m_gc = FindAnyObjectByType<BranchTest>();
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        m_gc = FindAnyObjectByType<BranchTest>();
+
     }
 
     // Update is called once per frame
@@ -23,37 +28,44 @@ public class BaseBranch : MonoBehaviour
     {
         
     }
-    
+    #endregion
+
     #region Update Bird Position
     public void UpdateBirdPosition()
     {
         if (birds == null || birds.Count == 0) return;
         for (int i = 0; i < birds.Count; i++)
         {
-            if (isRightBranch == false)
+            if (birds[i] == null) continue;
+            RectTransform birdRect = birds[i].GetComponent<RectTransform>();
+            birdRect.DOKill();
+            birdRect.anchoredPosition = GetSlotPosition(i);
+            /*if (isRightBranch == false)
             {
-                float yPos = (float)(transform.position.y + 0.5f);
-                float xPos = (float)(transform.position.x - 1.85f + i * birdRange);
+                float yPos = (float)( + 10f);
+                float xPos = (float)( - 35f + i * birdRange);
                 Vector3 birdPosition = new Vector3(xPos, yPos, 0f);
                 birds[i].transform.localPosition = birdPosition;
             }
             else if (isRightBranch == true)
             {
-                 float yPos = (float)(transform.position.y + 0.5f);
-                float xPos = (float)((transform.position.x + 1.85f + (-i) * birdRange));
+                 float yPos = (float)( + 10f);
+                float xPos = (float)(( + (-i) * birdRange));
                 Vector3 birdPosition = new Vector3(xPos, yPos, 0f);
                 birds[i].transform.localPosition = birdPosition;
-            }
+            }*/
         }
     }
-   
+
     #endregion
 
- 
     #region On Mouse Down
-    private void OnMouseDown()
+    public void OnMouseDown()
     {
-       m_gc.OnClickedBranch(this);
+       if (m_gc != null)
+        {
+            m_gc.OnClickedBranch(this);
+        }
     }
     #endregion
 
@@ -83,28 +95,26 @@ public class BaseBranch : MonoBehaviour
     }
     #endregion
 
-
     // (*)Code mới:
     #region Get Slot Position
-    public Vector3 GetSlotPosition(int i)
+    public Vector2 GetSlotPosition(int i)
     {
-        float yPos = transform.position.y;
+        float yPos = 10f;
         float xPos;
         if (isRightBranch == false)
         {
             {
-                yPos = (float)(transform.position.y + 0.5f);
-                xPos = (float)(transform.position.x - 1.85f + (i * birdRange));
+                xPos = (float)(- 35f + (i * birdRange));
             }
         }
         else
         {
             {
-                yPos = (float)(transform.position.y + 0.5f);
-                xPos = (float)(transform.position.x + 1.85f - (i * birdRange));
+                xPos = (float)( - (i * birdRange));
             }
         }
-        return new Vector3(xPos, yPos, 0f);
+        Vector2 localSlot = new Vector3(xPos, yPos);
+        return localSlot;
     }
     #endregion
 
@@ -150,16 +160,19 @@ public class BaseBranch : MonoBehaviour
     #region Add, Remove Bird
     public void AddBird(BaseBird bird)
     {
-        bird.transform.SetParent(this.transform, false);
-        birds.Add(bird);
-        bird.currentBranch = this;
+        if (!birds.Contains(bird))
+        {
+            birds.Add(bird);
+            bird.currentBranch = this;
+        }
     }
 
     public void RemoveBird(BaseBird bird)
     {
-        bird.transform.parent = null;
-        birds.Remove(bird);
-        bird.currentBranch = null;
+         if (birds.Contains(bird))
+         {
+                birds.Remove(bird);
+         }
     }
     #endregion
 

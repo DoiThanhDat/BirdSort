@@ -4,12 +4,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using static UnityEditor.Experimental.GraphView.Port;
 
 public class BranchTest : MonoBehaviour
 {
+    [SerializeField] Canvas gamePlayCanvas;
     public static BaseBranch selectedBranch = null;
-    public static bool isMoving = false;
+    public bool isMoving = false;
     int m_score;
     bool m_isGameOver;
     public int totalBranchSets;
@@ -80,11 +82,10 @@ public class BranchTest : MonoBehaviour
             {
                 BaseBird birdToMove = sourceBranch.birds[sourceBranch.birds.Count - 1];
                 sourceBranch.RemoveBird(birdToMove);
-                targetBranch.birds.Add(birdToMove);
                 int targetSlotIndex = targetBranch.birds.Count ;
-                Vector3 targetPos = targetBranch.GetSlotPosition(targetSlotIndex);
-               
-                birdToMove.DOKill();
+                Vector2 targetPos = targetBranch.GetSlotPosition(targetSlotIndex);
+                birdToMove.transform.SetParent(targetBranch.transform, true);
+                targetBranch.AddBird(birdToMove);
                 birdToMove.MoveTo(targetPos, () =>
                 {
                     completedCount++;
