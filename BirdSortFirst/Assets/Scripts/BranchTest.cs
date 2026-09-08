@@ -83,24 +83,21 @@ public class BranchTest : MonoBehaviour
             {
                 BaseBird birdToMove = sourceBranch.birds[sourceBranch.birds.Count - 1];
                 sourceBranch.RemoveBird(birdToMove);
-
                 int targetSlotIndex = targetBranch.birds.Count ;
                 Vector3 targetPos = targetBranch.GetSlotPosition(targetSlotIndex);
                 Vector3 targetWolrdPos = targetBranch.transform.TransformPoint(targetPos);
-                float flyFacing = (targetWolrdPos.x < birdToMove.transform.position.x) ? -1f : 01f; 
 
                 birdToMove.transform.SetParent(targetBranch.transform, true);
                 birdToMove.transform.localScale = Vector3.one;
                 targetBranch.AddBird(birdToMove);
 
-                birdToMove.SetFacing(targetBranch.isRightBranch ? -flyFacing:  flyFacing);
-                if (targetWolrdPos.x < birdToMove.transform.position.x)
-                {
-                    birdToMove.SetFacing(targetBranch.isRightBranch ? 1f : -1f);
-                }
-                else
+                if (birdToMove.transform.position.x < targetWolrdPos.x)
                 {
                     birdToMove.SetFacing(targetBranch.isRightBranch ? -1f : 1f);
+                }
+                if (birdToMove.transform.position.x > targetWolrdPos.x)
+                {
+                    birdToMove.SetFacing(targetBranch.isRightBranch ? 1f : -1f);
                 }
                 birdToMove.MoveTo(targetPos, () =>
                 {

@@ -61,10 +61,6 @@ public class BaseBird : MonoBehaviour
         if (recttr == null) recttr = GetComponent<RectTransform>();
         recttr.DOKill();
         PlayFly();
-        if (body != null && body.Skeleton != null)
-        {
-            body.Skeleton.ScaleX = (targetPosition.x > transform.position.x) ? -1f : 1f;
-        }
         float distance = Vector3.Distance(transform.position, targetPosition);
         float moveDuration = distance / moveSpeed;
         recttr.DOAnchorPos(targetPosition, moveDuration).OnComplete(() =>
