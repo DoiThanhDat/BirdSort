@@ -32,6 +32,8 @@ public class GameDesignerDemo : MonoBehaviour
         DistributeBirds();
        
     }
+
+    #region spawn branch
     public void SpawnBranch()
     {
         for (int i = 0; i < branchSpawnPointRight.Count; i++)
@@ -39,6 +41,8 @@ public class GameDesignerDemo : MonoBehaviour
             BaseBranch branchSpawnNew = Instantiate(branchSpawned0, branchSpawnPointRight[i]);
             branchSpawnNew.transform.localPosition = Vector3.zero;
             branchSpawnNew.transform.rotation = Quaternion.identity;
+            branchSpawnNew.transform.localScale = new Vector3(-1f, 1f, 1f);
+            branchSpawnNew.isRightBranch = true;
             branchListRight.Add(branchSpawnNew);
         }
         for (int i = 0; i < branchSpawnPointLeft.Count; i++)
@@ -46,9 +50,13 @@ public class GameDesignerDemo : MonoBehaviour
             BaseBranch branchSpawnNew = Instantiate(branchSpawned0, branchSpawnPointLeft[i]);
             branchSpawnNew.transform.localPosition = Vector3.zero;
             branchSpawnNew.transform.rotation = Quaternion.identity;
+            branchSpawnNew.transform.localScale = new Vector3(1f, 1f, 1f);
+            branchSpawnNew.isRightBranch = false;
             branchListLeft.Add(branchSpawnNew);
         }
     }
+    #endregion
+
     #region Spawn && Distribute Birds
     public void SpawnBirds(int totalTypes = 3)
     {
@@ -119,6 +127,7 @@ public class GameDesignerDemo : MonoBehaviour
         }
     }
     #endregion
+
     #region Check Game Over
     public void CheckGameOver()
     {

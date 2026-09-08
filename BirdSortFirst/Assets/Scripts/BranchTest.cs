@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static UnityEditor.Experimental.GraphView.Port;
@@ -70,7 +71,7 @@ public class BranchTest : MonoBehaviour
     #region Move Bird To 
     public void MoveBirdTo(BaseBranch sourceBranch, BaseBranch targetBranch)
     {
-        List<BaseBird> MovinBird = sourceBranch.CheckColor(); //gán hàm BirdsToMove vừa return ở CheckColor(); Done 
+        List<BaseBird> MovinBird = sourceBranch.CheckColor(); //gán List BirdsToMove vừa return ở CheckColor(); Done 
         int emptySlots = targetBranch.capacity - targetBranch.birds.Count;
         int birdsToEmptySlot = Mathf.Min(MovinBird.Count, emptySlots);
         bool canMove = emptySlots > 0 && (targetBranch.birds.Count == 0 || (targetBranch.birds[targetBranch.birds.Count - 1].ID == MovinBird[0].ID));
@@ -82,12 +83,28 @@ public class BranchTest : MonoBehaviour
             {
                 BaseBird birdToMove = sourceBranch.birds[sourceBranch.birds.Count - 1];
                 sourceBranch.RemoveBird(birdToMove);
+
                 int targetSlotIndex = targetBranch.birds.Count ;
-                Vector2 targetPos = targetBranch.GetSlotPosition(targetSlotIndex);
+                Vector3 targetPos = targetBranch.GetSlotPosition(targetSlotIndex);
+                Vector3 targetWolrdPos = targetBranch.transform.TransformPoint(targetPos);
+                float flyFacing = (targetWolrdPos.x < birdToMove.transform.position.x) ? -1f : 01f; 
+
                 birdToMove.transform.SetParent(targetBranch.transform, true);
+                birdToMove.transform.localScale = Vector3.one;
                 targetBranch.AddBird(birdToMove);
+
+                birdToMove.SetFacing(targetBranch.isRightBranch ? -flyFacing:  flyFacing);
+                if (targetWolrdPos.x < birdToMove.transform.position.x)
+                {
+                    birdToMove.SetFacing(targetBranch.isRightBranch ? 1f : -1f);
+                }
+                else
+                {
+                    birdToMove.SetFacing(targetBranch.isRightBranch ? -1f : 1f);
+                }
                 birdToMove.MoveTo(targetPos, () =>
                 {
+                    birdToMove.SetFacing(1f);
                     completedCount++;
                     if (completedCount == birdsToEmptySlot)
                     {
@@ -144,12 +161,4 @@ public class BranchTest : MonoBehaviour
         return m_isGameOver;
     }
     #endregion
-
-
-
-
-
-
-
-
 }

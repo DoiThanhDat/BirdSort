@@ -46,6 +46,7 @@ public class BaseBird : MonoBehaviour
         if (body != null && !string.IsNullOrEmpty(FLY))
         {
             body.AnimationState.AddAnimation(0, GROUNDING, false, 0f);
+            body.AnimationState.AddAnimation(0, IDLE, true, 0f);
         }
         else
         {
@@ -59,22 +60,35 @@ public class BaseBird : MonoBehaviour
     {
         if (recttr == null) recttr = GetComponent<RectTransform>();
         recttr.DOKill();
+        PlayFly();
         if (body != null && body.Skeleton != null)
         {
-            body.Skeleton.ScaleX = (targetPosition.x < transform.position.x) ? -1f : 1f;
+            body.Skeleton.ScaleX = (targetPosition.x > transform.position.x) ? -1f : 1f;
         }
-        PlayFly();
         float distance = Vector3.Distance(transform.position, targetPosition);
         float moveDuration = distance / moveSpeed;
         recttr.DOAnchorPos(targetPosition, moveDuration).OnComplete(() =>
         {
-            if (body != null && body.Skeleton != null)
-            {
-                body.Skeleton.ScaleX = (targetPosition.x < transform.position.x) ? -1f : 1f;
-            }
             PlayGrounding();
             onMoveCompleted?.Invoke();
         });
+    }
+    #endregion
+
+    #region Look at target branch
+    public void SetFacing(float direct)
+    {
+        if (body != null && body.Skeleton != null)
+        {
+            body.Skeleton.ScaleX = direct;
+        }
+    }
+    public void FlipFacing()
+    {
+        if (body !=null && body.Skeleton != null)
+        {
+            body.Skeleton.ScaleX *= -1f;
+        }
     }
     #endregion
 

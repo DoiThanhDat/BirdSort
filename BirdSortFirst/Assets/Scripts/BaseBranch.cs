@@ -82,9 +82,9 @@ public class BaseBranch : MonoBehaviour
                 {
                     foreach (BaseBird bird in birds)
                     {
-                        Destroy(bird.gameObject);
+                        //Destroy(bird.gameObject);
                     }
-                    Destroy(gameObject);
+                    //Destroy(gameObject);
                     m_gc.AddCompletedBranch();
                     m_gc.ScoreIncrement();
                 }
@@ -97,23 +97,11 @@ public class BaseBranch : MonoBehaviour
 
     // (*)Code mới:
     #region Get Slot Position
-    public Vector2 GetSlotPosition(int i)
+    public Vector3 GetSlotPosition(int i)
     {
         float yPos = 10f;
-        float xPos;
-        if (isRightBranch == false)
-        {
-            {
-                xPos = (float)(- 35f + (i * birdRange));
-            }
-        }
-        else
-        {
-            {
-                xPos = (float)( - (i * birdRange));
-            }
-        }
-        Vector2 localSlot = new Vector3(xPos, yPos);
+        float xPos = (float)(-35f + (i * birdRange));
+        Vector3 localSlot = new Vector3(xPos, yPos, 0f);
         return localSlot;
     }
     #endregion
