@@ -24,7 +24,7 @@ public class BaseBird : MonoBehaviour
         PlayIdle();
     }
 
-    #region Idle, Fly && Grounding
+    #region PLay Anim
     public void PlayIdle()
     {
         if (body != null && !string.IsNullOrEmpty(IDLE))
@@ -67,6 +67,22 @@ public class BaseBird : MonoBehaviour
         {
             PlayGrounding();
             onMoveCompleted?.Invoke();
+        });
+    }
+    #endregion
+
+    #region Escape
+    public void Escape(Vector3 targetPosition, System.Action onMoveCompleted = null)
+    {
+        if (recttr == null) recttr = GetComponent<RectTransform>();
+        recttr.DOKill();
+        PlayFly();
+        float distance = Vector3.Distance(transform.position, targetPosition);
+        float moveDuration = distance / moveSpeed;
+        recttr.DOMove(targetPosition, moveDuration).OnComplete(() =>
+        {
+            onMoveCompleted?.Invoke();
+            Destroy(gameObject);
         });
     }
     #endregion

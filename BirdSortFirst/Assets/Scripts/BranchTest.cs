@@ -77,7 +77,7 @@ public class BranchTest : MonoBehaviour
         bool canMove = emptySlots > 0 && (targetBranch.birds.Count == 0 || (targetBranch.birds[targetBranch.birds.Count - 1].ID == MovinBird[0].ID));
         if (canMove)
         {
-            isMoving = true;
+            //isMoving = true;
             int completedCount = 0;
             for (int i = 0; i < birdsToEmptySlot; i++)
             {
@@ -105,9 +105,12 @@ public class BranchTest : MonoBehaviour
                     completedCount++;
                     if (completedCount == birdsToEmptySlot)
                     {
-                        isMoving = false;
-                        targetBranch.CheckPoint();
-                        m_gd.CheckGameOver();
+                        DOVirtual.DelayedCall(0.6f, () =>
+                        {
+                            //isMoving = false;
+                            targetBranch.CheckPoint();
+                            m_gd.CheckGameOver();
+                        });
                     }
                    
                 });

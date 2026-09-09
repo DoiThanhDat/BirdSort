@@ -309,9 +309,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 49, y: 98}
+  m_AnchoredPosition: {x: -12.999924, y: 97.99998}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: -0.12, y: 0.5}
 --- !u!1 &406915824
 GameObject:
   m_ObjectHideFlags: 0
@@ -1107,9 +1107,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -48, y: 98}
+  m_AnchoredPosition: {x: 13.9995575, y: 97.99998}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1.12, y: 0.5}
 --- !u!1 &1258610577
 GameObject:
   m_ObjectHideFlags: 0
@@ -1142,9 +1142,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: -18}
+  m_AnchoredPosition: {x: -12, y: -18}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: -0.12, y: 0.5}
 --- !u!1 &1335474493
 GameObject:
   m_ObjectHideFlags: 0
@@ -1384,7 +1384,7 @@ MonoBehaviour:
   birdsSpawned0: {fileID: 7688738419707480827, guid: 2325dfd7a9bec3244a2407ceb4602a03, type: 3}
   birdsSpawned1: {fileID: 1965166821034886773, guid: 03e13ecf08d418a47aa928274c69b9c6, type: 3}
   birdsSpawned2: {fileID: 5941324338538489759, guid: b0381c2c6f11eed44a1ba9a9d985266d, type: 3}
-  branchSpawned0: {fileID: 3813528025097713464, guid: 10995f9ba8b418d4ca40b227a2739683, type: 3}
+  branchSpawned0: {fileID: 2207019514526797912, guid: 68742fcc2e3e9d24dac0f91faa371f1e, type: 3}
   branchListRight: []
   branchListLeft: []
   canvasTransform: {fileID: 1137419991}
@@ -1758,9 +1758,9 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -49, y: -19}
+  m_AnchoredPosition: {x: 12.999863, y: -19}
   m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 1.12, y: 0.5}
 --- !u!1 &2044141779
 GameObject:
   m_ObjectHideFlags: 0

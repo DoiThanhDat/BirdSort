@@ -1,8 +1,9 @@
-using UnityEngine;
-using System.Collections.Generic;
-using System.Collections;
-using Unity.VisualScripting;
 using DG.Tweening;
+using Spine.Unity;
+using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class BaseBranch : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class BaseBranch : MonoBehaviour
     public List<BaseBird> birds = new List<BaseBird> ();
     public bool isRightBranch;
     BranchTest m_gc;
+    [SerializeField] protected SkeletonGraphic body;
+    public SkeletonGraphic Body => body;
+
+    public const string BRANCHBROKEN = "Brach1";
 
     #region start && update
     void Awake()
@@ -30,6 +35,16 @@ public class BaseBranch : MonoBehaviour
     }
     #endregion
 
+    #region Play Anim
+    public void PlayBroken()
+    {
+        if (body != null && !string.IsNullOrEmpty(BRANCHBROKEN))
+        {
+            body.AnimationState.SetAnimation(0, BRANCHBROKEN, false);
+        }
+    }
+    #endregion
+
     #region Update Bird Position
     public void UpdateBirdPosition()
     {
@@ -40,20 +55,6 @@ public class BaseBranch : MonoBehaviour
             RectTransform birdRect = birds[i].GetComponent<RectTransform>();
             birdRect.DOKill();
             birdRect.anchoredPosition = GetSlotPosition(i);
-            /*if (isRightBranch == false)
-            {
-                float yPos = (float)( + 10f);
-                float xPos = (float)( - 35f + i * birdRange);
-                Vector3 birdPosition = new Vector3(xPos, yPos, 0f);
-                birds[i].transform.localPosition = birdPosition;
-            }
-            else if (isRightBranch == true)
-            {
-                 float yPos = (float)( + 10f);
-                float xPos = (float)(( + (-i) * birdRange));
-                Vector3 birdPosition = new Vector3(xPos, yPos, 0f);
-                birds[i].transform.localPosition = birdPosition;
-            }*/
         }
     }
 
@@ -69,6 +70,17 @@ public class BaseBranch : MonoBehaviour
     }
     #endregion
 
+    #region Escape Position
+    public Vector3 EscapePos()
+    {
+        float randomPos = UnityEngine.Random.Range(-9f, 9f);
+        float xPos = randomPos;
+        float yPos = 9f;
+        Vector3 EscapePoint = new Vector3(xPos, yPos, 0f);
+        return EscapePoint;
+    }
+    #endregion
+
     #region Check Point
     public void CheckPoint()
     {
@@ -80,11 +92,14 @@ public class BaseBranch : MonoBehaviour
                 demCungMau++;
                 if (demCungMau == capacity - 1)
                 {
-                    foreach (BaseBird bird in birds)
+                    PlayBroken();
+                    foreach (BaseBird bird in birds) 
                     {
-                        //Destroy(bird.gameObject);
+                        bird.Escape(EscapePos(), () =>
+                        {
+                            bird.transform.SetParent(null);
+                        });
                     }
-                    //Destroy(gameObject);
                     m_gc.AddCompletedBranch();
                     m_gc.ScoreIncrement();
                 }
@@ -95,11 +110,10 @@ public class BaseBranch : MonoBehaviour
     }
     #endregion
 
-    // (*)Code mới:
     #region Get Slot Position
     public Vector3 GetSlotPosition(int i)
     {
-        float yPos = 10f;
+        float yPos = 3f;
         float xPos = (float)(-35f + (i * birdRange));
         Vector3 localSlot = new Vector3(xPos, yPos, 0f);
         return localSlot;
