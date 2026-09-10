@@ -2,6 +2,7 @@ using DG.Tweening;
 using Spine.Unity;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -32,6 +33,17 @@ public class BaseBranch : MonoBehaviour
     void Update()
     {
         
+    }
+    #endregion
+
+    #region Rotate Branch
+    public void Rotation()
+    {
+        transform.DOKill();
+        transform.DOShakeRotation(duration: 1f, strength: new Vector3(0, 0, 2f), vibrato: 4, randomness: 90, fadeOut: false).OnComplete(() =>
+        {
+            transform.localRotation = Quaternion.identity;
+        });
     }
     #endregion
 

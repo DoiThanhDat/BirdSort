@@ -105,6 +105,7 @@ public class BranchTest : MonoBehaviour
                     completedCount++;
                     if (completedCount == birdsToEmptySlot)
                     {
+                        targetBranch.Rotation();
                         DOVirtual.DelayedCall(0.6f, () =>
                         {
                             //isMoving = false;

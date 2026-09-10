@@ -50,7 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86dc7431f71814542bc9bdce8f8d8e31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseBranch
-  birdRange: 33
+  birdRange: 25
   capacity: 4
   birds: []
   isRightBranch: 0
