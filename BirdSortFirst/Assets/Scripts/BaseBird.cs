@@ -1,6 +1,8 @@
-using UnityEngine;
 using DG.Tweening;
 using Spine.Unity;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEngine;
 
 public class BaseBird : MonoBehaviour
 {
@@ -65,11 +67,19 @@ public class BaseBird : MonoBehaviour
         float moveDuration = distance / moveSpeed;
         recttr.DOAnchorPos(targetPosition, moveDuration).OnComplete(() =>
         {
-            PlayGrounding();
             onMoveCompleted?.Invoke();
         });
     }
     #endregion
+
+    public void GroundingAfterMoveMent(Vector3 pos, System.Action callbak = null)
+    {
+        recttr.DOKill();
+        if (recttr == null) recttr = GetComponent<RectTransform>();
+        PlayGrounding();
+        recttr.DOLocalMove(pos, 1.167f);
+        callbak?.Invoke();
+    }
 
     #region Escape
     public void Escape(Vector3 targetPosition, System.Action onMoveCompleted = null)

@@ -5,18 +5,19 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class BaseBranch : MonoBehaviour
 {
-    public float birdRange;
     public int capacity;
     public List<BaseBird> birds = new List<BaseBird> ();
     public bool isRightBranch;
     BranchTest m_gc;
     [SerializeField] protected SkeletonGraphic body;
     public SkeletonGraphic Body => body;
-
     public const string BRANCHBROKEN = "Brach1";
+    public List<Transform> birdPositionInBranch = new List<Transform> ();
+    public List<Transform> slotToGround = new List<Transform>();
 
     #region start && update
     void Awake()
@@ -37,12 +38,13 @@ public class BaseBranch : MonoBehaviour
     #endregion
 
     #region Rotate Branch
-    public void Rotation()
+    public void BranchRotation(UnityAction callback = null)
     {
         transform.DOKill();
-        transform.DOShakeRotation(duration: 1f, strength: new Vector3(0, 0, 2f), vibrato: 4, randomness: 90, fadeOut: false).OnComplete(() =>
+        transform.DOShakeRotation(duration: 1f, strength: new Vector3(0, 0, 1f), vibrato: 4, randomness: 90, fadeOut: false).OnComplete(() =>
         {
             transform.localRotation = Quaternion.identity;
+            callback?.Invoke();
         });
     }
     #endregion
@@ -66,7 +68,7 @@ public class BaseBranch : MonoBehaviour
             if (birds[i] == null) continue;
             RectTransform birdRect = birds[i].GetComponent<RectTransform>();
             birdRect.DOKill();
-            birdRect.anchoredPosition = GetSlotPosition(i);
+            birdRect.localPosition = GetSlotPosition(i);
         }
     }
 
@@ -116,6 +118,7 @@ public class BaseBranch : MonoBehaviour
                     m_gc.ScoreIncrement();
                 }
             }
+            
             m_gc.CheckIsGameFinished(true);
         }
 
@@ -125,10 +128,28 @@ public class BaseBranch : MonoBehaviour
     #region Get Slot Position
     public Vector3 GetSlotPosition(int i)
     {
-        float yPos = 3f;
-        float xPos = (float)(-35f + (i * birdRange));
-        Vector3 localSlot = new Vector3(xPos, yPos, 0f);
-        return localSlot;
+        if (i >= 0 && i <capacity )
+        {
+            Transform slotTransform = birdPositionInBranch[i];
+            if (slotTransform != null)
+            {
+                return transform.InverseTransformPoint(slotTransform.position);
+            }
+        }
+        return Vector3.zero;
+    }
+    #endregion
+
+    //slot de dap dat
+    #region Get Slot Position To Ground
+    public Vector3 GetSlotPositionToGround(int i)
+    {
+        if (i >= 0 && i < capacity)
+        {
+           RectTransform rt = slotToGround[i] as RectTransform;
+            if (rt != null) return rt.anchoredPosition;
+        }
+        return Vector3.zero;
     }
     #endregion
 
@@ -161,7 +182,6 @@ public class BaseBranch : MonoBehaviour
                 if (birds[i].ID == targetID)
                 {
                     BirdsToMove.Add(birds[i]);
-
                 }
                 else
                     break;
