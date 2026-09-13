@@ -93,7 +93,7 @@ public class BranchTest : MonoBehaviour
                 birdToMove.transform.localScale = Vector3.one;
                 targetBranch.AddBird(birdToMove);
 
-                if (birdToMove.transform.position.x < targetWolrdPos.x)
+                if (birdToMove.transform.position.x <= targetWolrdPos.x)
                 {
                     if(targetBranch.isRightBranch)
                     {
@@ -104,11 +104,11 @@ public class BranchTest : MonoBehaviour
                         birdToMove.SetFacing(1f);
                     }
                 }
-                if (birdToMove.transform.position.x >= targetWolrdPos.x)
+                if (birdToMove.transform.position.x > targetWolrdPos.x)
                 {
                     if (targetBranch.isRightBranch)
                     {
-                        birdToMove.SetFacing(-1f);
+                        birdToMove.SetFacing(1f);
                     }
                     if (targetBranch.isRightBranch == false)
                     {
