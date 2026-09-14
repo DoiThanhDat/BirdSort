@@ -51,7 +51,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BaseBird
   currentBranch: {fileID: 0}
-  ID: 1
+  ID: 0
   moveSpeed: 100
   body: {fileID: 5222287794992849100}
 --- !u!60 &7185591374349952564

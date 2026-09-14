@@ -8,10 +8,8 @@ using UnityEngine;
 
 public class GameDesignerDemo : MonoBehaviour
 {
- 
-    public BaseBird birdsSpawned0;
-    public BaseBird birdsSpawned1;
-    public BaseBird birdsSpawned2;
+    public int totalBirdTypes;
+    public List<BaseBird> birdSpawned;
     public BaseBranch branchSpawned0;
     BranchTest m_gc;
     List<BaseBird> spawnedObject = new List<BaseBird>();
@@ -33,7 +31,7 @@ public class GameDesignerDemo : MonoBehaviour
        
     }
 
-    #region spawn branch
+    #region Spawn branch
     public void SpawnBranch()
     {
         for (int i = 0; i < branchSpawnPointRight.Count; i++)
@@ -58,18 +56,28 @@ public class GameDesignerDemo : MonoBehaviour
     #endregion
 
     #region Spawn && Distribute Birds
-    public void SpawnBirds(int totalTypes = 3)
+    public void SpawnBirds()
     {
         spawnedObject.Clear();
-        for (int currentID = 1; currentID <= totalTypes; currentID++) 
+        for (int currentID = 0; currentID < totalBirdTypes; currentID++) 
         {
+            if (currentID == 0)
+            {
+                for (int i = 3; i >= 0; i--)
+                {
+                    BaseBird birdSpawnNew = Instantiate(birdSpawned[0], canvasTransform);
+                    birdSpawnNew.ID= currentID;
+                    birdSpawnNew.SetSkinByID(currentID+1);
+                    spawnedObject.Add(birdSpawnNew);
+                }
+            }
             if (currentID == 1)
             {
                 for (int i = 3; i >= 0; i--)
                 {
-                    BaseBird birdSpawnNew = Instantiate(birdsSpawned0, canvasTransform);
-                    birdSpawnNew.ID= currentID;
-                    birdSpawnNew.SetSkinByID(currentID);
+                    BaseBird birdSpawnNew = Instantiate(birdSpawned[1],canvasTransform);
+                    birdSpawnNew.ID = currentID;
+                    birdSpawnNew.SetSkinByID(currentID+1);
                     spawnedObject.Add(birdSpawnNew);
                 }
             }
@@ -77,19 +85,9 @@ public class GameDesignerDemo : MonoBehaviour
             {
                 for (int i = 3; i >= 0; i--)
                 {
-                    BaseBird birdSpawnNew = Instantiate(birdsSpawned1,canvasTransform);
+                    BaseBird birdSpawnNew = Instantiate(birdSpawned[2],canvasTransform);
                     birdSpawnNew.ID = currentID;
-                    birdSpawnNew.SetSkinByID(currentID);
-                    spawnedObject.Add(birdSpawnNew);
-                }
-            }
-            if (currentID == 3)
-            {
-                for (int i = 3; i >= 0; i--)
-                {
-                    BaseBird birdSpawnNew = Instantiate(birdsSpawned2,canvasTransform);
-                    birdSpawnNew.ID = currentID;
-                    birdSpawnNew.SetSkinByID(currentID);
+                    birdSpawnNew.SetSkinByID(currentID+1);
                     spawnedObject.Add(birdSpawnNew);
                 }
             }
@@ -157,5 +155,4 @@ public class GameDesignerDemo : MonoBehaviour
         m_gc.SetGameOverState(true);
     }
     #endregion
-
 }

@@ -9,6 +9,7 @@ using UnityEngine.Events;
 
 public class BaseBranch : MonoBehaviour
 {
+    public int side;
     public int capacity;
     public List<BaseBird> birds = new List<BaseBird> ();
     public bool isRightBranch;
