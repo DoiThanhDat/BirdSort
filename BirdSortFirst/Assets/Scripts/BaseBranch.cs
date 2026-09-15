@@ -39,7 +39,7 @@ public class BaseBranch : MonoBehaviour
     #endregion
 
     #region Rotate Branch
-    public void BranchRotation(UnityAction callback = null)
+    public void BranchRotation(System.Action callback = null)
     {
         transform.DOKill();
         transform.DOShakeRotation(duration: 1f, strength: new Vector3(0, 0, 1f), vibrato: 4, randomness: 90, fadeOut: false).OnComplete(() =>
@@ -119,8 +119,8 @@ public class BaseBranch : MonoBehaviour
                     m_gc.ScoreIncrement();
                 }
             }
-            
             m_gc.CheckIsGameFinished(true);
+            
         }
 
     }

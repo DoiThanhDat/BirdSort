@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b089df64a4340be43a30685551443da4, type: 3}
+  m_Name: BirdCatalog
+  m_EditorClassIdentifier: Assembly-CSharp::BirdCatalog
+  allBirds:
+  - {fileID: 7688738419707480827, guid: 2325dfd7a9bec3244a2407ceb4602a03, type: 3}
+  - {fileID: 1965166821034886773, guid: 03e13ecf08d418a47aa928274c69b9c6, type: 3}
+  - {fileID: 5941324338538489759, guid: b0381c2c6f11eed44a1ba9a9d985266d, type: 3}
+  branchLists:
+  - side: -1
+    slotID: 02000000020000000200000001000000
+  - side: -1
+    slotID: 01000000010000000100000002000000
+  - side: -1
+    slotID: 0300000003000000
+  - side: 1
+    slotID: 0300000003000000
+  - side: 1
+    slotID: 

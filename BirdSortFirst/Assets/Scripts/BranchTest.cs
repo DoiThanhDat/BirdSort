@@ -19,13 +19,14 @@ public class BranchTest : MonoBehaviour
     int completedBranch;
     bool isGameFinished;
     UIManager m_ui;
-    GameDesignerDemo m_gd;
+    GameDesignerDemo2 m_gd2;
 
     void Start()
     {
-        m_gd = FindAnyObjectByType<GameDesignerDemo>();
+        m_gd2 = FindAnyObjectByType<GameDesignerDemo2>();
         m_ui = FindAnyObjectByType<UIManager>();
         m_ui.SetScoreText("Score: " + m_score);
+        
     }
 
     // Update is called once per frame
@@ -126,7 +127,7 @@ public class BranchTest : MonoBehaviour
                             targetBranch.BranchRotation(callback: () =>
                             {
                                 targetBranch.CheckPoint();
-                                m_gd.CheckGameOver();
+                                m_gd2.CheckGameOver();
                             }
                             );
                         }
@@ -145,15 +146,22 @@ public class BranchTest : MonoBehaviour
     #endregion
 
     #region Check Dieu Kien Thang 
-    public void AddCompletedBranch ()
+    public void AddCompletedBranch()
     {
         completedBranch++;
     }
     public void CheckIsGameFinished(bool dk)
     {
-        if (completedBranch >=  totalBranchSets) 
+        if (completedBranch >=  totalBranchSets)
+        {
             isGameFinished = dk;
+        }
+        if (isGameFinished == true)
+        {
+            m_gd2.EndLevel();
+        }
     }
+
     public bool SetGameFinishedState()
     {
         return isGameFinished;

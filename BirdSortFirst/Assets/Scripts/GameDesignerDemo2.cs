@@ -2,6 +2,8 @@ using NUnit.Framework;
 using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.Rendering;
+using System;
+using JetBrains.Annotations;
 
 public class GameDesignerDemo2 : MonoBehaviour
 {
@@ -9,13 +11,22 @@ public class GameDesignerDemo2 : MonoBehaviour
     public BirdCatalog catalog;
     public BaseBranch branches;
     public List<Transform> branchPoint;
+    [SerializeField] private List<BaseBranch> branchesOnActive;
+    BranchTest m_gc;
 
+    #region Start && Awake
+    private void Awake()
+    {
+        m_gc = FindFirstObjectByType<BranchTest>();
+    }
     void Start()
     {
-        
+        SpawnLevel();
     }
+    #endregion
 
-  public void SpawnLevel()
+    #region Spawn Level
+    public void SpawnLevel()
     {
         if (currentLevel == null || catalog == null || branches == null)
         {
@@ -30,9 +41,14 @@ public class GameDesignerDemo2 : MonoBehaviour
             BranchSetUp setUp = currentLevel.branchLists[i];
 
             //Spawn canh cay:
-            BaseBranch newBranch = Instantiate(branches, targerPos);
+            BaseBranch newBranch = Instantiate(branches, targerPos, false);
             newBranch.transform.localPosition = Vector3.zero;
+            branchesOnActive.Add(newBranch);
 
+            //Ep canh UI nam giua diem neo
+            RectTransform branchRect = newBranch.GetComponent<RectTransform>();
+            if (branchRect != null) branchRect.localPosition = Vector3.zero;
+            newBranch.birds.Clear();
             //thiet lap quay
             if (setUp.side == 1)
             {
@@ -48,13 +64,12 @@ public class GameDesignerDemo2 : MonoBehaviour
             //Spawn chim
             for (int j = 0;j < setUp.slotID.Count;j++)
             {
-                int birdID = setUp.slotID[j];
-                BaseBird birdToSPawn = catalog.GetBirdsByID(birdID);
-                if (birdToSPawn != null) continue;
-                BaseBird newBird = Instantiate(birdToSPawn, newBranch.transform);  
-
-                //quay nguoc chim lan nua:
-                newBird.transform.localScale = newBranch.isRightBranch? new Vector3(-1,1,1): Vector3.one;
+               int birdID = setUp.slotID[j];
+                if (birdID <= 0) continue;
+                BaseBird birdReadyToSPawn = catalog.GetBirdsByID(birdID);
+                //sinh chim
+                BaseBird newBird = Instantiate(birdReadyToSPawn, newBranch.transform, false) ;
+                //gan WorldPos trong Canvas 
                 if (j < newBranch.birdPositionInBranch.Count)
                 {
                     newBird.transform.position = newBranch.birdPositionInBranch[j].position;
@@ -64,4 +79,42 @@ public class GameDesignerDemo2 : MonoBehaviour
             }
         }
     }
+    #endregion
+
+    #region Check Game Over
+    public void CheckGameOver()
+    {
+        foreach(BaseBranch branches in branchesOnActive)
+        {
+            if (branches != null && branches.birds.Count == 0)
+                return;
+        }
+        for (int i = 0; i < branchesOnActive.Count;i++)
+        {
+            for (int j = 0;j < branchesOnActive.Count; j++)
+            {
+                if (i == j)
+                {
+                    continue;
+                }
+                if (branchesOnActive[i].CheckTopBird() == branchesOnActive[j].CheckTopBird())
+                {
+                    return;
+                }
+            }
+        }
+        m_gc.SetGameOverState(true);
+    }
+    #endregion
+
+    #region End Level
+    public void EndLevel()
+    {
+        foreach (BaseBranch branch in branchesOnActive)
+        {
+            branch.PlayBroken();
+        }
+    }
+    #endregion
+
 }

@@ -51,10 +51,11 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Scripts\BaseBird.cs" />
+    <Compile Include="Assets\Scriptable Object\LevelData.cs" />
+    <Compile Include="Assets\Scriptable Object\BirdCatalog.cs" />
     <Compile Include="Assets\Scripts\GameDesignerDemo2.cs" />
     <Compile Include="Assets\Scripts\BranchTest.cs" />
     <Compile Include="Assets\Scripts\BaseBranch.cs" />
-    <Compile Include="Assets\Scripts\LevelData.cs" />
     <Compile Include="Assets\Scripts\GameDesignerDemo.cs" />
   </ItemGroup>
   <ItemGroup>

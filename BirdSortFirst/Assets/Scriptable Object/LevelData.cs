@@ -28,22 +28,5 @@ public class LevelData : ScriptableObject
     public int totalBranches;
     public List<BirdSpeciesConfig> birdConfigs;
     public List<BranchSetUp> branchLists;
-}
 
-//dich ID chim
-[CreateAssetMenu(fileName = "BirdCatalog", menuName = "Bird Sort/ Bird Catalog")]
-public class BirdCatalog : ScriptableObject
-{
-    public List<BaseBird> allBirds = new List<BaseBird>();
-    public List<BranchSetUp> branchLists;
-    public BaseBird GetBirdsByID(int id)
-    {
-        for (int i = 0; i < allBirds.Count; i++)
-        {
-            if (allBirds[i].ID  == id) return allBirds[i];
-        }
-        return null;
-        
-    }
-    
 }
