@@ -5,14 +5,14 @@ using UnityEngine.Rendering;
 using System;
 using JetBrains.Annotations;
 
-public class GameDesignerDemo2 : MonoBehaviour
+public class GameDesignerWithJSON : MonoBehaviour
 {
-    public LevelData currentLevel;
     public BirdCatalog catalog;
     public BaseBranch branches;
     public List<Transform> branchPoint;
     [SerializeField] private List<BaseBranch> branchesOnActive;
     BranchTest m_gc;
+    public TextAsset jsonLevelFile;
 
     #region Start && Awake
     private void Awake()
@@ -21,24 +21,25 @@ public class GameDesignerDemo2 : MonoBehaviour
     }
     void Start()
     {
-        SpawnLevel();
+        SpawnLevelFromJSON();
     }
     #endregion
 
     #region Spawn Level
-    public void SpawnLevel()
+    public void SpawnLevelFromJSON()
     {
-        if (currentLevel == null || catalog == null || branches == null)
+        if (jsonLevelFile == null || catalog == null || branches == null)
         {
             return;
         }
-        // Quet cau hinh tu Level Data
-        for (int i = 0;i < currentLevel.branchLists.Count;i++)
+        LevelDataJSON levelData = JsonUtility.FromJson<LevelDataJSON>(jsonLevelFile.text);
+        // Quet cau hinh tu Level Data from JSON
+        for (int i = 0; i < levelData.branchLists.Count; i++)
         {
             if (i >= branchPoint.Count) break;
             Transform targerPos = branchPoint[i];
             if (targerPos == null) continue;
-            BranchSetUp setUp = currentLevel.branchLists[i];
+            BranchSetUpJSON setUp = levelData.branchLists[i];
 
             BaseBranch newBranch = Instantiate(branches, targerPos, false);
             newBranch.transform.localPosition = Vector3.zero;
@@ -50,21 +51,21 @@ public class GameDesignerDemo2 : MonoBehaviour
             if (setUp.side == 1)
             {
                 newBranch.isRightBranch = true;
-                newBranch.transform.localScale = new Vector3 (-1,1,1);
+                newBranch.transform.localScale = new Vector3(-1, 1, 1);
             }
             else
             {
-                newBranch.isRightBranch= false;
+                newBranch.isRightBranch = false;
                 newBranch.transform.localScale = Vector3.one;
             }
 
-            for (int j = 0;j < setUp.slotID.Count;j++)
+            for (int j = 0; j < setUp.slotID.Count; j++)
             {
-               int birdID = setUp.slotID[j];
+                int birdID = setUp.slotID[j];
                 if (birdID <= 0) continue;
                 BaseBird birdReadyToSPawn = catalog.GetBirdsByID(birdID);
                 //sinh chim
-                BaseBird newBird = Instantiate(birdReadyToSPawn, newBranch.transform, false) ;
+                BaseBird newBird = Instantiate(birdReadyToSPawn, newBranch.transform, false);
                 //gan WorldPos trong Canvas 
                 if (j < newBranch.birdPositionInBranch.Count)
                 {
@@ -80,14 +81,14 @@ public class GameDesignerDemo2 : MonoBehaviour
     #region Check Game Over
     public void CheckGameOver()
     {
-        foreach(BaseBranch branches in branchesOnActive)
+        foreach (BaseBranch branches in branchesOnActive)
         {
             if (branches != null && branches.birds.Count == 0)
                 return;
         }
-        for (int i = 0; i < branchesOnActive.Count;i++)
+        for (int i = 0; i < branchesOnActive.Count; i++)
         {
-            for (int j = 0;j < branchesOnActive.Count; j++)
+            for (int j = 0; j < branchesOnActive.Count; j++)
             {
                 if (i == j)
                 {

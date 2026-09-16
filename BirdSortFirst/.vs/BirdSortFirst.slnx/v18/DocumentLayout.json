@@ -3,32 +3,24 @@
   "WorkspaceRootPath": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scripts\\basebranch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\basebranch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scriptable object\\birdcatalog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scriptable object\\birdcatalog.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\GameDesignerWithJSON.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Scripts\\GameDesignerWithJSON.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Level.json\\level_1.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Assets\\Level.json\\level_1.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scriptable object\\leveldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scriptable object\\leveldata.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scripts\\branchtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\branchtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scripts\\gamedesignerdemo2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamedesignerdemo2.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scripts\\basebird.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\basebird.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|e:\\unitygame\\birdsort\\birdsortfirst\\assets\\level.json\\leveldatajson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B4CD19DA-EE08-5225-FB19-1D0DFA4113DD}|Assembly-CSharp.csproj|solutionrelative:assets\\level.json\\leveldatajson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,99 +30,69 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "GameDesignerDemo2.cs",
-              "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\GameDesignerDemo2.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\GameDesignerDemo2.cs",
-              "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\GameDesignerDemo2.cs",
-              "RelativeToolTip": "Assets\\Scripts\\GameDesignerDemo2.cs",
-              "ViewState": "AgIAAEEAAAAAAAAAAAAuwHUAAAAOAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-15T07:16:27.361Z",
-              "IsPinned": true,
+              "DocumentIndex": 2,
+              "Title": "level_1.json",
+              "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Level.json\\level_1.json",
+              "RelativeDocumentMoniker": "Assets\\Level.json\\level_1.json",
+              "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Level.json\\level_1.json",
+              "RelativeToolTip": "Assets\\Level.json\\level_1.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-09-16T10:49:40.011Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "LevelDataJSON.cs",
+              "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Level.json\\LevelDataJSON.cs",
+              "RelativeDocumentMoniker": "Assets\\Level.json\\LevelDataJSON.cs",
+              "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Level.json\\LevelDataJSON.cs",
+              "RelativeToolTip": "Assets\\Level.json\\LevelDataJSON.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB4AAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-16T09:28:20.18Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "BranchTest.cs",
-              "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BranchTest.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\BranchTest.cs",
-              "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BranchTest.cs",
-              "RelativeToolTip": "Assets\\Scripts\\BranchTest.cs",
-              "ViewState": "AgIAAH0AAAAAAAAAAAAUwKAAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-14T02:03:40.766Z",
-              "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "LevelData.cs",
               "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scriptable Object\\LevelData.cs",
               "RelativeDocumentMoniker": "Assets\\Scriptable Object\\LevelData.cs",
               "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scriptable Object\\LevelData.cs",
               "RelativeToolTip": "Assets\\Scriptable Object\\LevelData.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAApAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-15T07:46:23.756Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-15T07:46:23.756Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "BirdCatalog.cs",
               "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scriptable Object\\BirdCatalog.cs",
               "RelativeDocumentMoniker": "Assets\\Scriptable Object\\BirdCatalog.cs",
               "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scriptable Object\\BirdCatalog.cs",
               "RelativeToolTip": "Assets\\Scriptable Object\\BirdCatalog.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-15T07:45:54.89Z",
+              "WhenOpened": "2026-09-16T06:58:40.449Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "BaseBranch.cs",
-              "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBranch.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\BaseBranch.cs",
-              "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBranch.cs",
-              "RelativeToolTip": "Assets\\Scripts\\BaseBranch.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAA8AAAAUAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "GameDesignerWithJSON.cs",
+              "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\GameDesignerWithJSON.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameDesignerWithJSON.cs",
+              "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\GameDesignerWithJSON.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameDesignerWithJSON.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-07T03:46:34.593Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "BaseBird.cs",
-              "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBird.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\BaseBird.cs",
-              "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBird.cs",
-              "RelativeToolTip": "Assets\\Scripts\\BaseBird.cs",
-              "ViewState": "AgIAAE0AAAAAAAAAAAAAAHsAAAAaAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-08T06:52:44.945Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "UIManager.cs",
-              "DocumentMoniker": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\UIManager.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\UIManager.cs",
-              "ToolTip": "E:\\UnityGame\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\UIManager.cs",
-              "RelativeToolTip": "Assets\\Scripts\\UIManager.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsAAAAnAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-25T09:28:57.05Z",
+              "WhenOpened": "2026-09-16T10:51:07.46Z",
               "EditorCaption": ""
             }
           ]

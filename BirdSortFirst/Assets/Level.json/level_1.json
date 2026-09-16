@@ -1,0 +1,32 @@
+{
+	"numberLevel": 0,
+	"totalBranches": 5,
+	"birdConfigs": [
+		{
+			"birdID": 1,
+			"totalAmount": 4
+		},
+		{
+			"birdID": 2,
+			"totalAmount": 4
+		}
+	],
+	"branchLists": [
+		{
+			"side": -1,
+			"slotID": [2, 2, 2, 1]
+		},
+		{
+			"side": -1,
+			"slotID": [1, 1, 1, 2]
+		},
+		{
+			"side": -1,
+			"slotID": [0, 0, 0, 0]
+		},
+		{
+			"side": 1,
+			"slotID": [0, 0, 0, 0]
+		}
+	]
+}

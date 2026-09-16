@@ -5,7 +5,7 @@ using UnityEngine;
 
 
 
-[CreateAssetMenu(fileName = "BirdCatalog", menuName = "Bird Sort/ Bird Catalog New")]
+[CreateAssetMenu(fileName = "BirdCatalogJSON", menuName = "Bird Sort/ Bird Catalog JSON New")]
 public class BirdCatalog : ScriptableObject
 {
     public List<BaseBird> allBirds = new List<BaseBird>();
