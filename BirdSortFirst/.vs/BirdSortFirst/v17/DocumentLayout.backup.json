@@ -3,24 +3,28 @@
   "WorkspaceRootPath": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\assets\\scripts\\basebranch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\basebranch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\assets\\scripts\\gamedesignerdemo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamedesignerdemo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|d:\\bird sort gplay\\birdsort\\birdsortfirst\\assets\\scripts\\gamedesignerwithjson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamedesignerwithjson.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\assets\\scripts\\branchtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\branchtest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\assets\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\assets\\scripts\\gamedesignerdemo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\gamedesignerdemo.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|d:\\bird sort gplay\\birdsort\\birdsortfirst\\assets\\scripts\\basebird.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\assets\\scripts\\basebird.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\basebird.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\assets\\scripts\\basebranch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\basebranch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\assets\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9AA7A676-E790-76AD-6AA3-7EE504DBCD44}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\uimanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -35,32 +39,56 @@
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "BranchTest.cs",
+              "DocumentMoniker": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BranchTest.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\BranchTest.cs",
+              "ToolTip": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BranchTest.cs",
+              "RelativeToolTip": "Assets\\Scripts\\BranchTest.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAABRwEcAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-25T16:14:02.777Z",
+              "IsPinned": true
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "GameDesignerWithJSON.cs",
+              "DocumentMoniker": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\GameDesignerWithJSON.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\GameDesignerWithJSON.cs",
+              "ToolTip": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\GameDesignerWithJSON.cs",
+              "RelativeToolTip": "Assets\\Scripts\\GameDesignerWithJSON.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-17T15:17:12.138Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "GameDesignerDemo.cs",
               "DocumentMoniker": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\GameDesignerDemo.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\GameDesignerDemo.cs",
               "ToolTip": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\GameDesignerDemo.cs",
               "RelativeToolTip": "Assets\\Scripts\\GameDesignerDemo.cs",
-              "ViewState": "AgIAABwAAAAAAAAAAAAgwIcAAAAuAAAAAAAAAA==",
+              "ViewState": "AgIAAIUAAAAAAAAAAAAowIcAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-25T16:14:09.724Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-25T16:14:09.724Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "BaseBranch.cs",
               "DocumentMoniker": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBranch.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\BaseBranch.cs",
               "ToolTip": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBranch.cs",
               "RelativeToolTip": "Assets\\Scripts\\BaseBranch.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAQwC8AAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAABQAAAAAAAAAAABRwCcAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-25T16:14:06.524Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-25T16:14:06.524Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "UIManager.cs",
               "DocumentMoniker": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\UIManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UIManager.cs",
@@ -68,34 +96,19 @@
               "RelativeToolTip": "Assets\\Scripts\\UIManager.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-25T16:14:12.275Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-25T16:14:12.275Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "BranchTest.cs",
-              "DocumentMoniker": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BranchTest.cs",
-              "RelativeDocumentMoniker": "Assets\\Scripts\\BranchTest.cs",
-              "ToolTip": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BranchTest.cs",
-              "RelativeToolTip": "Assets\\Scripts\\BranchTest.cs",
-              "ViewState": "AgIAACcAAAAAAAAAAAAqwEYAAAAEAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-25T16:14:02.777Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 3,
               "Title": "BaseBird.cs",
               "DocumentMoniker": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBird.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\BaseBird.cs",
               "ToolTip": "D:\\Bird Sort Gplay\\BirdSort\\BirdSortFirst\\Assets\\Scripts\\BaseBird.cs",
               "RelativeToolTip": "Assets\\Scripts\\BaseBird.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAABRwDkAAAAEAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAAEAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-08-25T16:07:18.674Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-08-25T16:07:18.674Z"
             }
           ]
         }

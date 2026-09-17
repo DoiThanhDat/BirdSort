@@ -19,11 +19,14 @@ public class BranchTest : MonoBehaviour
     int completedBranch;
     bool isGameFinished;
     UIManager m_ui;
-    GameDesignerDemo2 m_gd2;
+    GameDesignerWithJSON m_gdJSON;
 
+    private void Awake()
+    {
+        m_gdJSON = FindAnyObjectByType<GameDesignerWithJSON>();
+    }
     void Start()
     {
-        m_gd2 = FindAnyObjectByType<GameDesignerDemo2>();
         m_ui = FindAnyObjectByType<UIManager>();
         m_ui.SetScoreText("Score: " + m_score);
         
@@ -127,7 +130,7 @@ public class BranchTest : MonoBehaviour
                             targetBranch.BranchRotation(callback: () =>
                             {
                                 targetBranch.CheckPoint();
-                                m_gd2.CheckGameOver();
+                                m_gdJSON.CheckGameOver();
                             }
                             );
                         }
@@ -158,7 +161,7 @@ public class BranchTest : MonoBehaviour
         }
         if (isGameFinished == true)
         {
-            m_gd2.EndLevel();
+            m_gdJSON.EndLevel();
         }
     }
 

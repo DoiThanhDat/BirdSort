@@ -7,7 +7,6 @@ using JetBrains.Annotations;
 
 public class GameDesignerWithJSON : MonoBehaviour
 {
-    public BirdCatalog catalog;
     public BaseBranch branches;
     public List<Transform> branchPoint;
     [SerializeField] private List<BaseBranch> branchesOnActive;
@@ -28,7 +27,7 @@ public class GameDesignerWithJSON : MonoBehaviour
     #region Spawn Level
     public void SpawnLevelFromJSON()
     {
-        if (jsonLevelFile == null || catalog == null || branches == null)
+        if (jsonLevelFile == null || branches == null)
         {
             return;
         }
@@ -63,7 +62,7 @@ public class GameDesignerWithJSON : MonoBehaviour
             {
                 int birdID = setUp.slotID[j];
                 if (birdID <= 0) continue;
-                BaseBird birdReadyToSPawn = catalog.GetBirdsByID(birdID);
+                BaseBird birdReadyToSPawn = Resources.Load<BaseBird>("Bird_" + birdID);
                 //sinh chim
                 BaseBird newBird = Instantiate(birdReadyToSPawn, newBranch.transform, false);
                 //gan WorldPos trong Canvas 
