@@ -11,7 +11,13 @@
 			"totalAmount": 4
 		}
 	],
-	"branchLists": [
+	"branchListRight": [
+				{
+			"side": 1,
+			"slotID": [0, 0, 0, 0]
+		}
+	],
+	"branchListLeft": [
 		{
 			"side": -1,
 			"slotID": [2, 2, 2, 1]
@@ -22,10 +28,6 @@
 		},
 		{
 			"side": -1,
-			"slotID": [0, 0, 0, 0]
-		},
-		{
-			"side": 1,
 			"slotID": [0, 0, 0, 0]
 		}
 	]

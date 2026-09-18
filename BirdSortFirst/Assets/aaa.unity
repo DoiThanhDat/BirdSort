@@ -763,15 +763,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 651483359f9665b4ebe21ebbd4863b13, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameDesignerWithJSON
-  catalog: {fileID: 11400000, guid: 0683f6a8063c7b74ab17d7e2786c5611, type: 2}
   branches: {fileID: 2207019514526797912, guid: 68742fcc2e3e9d24dac0f91faa371f1e, type: 3}
-  branchPoint:
+  branchPointRight:
+  - {fileID: 1191150049}
+  - {fileID: 1870410371}
+  - {fileID: 733370670}
+  - {fileID: 64477227}
+  - {fileID: 243324668}
+  branchPointLeft:
   - {fileID: 377397001}
   - {fileID: 1258610578}
   - {fileID: 627097480}
-  - {fileID: 1191150049}
+  - {fileID: 1261917500}
+  - {fileID: 1124627632}
   branchesOnActive: []
-  jsonLevelFile: {fileID: 4900000, guid: 5f3852c736db11a42878b6cba5a2a6de, type: 3}
 --- !u!4 &644200525
 Transform:
   m_ObjectHideFlags: 0
@@ -1988,8 +1993,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1335474495}
-        m_TargetAssemblyTypeName: BranchTest, Assembly-CSharp
+      - m_Target: {fileID: 980690008}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
         m_MethodName: Replay
         m_Mode: 1
         m_Arguments:
@@ -2259,9 +2264,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1335474495}
-        m_TargetAssemblyTypeName: BranchTest, Assembly-CSharp
-        m_MethodName: Replay
+      - m_Target: {fileID: 980690008}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: NextLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -1,5 +1,6 @@
 using System.Security.Cryptography;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
@@ -27,5 +28,19 @@ public class UIManager : MonoBehaviour
         {
             winPanel.SetActive(isShow);
         }
+    }
+
+    #region Replay Button
+    public void Replay()
+    {
+        SceneManager.LoadScene("aaa");
+    }
+    #endregion
+
+    public void NextLevel()
+    {
+        int nextLevel = PlayerPrefs.GetInt("currenLevel",1) +1;
+        PlayerPrefs.SetInt("currenLevel", nextLevel);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

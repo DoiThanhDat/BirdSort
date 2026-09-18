@@ -1,10 +1,12 @@
-using UnityEngine;
 using System.Collections.Generic;
+using UnityEngine;
+
+
 
 
 //So luong cho tung ID chim (Config: Cau hinh)
 [System.Serializable]
-public class BirdSpeciesConfig
+public class BirdSpeciesConfigJSON
 {
     //Id
     public int birdID;
@@ -14,19 +16,18 @@ public class BirdSpeciesConfig
 
 //Cau truc cua 1 canh cay
 [System.Serializable]
-public class BranchSetUp
+public class BranchSetUpJSON
 {
     public int side;
     public List<int> slotID;
 }
 
-//Cau truc tong the cua 1 lv(khai bao)
-[CreateAssetMenu(fileName = "Level_", menuName = "Bird Sort/Level Data Final")]
-public class LevelData : ScriptableObject
+[System.Serializable]
+public class LevelDataJSON
 {
     public int numberLevel;
     public int totalBranches;
-    public List<BirdSpeciesConfig> birdConfigs;
-    public List<BranchSetUp> branchLists;
-
+    public List<BirdSpeciesConfigJSON> birdConfigs;
+    public List<BranchSetUpJSON> branchListRight;
+    public List<BranchSetUpJSON> branchListLeft;
 }

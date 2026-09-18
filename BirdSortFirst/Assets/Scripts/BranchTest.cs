@@ -141,12 +141,7 @@ public class BranchTest : MonoBehaviour
     }
     #endregion
 
-    #region Replay Button
-    public void Replay()
-    {
-        SceneManager.LoadScene("aaa");
-    }
-    #endregion
+  
 
     #region Check Dieu Kien Thang 
     public void AddCompletedBranch()
