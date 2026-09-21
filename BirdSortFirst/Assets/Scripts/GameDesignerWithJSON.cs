@@ -33,6 +33,14 @@ public class GameDesignerWithJSON : MonoBehaviour
         }
         int currentLevelIndex = PlayerPrefs.GetInt("currentLevel", 1);
         TextAsset jsonLevelFile = Resources.Load<TextAsset>("Levels/level_" + currentLevelIndex);
+        if (jsonLevelFile == null)
+        {
+            currentLevelIndex = 1;
+            PlayerPrefs.SetInt("currentLevel", 1);
+            jsonLevelFile = Resources.Load<TextAsset>("Levels/level_1");
+            if (jsonLevelFile == null)
+                return;
+        }
         LevelDataJSON levelData = JsonUtility.FromJson<LevelDataJSON>(jsonLevelFile.text);
 
         // Quet cau hinh tu Level Data from JSON
@@ -145,12 +153,33 @@ public class GameDesignerWithJSON : MonoBehaviour
     }
     #endregion
 
-    #region End Level
-    public void EndLevel()
+    #region Check All Bird Cleared
+    public bool CheckAllBirdCleared()
     {
         foreach (BaseBranch branch in branchesOnActive)
         {
-            branch.PlayBroken();
+            if (branch!= null && branch.birds.Count >0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+    #endregion
+
+    #region End Level
+    public void EndLevel(System.Action callback = null)
+    {
+       for (int i = 0; i< branchesOnActive.Count; i++)
+        {
+            if (i == 0)
+            {
+                branchesOnActive[i].PlayBroken(callback);
+            }
+            else
+            {
+                branchesOnActive[i].PlayBroken(null);
+            }
         }
     }
     #endregion

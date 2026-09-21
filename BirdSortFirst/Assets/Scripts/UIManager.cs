@@ -37,10 +37,12 @@ public class UIManager : MonoBehaviour
     }
     #endregion
 
+    #region Next Level Button
     public void NextLevel()
     {
-        int nextLevel = PlayerPrefs.GetInt("currenLevel",1) +1;
-        PlayerPrefs.SetInt("currenLevel", nextLevel);
+        int nextLevel = PlayerPrefs.GetInt("currentLevel",1) +1;
+        PlayerPrefs.SetInt("currentLevel", nextLevel);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+    #endregion
 }

@@ -58,21 +58,21 @@ public class BaseBird : MonoBehaviour
     #endregion
 
     #region Move To
-    public void MoveTo(Vector3 targetPosition, System.Action onMoveCompleted = null)
+   public void MoveTo(Vector3 targetPosition, System.Action onMoveCompleted = null)
     {
         if (recttr == null) recttr = GetComponent<RectTransform>();
         recttr.DOKill();
         PlayFly();
-        float distance = Vector3.Distance(transform.position, targetPosition);
+        float distance = Vector3.Distance(recttr.anchoredPosition, targetPosition);
         float moveDuration = distance / moveSpeed;
-        recttr.DOAnchorPos(targetPosition, moveDuration).OnComplete(() =>
+        recttr.DOAnchorPos(targetPosition, moveDuration).SetEase(Ease.Linear).OnComplete(() =>
         {
             onMoveCompleted?.Invoke();
         });
     }
     #endregion
 
-    public void GroundingAfterMoveMent(Vector3 pos, System.Action callbak = null)
+   public void GroundingAfterMoveMent(Vector3 pos, System.Action callbak = null)
     {
         recttr.DOKill();
         if (recttr == null) recttr = GetComponent<RectTransform>();
@@ -89,7 +89,7 @@ public class BaseBird : MonoBehaviour
         PlayFly();
         float distance = Vector3.Distance(transform.position, targetPosition);
         float moveDuration = distance / moveSpeed;
-        recttr.DOMove(targetPosition, moveDuration).OnComplete(() =>
+        recttr.DOMove(targetPosition, moveDuration).SetEase(Ease.Linear).OnComplete(() =>
         {
             onMoveCompleted?.Invoke();
             Destroy(gameObject);

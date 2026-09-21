@@ -15,8 +15,6 @@ public class BranchTest : MonoBehaviour
     public bool isMoving = false;
     int m_score;
     bool m_isGameOver;
-    public int totalBranchSets;
-    int completedBranch;
     bool isGameFinished;
     UIManager m_ui;
     GameDesignerWithJSON m_gdJSON;
@@ -72,7 +70,8 @@ public class BranchTest : MonoBehaviour
     }
     #endregion
 
-    #region Move Bird To 
+    #region Move Bird To
+    
     public void MoveBirdTo(BaseBranch sourceBranch, BaseBranch targetBranch)
     {
         List<BaseBird> MovinBird = sourceBranch.CheckColor(); //gán List BirdsToMove vừa return ở CheckColor(); Done 
@@ -83,6 +82,7 @@ public class BranchTest : MonoBehaviour
         {
             //isMoving = true;
             int completedCount = 0;
+            Sequence masterSequence = DOTween.Sequence();
             for (int i = 0; i < birdsToEmptySlot; i++)
             {
                 BaseBird birdToMove = sourceBranch.birds[sourceBranch.birds.Count - 1];
@@ -121,9 +121,10 @@ public class BranchTest : MonoBehaviour
                 }
                 birdToMove.MoveTo(targetPosToGround, () =>
                 {
-                    birdToMove.SetFacing(1f);
-                    birdToMove.GroundingAfterMoveMent(targetPos, () =>
+                    //birdToMove.SetFacing(1f);
+                    birdToMove.GroundingAfterMoveMent(targetPos,callbak: () =>
                     {
+                        birdToMove.SetFacing(1f);
                         completedCount++;
                         if (completedCount == birdsToEmptySlot)
                         {
@@ -131,6 +132,7 @@ public class BranchTest : MonoBehaviour
                             {
                                 targetBranch.CheckPoint();
                                 m_gdJSON.CheckGameOver();
+                                CheckIsGameFinished();  
                             }
                             );
                         }
@@ -141,30 +143,31 @@ public class BranchTest : MonoBehaviour
     }
     #endregion
 
-  
-
     #region Check Dieu Kien Thang 
-    public void AddCompletedBranch()
-    {
-        completedBranch++;
-    }
-    public void CheckIsGameFinished(bool dk)
-    {
-        if (completedBranch >=  totalBranchSets)
-        {
-            isGameFinished = dk;
-        }
-        if (isGameFinished == true)
-        {
-            m_gdJSON.EndLevel();
-        }
-    }
 
+    public void CheckIsGameFinished()
+    {
+        if (m_gdJSON.CheckAllBirdCleared())
+        {
+            m_gdJSON.EndLevel(callback: () =>
+            {
+                isGameFinished = true;                          
+            });
+        }
+    }
     public bool SetGameFinishedState()
     {
         return isGameFinished;
     }
     #endregion
+    /*
+    public void DestroyAllBranches()
+    {
+        if (isGameFinished == true)
+        {
+            m_gdJSON.EndLevel();
+        }
+    }*/
 
     #region Set diem, Set game over
     public void SetScore(int value)

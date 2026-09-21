@@ -51,11 +51,19 @@ public class BaseBranch : MonoBehaviour
     #endregion
 
     #region Play Anim
-    public void PlayBroken()
+    public void PlayBroken(System.Action callback = null)
     {
         if (body != null && !string.IsNullOrEmpty(BRANCHBROKEN))
         {
-            body.AnimationState.SetAnimation(0, BRANCHBROKEN, false);
+            var trackEntry = body.AnimationState.SetAnimation(0, BRANCHBROKEN, false);
+            trackEntry.Complete += (track) =>
+            {
+                callback?.Invoke();
+            };
+        }
+        else
+        {
+            callback?.Invoke();
         }
     }
     #endregion
@@ -113,14 +121,13 @@ public class BaseBranch : MonoBehaviour
                         bird.Escape(EscapePos(), () =>
                         {
                             bird.transform.SetParent(null);
+                            Destroy(gameObject);
                         });
                     }
-                    m_gc.AddCompletedBranch();
+                    birds.Clear();
                     m_gc.ScoreIncrement();
                 }
             }
-            m_gc.CheckIsGameFinished(true);
-            
         }
 
     }
