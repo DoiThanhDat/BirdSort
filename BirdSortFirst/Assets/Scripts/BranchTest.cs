@@ -12,12 +12,13 @@ public class BranchTest : MonoBehaviour
 {
     [SerializeField] Canvas gamePlayCanvas;
     public static BaseBranch selectedBranch = null;
-    public bool isMoving = false;
     int m_score;
     bool m_isGameOver;
     bool isGameFinished;
     UIManager m_ui;
     GameDesignerWithJSON m_gdJSON;
+    public Transform flyingLayer;
+    List<BaseBranch> lockedBranch = new List<BaseBranch>();
 
     private void Awake()
     {
@@ -49,7 +50,7 @@ public class BranchTest : MonoBehaviour
     #region On Mouse Down
     public void OnClickedBranch(BaseBranch clickedBranch)
     {
-        if (IsGameOver() || SetGameFinishedState() || isMoving)
+        if (IsGameOver() || SetGameFinishedState() || lockedBranch.Contains(clickedBranch))
             return;
         if (selectedBranch == null)
         {
@@ -71,7 +72,6 @@ public class BranchTest : MonoBehaviour
     #endregion
 
     #region Move Bird To
-    
     public void MoveBirdTo(BaseBranch sourceBranch, BaseBranch targetBranch)
     {
         List<BaseBird> MovinBird = sourceBranch.CheckColor(); //gán List BirdsToMove vừa return ở CheckColor(); Done 
@@ -80,61 +80,57 @@ public class BranchTest : MonoBehaviour
         bool canMove = emptySlots > 0 && (targetBranch.birds.Count == 0 || (targetBranch.birds[targetBranch.birds.Count - 1].ID == MovinBird[0].ID));
         if (canMove)
         {
-            //isMoving = true;
+            if (!lockedBranch.Contains(targetBranch)) lockedBranch.Add(targetBranch);
             int completedCount = 0;
-            Sequence masterSequence = DOTween.Sequence();
             for (int i = 0; i < birdsToEmptySlot; i++)
             {
                 BaseBird birdToMove = sourceBranch.birds[sourceBranch.birds.Count - 1];
                 sourceBranch.RemoveBird(birdToMove);
                 int targetSlotIndex = targetBranch.birds.Count ;
-                Vector3 targetPosToGround = targetBranch.GetSlotPositionToGround(targetSlotIndex);
 
+                Vector3 targetPosToGroundInWorldPos = targetBranch.slotToGround[targetSlotIndex].position;
+                Vector3 targetPosToGroundInLocalPos = flyingLayer.InverseTransformPoint(targetPosToGroundInWorldPos);
+                //Vector3 targetPosToGround = targetBranch.GetSlotPositionToGround(targetSlotIndex);
                 Vector3 targetPos = targetBranch.GetSlotPosition(targetSlotIndex); // gan xuong dat
                 Vector3 targetWolrdPos = targetBranch.transform.TransformPoint(targetPos);
 
-                birdToMove.transform.SetParent(targetBranch.transform, true);
+                birdToMove.transform.SetParent(flyingLayer.transform, true);
                 birdToMove.transform.localScale = Vector3.one;
                 targetBranch.AddBird(birdToMove);
 
                 if (birdToMove.transform.position.x <= targetWolrdPos.x)
                 {
-                    if(targetBranch.isRightBranch)
-                    {
-                        birdToMove.SetFacing(-1f);
-                    }
-                    if(targetBranch.isRightBranch == false)
-                    {
-                        birdToMove.SetFacing(1f);
-                    }
+                    // Đang ở bên trái đích -> Bay sang phải
+                    birdToMove.SetFacing(1f);
                 }
-                if (birdToMove.transform.position.x > targetWolrdPos.x)
+                else
+                {
+                    // Đang ở bên phải đích -> Bay sang trái
+                    birdToMove.SetFacing(-1f);
+                }
+                birdToMove.MoveTo(targetPosToGroundInLocalPos, () =>
                 {
                     if (targetBranch.isRightBranch)
                     {
-                        birdToMove.SetFacing(1f);
-                    }
-                    if (targetBranch.isRightBranch == false)
-                    {
                         birdToMove.SetFacing(-1f);
                     }
-                }
-                birdToMove.MoveTo(targetPosToGround, () =>
-                {
-                    //birdToMove.SetFacing(1f);
-                    birdToMove.GroundingAfterMoveMent(targetPos,callbak: () =>
+                    else
                     {
                         birdToMove.SetFacing(1f);
+                    }
+                    birdToMove.transform.SetParent(targetBranch.transform, true);
+                    birdToMove.GroundingAfterMoveMent(targetPos,callbak: () =>
+                    {
                         completedCount++;
                         if (completedCount == birdsToEmptySlot)
                         {
                             targetBranch.BranchRotation(callback: () =>
                             {
+                                lockedBranch.Remove(targetBranch);
                                 targetBranch.CheckPoint();
                                 m_gdJSON.CheckGameOver();
-                                CheckIsGameFinished();  
-                            }
-                            );
+                                CheckIsGameFinished();
+                            });
                         }
                     });
                 });

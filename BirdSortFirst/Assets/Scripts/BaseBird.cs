@@ -77,8 +77,10 @@ public class BaseBird : MonoBehaviour
         recttr.DOKill();
         if (recttr == null) recttr = GetComponent<RectTransform>();
         PlayGrounding();
-        recttr.DOLocalMove(pos, 1.167f);
-        callbak?.Invoke();
+        recttr.DOLocalMove(pos, 1.167f).OnComplete(() =>
+        {
+            callbak?.Invoke();
+        });
     }
 
     #region Escape
