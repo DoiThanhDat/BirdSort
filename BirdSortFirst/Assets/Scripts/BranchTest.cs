@@ -118,19 +118,17 @@ public class BranchTest : MonoBehaviour
                     {
                         birdToMove.SetFacing(1f);
                     }
+                    targetBranch.BranchRotation();
                     birdToMove.transform.SetParent(targetBranch.transform, true);
                     birdToMove.GroundingAfterMoveMent(targetPos,callbak: () =>
                     {
                         completedCount++;
                         if (completedCount == birdsToEmptySlot)
                         {
-                            targetBranch.BranchRotation(callback: () =>
-                            {
                                 lockedBranch.Remove(targetBranch);
                                 targetBranch.CheckPoint();
                                 m_gdJSON.CheckGameOver();
                                 CheckIsGameFinished();
-                            });
                         }
                     });
                 });
