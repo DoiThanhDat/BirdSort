@@ -60,15 +60,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Spine\version.txt" />
+    <None Include="Assets\Animation\bird7\bird_7.atlas.txt" />
     <None Include="Assets\Animation\AnimBranch\branch\skeleton.atlas.txt" />
+    <None Include="Assets\Animation\bird9\bird_9.atlas.txt" />
+    <None Include="Assets\Animation\bird6\bird6.atlas.txt" />
     <None Include="Assets\Animation\AnimBranch\branch3\skeleton.atlas.txt" />
     <None Include="Assets\Animation\AnimBranch\branch2\skeleton.atlas.txt" />
     <None Include="Assets\Animation\bird2\bird_2.atlas.txt" />
+    <None Include="Assets\Animation\bird10\bird_10.atlas.txt" />
     <None Include="Assets\Animation\bird4\bird_4.atlas.txt" />
     <None Include="Assets\Animation\AnimBranch\GBranch2\skeleton.atlas.txt" />
     <None Include="Assets\Animation\bird3\bird3.atlas.txt" />
     <None Include="Assets\Animation\bird1\bird 1 - final.atlas.txt" />
+    <None Include="Assets\Animation\bird5\bird_5.atlas.txt" />
     <None Include="Assets\Animation\AnimBranch\GBranch3\skeleton.atlas.txt" />
+    <None Include="Assets\Animation\bird8\bird_8.atlas.txt" />
     <None Include="Assets\Animation\AnimBranch\GBranch1\skeleton.atlas.txt" />
   </ItemGroup>
   <ItemGroup>

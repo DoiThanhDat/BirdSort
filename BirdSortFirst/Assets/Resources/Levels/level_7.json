@@ -1,0 +1,90 @@
+{
+	"numberLevel": 7,
+	"totalBranches": 12,
+	"birdConfigs": [
+		{
+			"birdID": 1,
+			"totalAmount": 4
+		},
+		{
+			"birdID": 61,
+			"totalAmount": 4
+		},
+		{
+			"birdID": 51,
+			"totalAmount": 4
+		},
+		{
+			"birdID": 41,
+			"totalAmount": 4
+		},
+		{
+			"birdID": 23,
+			"totalAmount": 4
+		},
+		{
+			"birdID": 22,
+			"totalAmount": 4
+		},
+		{
+			"birdID": 71,
+			"totalAmount": 4
+		},
+		{
+			"birdID": 91,
+			"totalAmount": 4
+		}
+	],
+	"branchListRight": [
+		{
+			"side": 1,
+			"slotID": [51, 22, 61, 1]
+		},
+		{
+			"side": 1,
+			"slotID": [91, 51, 41, 71]
+		},
+		{
+			"side": 1,
+			"slotID": [71, 91, 22, 1]
+		},
+		{
+			"side": 1,
+			"slotID": [22, 23, 23, 22]
+		},
+		{
+			"side": 1,
+			"slotID": [ 0, 0, 0, 0 ]
+		},
+		{
+			"side": 1,
+			"slotID": [ 0, 0, 0, 0 ]
+		}
+	],
+	"branchListLeft": [
+		{
+			"side": -1,
+			"slotID": [ 1, 61, 51, 41 ]
+		},
+		{
+			"side": -1,
+			"slotID": [ 61, 41, 91, 61 ]
+		},
+		{
+			"side": -1,
+			"slotID": [ 23, 71, 91, 23 ]
+		},
+		{
+			"side": -1,
+			"slotID": [ 41, 1, 51, 71 ]
+		},
+		{
+			"side": -1,
+			"slotID": [ 0, 0, 0, 0 ]
+		},
+		{
+			"side": -1,
+			"slotID": [ 0, 0, 0, 0 ]
+		}
+	]
+}

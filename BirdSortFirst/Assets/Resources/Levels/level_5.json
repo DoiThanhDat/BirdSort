@@ -1,0 +1,70 @@
+{
+	"numberLevel": 5,
+	"totalBranches": 9,
+	"birdConfigs": [
+		{
+			"birdID": 1,
+			"totalAmount": 4
+		},
+		{
+			"birdID": 4,
+			"totalAmount": 4
+		},
+		{
+			"birdID": 23,
+			"totalAmount": 4
+		},
+		{
+			"birdID": 31,
+			"totalAmount": 4
+		},
+		{
+			"birdID": 41,
+			"totalAmount": 4
+		},
+		{
+			"birdID": 44,
+			"totalAmount": 4
+		}
+	],
+	"branchListRight": [
+		{
+			"side": 1,
+			"slotID": [21, 44, 21, 23]
+		},
+		{
+			"side": 1,
+			"slotID": [44, 44, 31, 44]
+		},
+		{
+			"side": 1,
+			"slotID": [1, 31, 23, 41]
+		},
+		{
+			"side": 1,
+			"slotID": [ 0, 0, 0, 0 ]
+		},
+		{
+			"side": 1,
+			"slotID": [ 0, 0, 0, 0 ]
+		}
+	],
+	"branchListLeft": [
+		{
+			"side": -1,
+			"slotID": [ 1, 21, 1, 31 ]
+		},
+		{
+			"side": -1,
+			"slotID": [ 41, 1, 23, 23 ]
+		},
+		{
+			"side": -1,
+			"slotID": [ 41, 41, 31, 21 ]
+		},
+		{
+			"side": -1,
+			"slotID": [ 0, 0, 0, 0 ]
+		}
+	]
+}

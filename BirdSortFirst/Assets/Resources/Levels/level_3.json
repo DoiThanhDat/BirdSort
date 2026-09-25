@@ -1,0 +1,50 @@
+{
+	"numberLevel": 3,
+	"totalBranches": 6,
+	"birdConfigs": [
+		{
+			"birdID": 3,
+			"totalAmount": 4
+		},
+		{
+			"birdID": 22,
+			"totalAmount": 4
+		},
+		{
+			"birdID": 32,
+			"totalAmount": 4
+		},
+		{
+			"birdID": 42,
+			"totalAmount": 4
+		}
+	],
+	"branchListRight": [
+		{
+			"side": 1,
+			"slotID": [22, 22, 2, 32]
+		},
+		{
+			"side": 1,
+			"slotID": [2, 32, 22, 42]
+		},
+		{
+			"side": 1,
+			"slotID": [ 0, 0, 0, 0 ]
+		}
+	],
+	"branchListLeft": [
+		{
+			"side": -1,
+			"slotID": [ 22, 2, 2, 32]
+		},
+		{
+			"side": -1,
+			"slotID": [ 42, 42, 42, 32]
+		},
+		{
+			"side": -1,
+			"slotID": [ 0, 0, 0, 0]
+		}
+	]
+}
