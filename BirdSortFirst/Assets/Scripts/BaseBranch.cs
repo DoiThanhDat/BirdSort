@@ -6,8 +6,9 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
-public class BaseBranch : MonoBehaviour
+public class BaseBranch : MonoBehaviour, IPointerDownHandler
 {
     public int side;
     public int capacity;
@@ -84,9 +85,16 @@ public class BaseBranch : MonoBehaviour
     #endregion
 
     #region On Mouse Down
-    public void OnMouseDown()
+    //public void OnMouseDown()
+    //{
+    //   if (m_gc != null)
+    //    {
+    //        m_gc.OnClickedBranch(this);
+    //    }
+    //}
+    public void OnPointerDown(PointerEventData evenData)
     {
-       if (m_gc != null)
+        if (m_gc != null)
         {
             m_gc.OnClickedBranch(this);
         }
@@ -104,14 +112,22 @@ public class BaseBranch : MonoBehaviour
     }
     #endregion
 
-    #region Check Point
+    #region Check Point 
     public void CheckPoint()
     {
+        if (birds.Count < capacity)
+            return;
+        foreach (BaseBird bird in birds)
+        {
+            if (bird.GetStatus() == true) return;
+        }    
+
         int demCungMau = 0;
         for (int i = birds.Count - 1; i > 0; i--)
         {
             if (birds[birds.Count - 1].ID == birds[i - 1].ID)
             {
+                GameObject parentPoint = transform.parent.gameObject;
                 demCungMau++;
                 if (demCungMau == capacity - 1)
                 {
@@ -121,6 +137,7 @@ public class BaseBranch : MonoBehaviour
                         bird.Escape(EscapePos(), () =>
                         {
                             bird.transform.SetParent(null);
+                            parentPoint.SetActive(false);
                             Destroy(gameObject);
                         });
                     }

@@ -3,6 +3,7 @@ using Spine.Unity;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using System.Collections.Generic;
 
 public class BaseBird : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public class BaseBird : MonoBehaviour
 
     [SerializeField] protected SkeletonGraphic body;
     public SkeletonGraphic Body => body;
+    bool isFlying = false;
+    public Material defaultMaterial;
+    public Material outlineMaterial;
+    public GameObject outlineBody;
+
 
     private void Awake()
     {
@@ -62,6 +68,7 @@ public class BaseBird : MonoBehaviour
     {
         if (recttr == null) recttr = GetComponent<RectTransform>();
         recttr.DOKill();
+        ChangeStatus(true);
         PlayFly();
         float distance = Vector3.Distance(recttr.anchoredPosition, targetPosition);
         float moveDuration = distance / moveSpeed;
@@ -76,9 +83,11 @@ public class BaseBird : MonoBehaviour
     {
         recttr.DOKill();
         if (recttr == null) recttr = GetComponent<RectTransform>();
+        ChangeStatus(true);
         PlayGrounding();
         recttr.DOLocalMove(pos, 1.167f).OnComplete(() =>
         {
+            isFlying = false;
             callbak?.Invoke();
         });
     }
@@ -132,4 +141,21 @@ public class BaseBird : MonoBehaviour
         ChangeSkin(birdSkin);
     }
     #endregion
+
+    #region Flying Status
+    public void ChangeStatus(bool state)
+    {
+       isFlying = state;
+    }
+    public bool GetStatus()
+    {
+        return isFlying;
+    }
+    #endregion
+
+    public void SetHighlight(bool isOn)
+    {
+        //body.material = isOn ? outlineMaterial : defaultMaterial;
+        outlineBody.SetActive(isOn);
+    }
 }

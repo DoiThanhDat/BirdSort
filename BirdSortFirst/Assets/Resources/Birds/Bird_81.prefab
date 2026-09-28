@@ -54,6 +54,8 @@ MonoBehaviour:
   ID: 81
   moveSpeed: 150
   body: {fileID: 7500899923925542601}
+  defaultMaterial: {fileID: 2100000, guid: b66cf7a186d13054989b33a5c90044e4, type: 2}
+  outlineMaterial: {fileID: 2100000, guid: c4ee0f8f4be17434aa3df5774a03b366, type: 2}
 --- !u!60 &950266257490863320
 PolygonCollider2D:
   m_ObjectHideFlags: 0

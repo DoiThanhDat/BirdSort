@@ -2,7 +2,7 @@
   <Project Path="spine-unity-examples.csproj" />
   <Project Path="spine-unity-editor.csproj" />
   <Project Path="spine-unity.csproj" />
-  <Project Path="Assembly-CSharp-firstpass.csproj" />
   <Project Path="Assembly-CSharp.csproj" />
+  <Project Path="Assembly-CSharp-firstpass.csproj" />
   <Project Path="spine-unity-examples-editor.csproj" />
 </Solution>

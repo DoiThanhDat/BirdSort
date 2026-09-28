@@ -1,0 +1,1 @@
+E:\UnityGame\BirdSort\BirdSortFirst\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\2v1z6m2i\obj\arm64-v8a

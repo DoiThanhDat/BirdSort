@@ -17,7 +17,6 @@ public class BranchTest : MonoBehaviour
     UIManager m_ui;
     GameDesignerWithJSON m_gdJSON;
     public Transform flyingLayer;
-    List<BaseBranch> lockedBranch = new List<BaseBranch>();
 
     private void Awake()
     {
@@ -26,8 +25,6 @@ public class BranchTest : MonoBehaviour
     void Start()
     {
         m_ui = FindAnyObjectByType<UIManager>();
-        m_ui.SetScoreText("Score: " + m_score);
-        
     }
 
     // Update is called once per frame
@@ -49,21 +46,24 @@ public class BranchTest : MonoBehaviour
     #region On Mouse Down
     public void OnClickedBranch(BaseBranch clickedBranch)
     {
-        if (IsGameOver() || SetGameFinishedState() || lockedBranch.Contains(clickedBranch))
+        if (IsGameOver() || SetGameFinishedState())
             return;
         if (selectedBranch == null)
         {
             if (clickedBranch.birds.Count > 0)
             {
                 selectedBranch = clickedBranch;
+                TurnHighLight(selectedBranch, true);
             }
         }
         else if (selectedBranch == clickedBranch)
         {
+            TurnHighLight(selectedBranch, false);
             selectedBranch = null;
         }
        else
         {
+            TurnHighLight(selectedBranch, false);
             MoveBirdTo(selectedBranch, clickedBranch);
             selectedBranch = null;
         }
@@ -79,13 +79,13 @@ public class BranchTest : MonoBehaviour
         bool canMove = emptySlots > 0 && (targetBranch.birds.Count == 0 || (targetBranch.birds[targetBranch.birds.Count - 1].ID == MovinBird[0].ID));
         if (canMove)
         {
-            if (!lockedBranch.Contains(targetBranch)) lockedBranch.Add(targetBranch);
             int completedCount = 0;
             for (int i = 0; i < birdsToEmptySlot; i++)
             {
                 BaseBird birdToMove = sourceBranch.birds[sourceBranch.birds.Count - 1];
                 sourceBranch.RemoveBird(birdToMove);
                 int targetSlotIndex = targetBranch.birds.Count ;
+                
 
                 Vector3 targetPosToGroundInWorldPos = targetBranch.slotToGround[targetSlotIndex].position;
                 Vector3 targetPosToGroundInLocalPos = flyingLayer.InverseTransformPoint(targetPosToGroundInWorldPos);
@@ -99,12 +99,10 @@ public class BranchTest : MonoBehaviour
 
                 if (birdToMove.transform.position.x <= targetWolrdPos.x)
                 {
-                    // Đang ở bên trái đích -> Bay sang phải
                     birdToMove.SetFacing(1f);
                 }
                 else
                 {
-                    // Đang ở bên phải đích -> Bay sang trái
                     birdToMove.SetFacing(-1f);
                 }
                 birdToMove.MoveTo(targetPosToGroundInLocalPos, () =>
@@ -121,13 +119,14 @@ public class BranchTest : MonoBehaviour
                     birdToMove.transform.SetParent(targetBranch.transform, true);
                     birdToMove.GroundingAfterMoveMent(targetPos,callbak: () =>
                     {
+                        birdToMove.ChangeStatus(false);
                         completedCount++;
                         if (completedCount == birdsToEmptySlot)
                         {
-                                lockedBranch.Remove(targetBranch);
-                                targetBranch.CheckPoint();
-                                m_gdJSON.CheckGameOver();
-                                CheckIsGameFinished();
+                            //targetBranch.AddBird(birdToMove);
+                            targetBranch.CheckPoint();
+                            m_gdJSON.CheckGameOver();
+                            CheckIsGameFinished();
                         }
                     });
                 });
@@ -153,14 +152,6 @@ public class BranchTest : MonoBehaviour
         return isGameFinished;
     }
     #endregion
-    /*
-    public void DestroyAllBranches()
-    {
-        if (isGameFinished == true)
-        {
-            m_gdJSON.EndLevel();
-        }
-    }*/
 
     #region Set diem, Set game over
     public void SetScore(int value)
@@ -170,7 +161,6 @@ public class BranchTest : MonoBehaviour
     public void ScoreIncrement()
     {
         m_score++;
-        m_ui.SetScoreText("Score: " + m_score);
     }
     public void SetGameOverState(bool state)
     {
@@ -181,4 +171,13 @@ public class BranchTest : MonoBehaviour
         return m_isGameOver;
     }
     #endregion
+
+    public void TurnHighLight(BaseBranch branch, bool isOn)
+    {
+        List<BaseBird> topBirds = branch.CheckColor();
+        foreach(BaseBird bird in topBirds)
+        {
+            bird.SetHighlight(isOn);
+        }
+    }
 }
