@@ -20,7 +20,7 @@ public class BaseBird : MonoBehaviour
     bool isFlying = false;
     public Material defaultMaterial;
     public Material outlineMaterial;
-    public GameObject outlineBody;
+
 
 
     private void Awake()
@@ -103,7 +103,7 @@ public class BaseBird : MonoBehaviour
         recttr.DOMove(targetPosition, moveDuration).SetEase(Ease.Linear).OnComplete(() =>
         {
             onMoveCompleted?.Invoke();
-            Destroy(gameObject);
+            PoolingObject.Instance.ReturnObject(gameObject);
         });
     }
     #endregion
@@ -153,9 +153,17 @@ public class BaseBird : MonoBehaviour
     }
     #endregion
 
+    #region Highlight
     public void SetHighlight(bool isOn)
     {
-        //body.material = isOn ? outlineMaterial : defaultMaterial;
-        outlineBody.SetActive(isOn);
+        body.material = isOn ? outlineMaterial : defaultMaterial;
+    }
+    #endregion
+
+    private void OnEnable()
+    {
+        isFlying = false;
+        SetHighlight(false);
+        PlayIdle();
     }
 }

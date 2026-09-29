@@ -132,19 +132,21 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
                 if (demCungMau == capacity - 1)
                 {
                     PlayBroken();
-                    foreach (BaseBird bird in birds) 
+                    foreach (BaseBird bird in birds)
                     {
                         bird.Escape(EscapePos(), () =>
                         {
                             bird.transform.SetParent(null);
                             parentPoint.SetActive(false);
-                            Destroy(gameObject);
+                            PoolingObject.Instance.ReturnObject(gameObject);
                         });
                     }
                     birds.Clear();
                     m_gc.ScoreIncrement();
                 }
             }
+            else
+                break;
         }
 
     }
@@ -234,5 +236,11 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
          }
     }
     #endregion
+
+    void OnEnable()
+    {
+        birds.Clear();
+        transform.localRotation= Quaternion.identity;
+    }
 
 }

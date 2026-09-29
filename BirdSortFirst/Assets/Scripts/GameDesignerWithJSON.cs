@@ -50,7 +50,7 @@ public class GameDesignerWithJSON : MonoBehaviour
             if (targerPos == null) continue;
             BranchSetUpJSON setUp = levelData.branchListRight[i];
 
-            BaseBranch newBranch = Instantiate(branches, targerPos, false);
+            BaseBranch newBranch = PoolingObject.Instance.GetObject(branches.gameObject, targerPos).GetComponent<BaseBranch>();
             newBranch.transform.localPosition = Vector3.zero;
             branchesOnActive.Add(newBranch);
             RectTransform branchRect = newBranch.GetComponent<RectTransform>();
@@ -74,7 +74,7 @@ public class GameDesignerWithJSON : MonoBehaviour
                 if (birdID <= 0) continue;
                 BaseBird birdReadyToSPawn = Resources.Load<BaseBird>("Birds/Bird_" + birdID);
                 //sinh chim
-                BaseBird newBird = Instantiate(birdReadyToSPawn, newBranch.transform, false);
+                BaseBird newBird = PoolingObject.Instance.GetObject(birdReadyToSPawn.gameObject, newBranch.transform).GetComponent<BaseBird>();
                 //gan WorldPos trong Canvas 
                 if (j < newBranch.birdPositionInBranch.Count)
                 {
@@ -90,7 +90,7 @@ public class GameDesignerWithJSON : MonoBehaviour
             if (targerPos == null) continue;
             BranchSetUpJSON setUp = levelData.branchListLeft[i];
 
-            BaseBranch newBranch = Instantiate(branches, targerPos, false);
+            BaseBranch newBranch = PoolingObject.Instance.GetObject(branches.gameObject, targerPos).GetComponent<BaseBranch>();
             newBranch.transform.localPosition = Vector3.zero;
             branchesOnActive.Add(newBranch);
             RectTransform branchRect = newBranch.GetComponent<RectTransform>();
@@ -114,7 +114,7 @@ public class GameDesignerWithJSON : MonoBehaviour
                 if (birdID <= 0) continue;
                 BaseBird birdReadyToSPawn = Resources.Load<BaseBird>("Birds/Bird_" + birdID);
                 //sinh chim
-                BaseBird newBird = Instantiate(birdReadyToSPawn, newBranch.transform, false);
+                BaseBird newBird = PoolingObject.Instance.GetObject(birdReadyToSPawn.gameObject, newBranch.transform).GetComponent<BaseBird>();
                 //gan WorldPos trong Canvas 
                 if (j < newBranch.birdPositionInBranch.Count)
                 {

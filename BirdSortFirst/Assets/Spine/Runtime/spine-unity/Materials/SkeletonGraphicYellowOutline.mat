@@ -8,12 +8,12 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SkeletonGraphicYellowOutline
-  m_Shader: {fileID: 4800000, guid: 8f5d14d2a7fedb84998c50eb96c8b748, type: 3}
+  m_Shader: {fileID: 4800000, guid: 1589d78b19c238e4fa63f28cb3e8e8bf, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
-  m_ValidKeywords:
+  m_ValidKeywords: []
+  m_InvalidKeywords:
   - _USE8NEIGHBOURHOOD_ON
-  m_InvalidKeywords: []
   m_LightmapFlags: 5
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -79,8 +79,8 @@ Material:
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OutlineMipLevel: 1.37
-    - _OutlineReferenceTexWidth: 1000
+    - _OutlineMipLevel: 1.56
+    - _OutlineReferenceTexWidth: 1003.84
     - _OutlineSmoothness: 1
     - _OutlineWidth: 11
     - _Parallax: 0.02

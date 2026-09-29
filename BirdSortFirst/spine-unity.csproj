@@ -148,6 +148,7 @@
     <Compile Include="Assets\Spine\Runtime\spine-csharp\TransformConstraintData.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Assets\Spine\Runtime\spine-unity\Shaders\Outline\SkeletonGraphic\SpineUI_SinglePassOutline.shader" />
     <None Include="Assets\Spine\Runtime\spine-unity\Shaders\Outline\Spine-Skeleton-Lit-Outline.shader" />
     <None Include="Assets\Spine\Runtime\spine-unity\Shaders\Outline\Sprite\SpritesVertexLit-Outline.shader" />
     <None Include="Assets\Spine\Runtime\spine-unity\Shaders\CGIncludes\Spine-Skeleton-Lit-Common.cginc" />
