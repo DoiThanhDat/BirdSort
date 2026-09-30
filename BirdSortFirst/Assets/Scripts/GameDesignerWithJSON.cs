@@ -31,6 +31,7 @@ public class GameDesignerWithJSON : MonoBehaviour
         {
             return;
         }
+        branchesOnActive.Clear();
         int currentLevelIndex = PlayerPrefs.GetInt("currentLevel", 1);
         TextAsset jsonLevelFile = Resources.Load<TextAsset>("Levels/level_" + currentLevelIndex);
         if (jsonLevelFile == null)
@@ -132,14 +133,16 @@ public class GameDesignerWithJSON : MonoBehaviour
     {
         foreach (BaseBranch branches in branchesOnActive)
         {
-            if (branches != null && branches.birds.Count == 0)
+            if (branches != null && branches.gameObject.activeInHierarchy && branches.birds.Count == 0)
                 return;
         }
         for (int i = 0; i < branchesOnActive.Count; i++)
         {
+            if (branchesOnActive[i] == null && !branchesOnActive[i].gameObject.activeInHierarchy)
+                continue;
             for (int j = 0; j < branchesOnActive.Count; j++)
             {
-                if (i == j)
+                if (i == j || branchesOnActive[j] == null || !branchesOnActive[j].gameObject.activeInHierarchy)
                 {
                     continue;
                 }
@@ -170,16 +173,44 @@ public class GameDesignerWithJSON : MonoBehaviour
     #region End Level
     public void EndLevel(System.Action callback = null)
     {
+        //bool hasCalledBack = false;
        for (int i = 0; i< branchesOnActive.Count; i++)
         {
-            if (i == 0)
+            BaseBranch branchAvailable = branchesOnActive[i];
+            if (branchAvailable != null && branchAvailable.gameObject.activeInHierarchy && !branchAvailable.isBreaking)
             {
-                branchesOnActive[i].PlayBroken(callback);
+                branchAvailable.isBreaking = true;
+                //if (!hasCalledBack)
+                //{
+                    //hasCalledBack = true;
+                    branchAvailable.PlayBroken(() =>
+                    {
+                        callback?.Invoke();
+                        /*
+                        if (branchAvailable.transform.parent != null)
+                        {
+                            branchAvailable.transform.parent.gameObject.SetActive(false);
+                        }*/
+                        PoolingObject.Instance.ReturnObject(branchAvailable.gameObject);
+                    });
+                //}
             }
             else
             {
-                branchesOnActive[i].PlayBroken(null);
+                branchAvailable.PlayBroken(() => 
+                {
+                    /*
+                    if (branchAvailable.transform.parent != null)
+                    {
+                        branchAvailable.transform.parent.gameObject.SetActive(false);
+                    }*/
+                    PoolingObject.Instance.ReturnObject(branchAvailable.gameObject);
+                });
             }
+        }
+       if (callback != null)
+        {
+            callback.Invoke();
         }
     }
     #endregion

@@ -20,6 +20,8 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
     public const string BRANCHBROKEN = "Brach1";
     public List<Transform> birdPositionInBranch = new List<Transform> ();
     public List<Transform> slotToGround = new List<Transform>();
+    public bool isBreaking = false;
+
 
     #region start && update
     void Awake()
@@ -131,6 +133,7 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
                 demCungMau++;
                 if (demCungMau == capacity - 1)
                 {
+                    isBreaking = true;
                     PlayBroken();
                     foreach (BaseBird bird in birds)
                     {
@@ -241,6 +244,11 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
     {
         birds.Clear();
         transform.localRotation= Quaternion.identity;
+        isBreaking = false;
+
+        //reset animation
+        body.AnimationState.ClearTracks();
+        body.Skeleton.SetToSetupPose();
     }
 
 }
