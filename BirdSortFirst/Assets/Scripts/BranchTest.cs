@@ -48,6 +48,8 @@ public class BranchTest : MonoBehaviour
     {
         if (IsGameOver() || SetGameFinishedState())
             return;
+        if (!clickedBranch.IsBranchCanClick())
+            return;
         if (selectedBranch == null)
         {
             if (clickedBranch.birds.Count > 0)

@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BaseBird
   currentBranch: {fileID: 0}
   ID: 31
-  moveSpeed: 150
+  moveSpeed: 200
   body: {fileID: 7514642514173809729}
   defaultMaterial: {fileID: 2100000, guid: b66cf7a186d13054989b33a5c90044e4, type: 2}
   outlineMaterial: {fileID: 2100000, guid: f1883e00e060ff446860cfafa67aaf06, type: 2}

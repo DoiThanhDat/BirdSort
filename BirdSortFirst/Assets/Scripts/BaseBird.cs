@@ -98,9 +98,9 @@ public class BaseBird : MonoBehaviour
         if (recttr == null) recttr = GetComponent<RectTransform>();
         recttr.DOKill();
         PlayFly();
-        float distance = Vector3.Distance(transform.position, targetPosition);
-        float moveDuration = distance / moveSpeed;
-        recttr.DOMove(targetPosition, moveDuration).SetEase(Ease.Linear).OnComplete(() =>
+        //float distance = Vector3.Distance(transform.position, targetPosition);
+        //float moveDuration = distance / moveSpeed;
+        recttr.DOMove(targetPosition, 1f).SetEase(Ease.Linear).OnComplete(() =>
         {
             onMoveCompleted?.Invoke();
             PoolingObject.Instance.ReturnObject(gameObject);

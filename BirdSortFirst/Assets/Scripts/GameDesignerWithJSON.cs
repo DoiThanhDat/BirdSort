@@ -7,9 +7,12 @@ using JetBrains.Annotations;
 
 public class GameDesignerWithJSON : MonoBehaviour
 {
+    public GameObject ghostPrefab;
     public BaseBranch branches;
     public List<Transform> branchPointRight;
     public List<Transform> branchPointLeft;
+    public Transform pointRightInfor;
+    public Transform pointLeftInfor;
     [SerializeField] private List<BaseBranch> branchesOnActive;
     BranchTest m_gc;
 
@@ -49,14 +52,21 @@ public class GameDesignerWithJSON : MonoBehaviour
         {
             Transform targerPos = branchPointRight[i];
             if (targerPos == null) continue;
-            BranchSetUpJSON setUp = levelData.branchListRight[i];
 
-            BaseBranch newBranch = PoolingObject.Instance.GetObject(branches.gameObject, targerPos).GetComponent<BaseBranch>();
+            BranchSetUpJSON setUp = levelData.branchListRight[i];
+            GameObject newGhost = PoolingObject.Instance.GetObject(ghostPrefab, pointRightInfor);
+            BaseBranch newBranch = PoolingObject.Instance.GetObject(branches.gameObject, branchPointRight[i]).GetComponent<BaseBranch>();
+            newBranch.ghostOfBranches = newGhost;
+            branchesOnActive.Add(newBranch);
+            newBranch.transform.position = newGhost.transform.position;
+            newBranch.birds.Clear();
+
+            /*BaseBranch newBranch = PoolingObject.Instance.GetObject(branches.gameObject, targerPos).GetComponent<BaseBranch>();
             newBranch.transform.localPosition = Vector3.zero;
             branchesOnActive.Add(newBranch);
             RectTransform branchRect = newBranch.GetComponent<RectTransform>();
             if (branchRect != null) branchRect.localPosition = Vector3.zero;
-            newBranch.birds.Clear();
+            newBranch.birds.Clear();*/
 
             if (setUp.side == 1)
             {
@@ -89,14 +99,21 @@ public class GameDesignerWithJSON : MonoBehaviour
         {
             Transform targerPos = branchPointLeft[i];
             if (targerPos == null) continue;
-            BranchSetUpJSON setUp = levelData.branchListLeft[i];
 
-            BaseBranch newBranch = PoolingObject.Instance.GetObject(branches.gameObject, targerPos).GetComponent<BaseBranch>();
+            BranchSetUpJSON setUp = levelData.branchListLeft[i];
+            GameObject newGhost = PoolingObject.Instance.GetObject(ghostPrefab, pointLeftInfor);
+            BaseBranch newBranch = PoolingObject.Instance.GetObject(branches.gameObject, branchPointLeft[i]).GetComponent<BaseBranch>();
+            newBranch.ghostOfBranches = newGhost;
+            branchesOnActive.Add(newBranch);
+            newBranch.transform.position = newGhost.transform.position;
+            newBranch.birds.Clear();
+
+            /*BaseBranch newBranch = PoolingObject.Instance.GetObject(branches.gameObject, targerPos).GetComponent<BaseBranch>();
             newBranch.transform.localPosition = Vector3.zero;
             branchesOnActive.Add(newBranch);
             RectTransform branchRect = newBranch.GetComponent<RectTransform>();
             if (branchRect != null) branchRect.localPosition = Vector3.zero;
-            newBranch.birds.Clear();
+            newBranch.birds.Clear();*/
 
             if (setUp.side == 1)
             {
@@ -191,7 +208,8 @@ public class GameDesignerWithJSON : MonoBehaviour
                         {
                             branchAvailable.transform.parent.gameObject.SetActive(false);
                         }*/
-                        PoolingObject.Instance.ReturnObject(branchAvailable.gameObject);
+                        //PoolingObject.Instance.ReturnObject(branchAvailable.gameObject);
+                        branchAvailable.ReturnToPool();
                     });
                 //}
             }
@@ -204,7 +222,8 @@ public class GameDesignerWithJSON : MonoBehaviour
                     {
                         branchAvailable.transform.parent.gameObject.SetActive(false);
                     }*/
-                    PoolingObject.Instance.ReturnObject(branchAvailable.gameObject);
+                    //PoolingObject.Instance.ReturnObject(branchAvailable.gameObject);
+                    branchAvailable.ReturnToPool();
                 });
             }
         }

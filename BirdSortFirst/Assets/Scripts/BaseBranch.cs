@@ -21,6 +21,7 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
     public List<Transform> birdPositionInBranch = new List<Transform> ();
     public List<Transform> slotToGround = new List<Transform>();
     public bool isBreaking = false;
+    public GameObject ghostOfBranches;
 
 
     #region start && update
@@ -35,9 +36,12 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
-        
+        if (ghostOfBranches != null && ghostOfBranches.activeInHierarchy)
+        {
+            transform.position = Vector3.Lerp(transform.position, ghostOfBranches.transform.position, Time.deltaTime * 20f);
+        }
     }
     #endregion
 
@@ -108,7 +112,7 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
     {
         float randomPos = UnityEngine.Random.Range(-9f, 9f);
         float xPos = randomPos;
-        float yPos = 9f;
+        float yPos = 6f;
         Vector3 EscapePoint = new Vector3(xPos, yPos, 0f);
         return EscapePoint;
     }
@@ -141,7 +145,8 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
                         {
                             bird.transform.SetParent(null);
                             parentPoint.SetActive(false);
-                            PoolingObject.Instance.ReturnObject(gameObject);
+                            //PoolingObject.Instance.ReturnObject(gameObject);
+                            ReturnToPool();
                         });
                     }
                     birds.Clear();
@@ -251,4 +256,36 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
         body.Skeleton.SetToSetupPose();
     }
 
+
+    public void ReturnToPool()
+    {
+        if (ghostOfBranches != null)
+        {
+            PoolingObject.Instance.ReturnObject(ghostOfBranches);
+            ghostOfBranches = null;
+        }
+        PoolingObject.Instance.ReturnObject(gameObject);
+    }
+
+    public bool IsBranchCanClick()
+    {
+        if (this.birds.Count == capacity)
+        {
+            int demCungMau = 0;
+            for (int i = birds.Count - 1; i > 0; i--)
+            {
+                if (birds[birds.Count - 1].ID == birds[i - 1].ID)
+                {
+                    demCungMau++;
+                    if (demCungMau == capacity - 1)
+                    {
+                        return false;
+                    }
+                    else
+                        return true;
+                }
+            }
+        }
+         return true;
+    }
 }
