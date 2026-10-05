@@ -188,6 +188,27 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
     }
     #endregion
 
+    #region Slot To Ground World
+    public Vector3 GetGhostSlotToGroundWorld(int i)
+    {
+        if (i >= 0 && i < capacity)
+        {
+            Canvas.ForceUpdateCanvases();
+
+            Transform slot = slotToGround[i];
+            if (ghostOfBranches != null && ghostOfBranches.activeInHierarchy)
+            {
+                Vector3 offSet = slot.position - transform.position;
+
+                return ghostOfBranches.transform.position + offSet;
+            }
+            return slot.position;
+
+        }
+        return Vector3.zero;
+    }
+    #endregion
+
     #region Check Top Bird ID
     public int CheckTopBird()
     {
@@ -281,8 +302,6 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
                     {
                         return false;
                     }
-                    else
-                        return true;
                 }
             }
         }

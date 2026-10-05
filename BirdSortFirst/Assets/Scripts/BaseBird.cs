@@ -20,12 +20,13 @@ public class BaseBird : MonoBehaviour
     bool isFlying = false;
     public Material defaultMaterial;
     public Material outlineMaterial;
-
+    Canvas birdCanvas;
 
 
     private void Awake()
     {
         recttr = GetComponent<RectTransform>();
+        birdCanvas = GetComponent<Canvas>();
     }
     private void Start()
     {
@@ -70,6 +71,8 @@ public class BaseBird : MonoBehaviour
         recttr.DOKill();
         ChangeStatus(true);
         PlayFly();
+        birdCanvas.overrideSorting = true;
+        birdCanvas.sortingOrder = 100;
         float distance = Vector3.Distance(recttr.anchoredPosition, targetPosition);
         float moveDuration = distance / moveSpeed;
         recttr.DOAnchorPos(targetPosition, moveDuration).SetEase(Ease.Linear).OnComplete(() =>
@@ -88,6 +91,7 @@ public class BaseBird : MonoBehaviour
         recttr.DOLocalMove(pos, 1.167f).OnComplete(() =>
         {
             isFlying = false;
+            birdCanvas.overrideSorting = false;
             callbak?.Invoke();
         });
     }

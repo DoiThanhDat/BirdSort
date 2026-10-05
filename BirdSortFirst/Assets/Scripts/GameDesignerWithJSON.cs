@@ -61,13 +61,6 @@ public class GameDesignerWithJSON : MonoBehaviour
             newBranch.transform.position = newGhost.transform.position;
             newBranch.birds.Clear();
 
-            /*BaseBranch newBranch = PoolingObject.Instance.GetObject(branches.gameObject, targerPos).GetComponent<BaseBranch>();
-            newBranch.transform.localPosition = Vector3.zero;
-            branchesOnActive.Add(newBranch);
-            RectTransform branchRect = newBranch.GetComponent<RectTransform>();
-            if (branchRect != null) branchRect.localPosition = Vector3.zero;
-            newBranch.birds.Clear();*/
-
             if (setUp.side == 1)
             {
                 newBranch.isRightBranch = true;
@@ -107,13 +100,6 @@ public class GameDesignerWithJSON : MonoBehaviour
             branchesOnActive.Add(newBranch);
             newBranch.transform.position = newGhost.transform.position;
             newBranch.birds.Clear();
-
-            /*BaseBranch newBranch = PoolingObject.Instance.GetObject(branches.gameObject, targerPos).GetComponent<BaseBranch>();
-            newBranch.transform.localPosition = Vector3.zero;
-            branchesOnActive.Add(newBranch);
-            RectTransform branchRect = newBranch.GetComponent<RectTransform>();
-            if (branchRect != null) branchRect.localPosition = Vector3.zero;
-            newBranch.birds.Clear();*/
 
             if (setUp.side == 1)
             {
@@ -190,39 +176,22 @@ public class GameDesignerWithJSON : MonoBehaviour
     #region End Level
     public void EndLevel(System.Action callback = null)
     {
-        //bool hasCalledBack = false;
        for (int i = 0; i< branchesOnActive.Count; i++)
         {
             BaseBranch branchAvailable = branchesOnActive[i];
             if (branchAvailable != null && branchAvailable.gameObject.activeInHierarchy && !branchAvailable.isBreaking)
             {
                 branchAvailable.isBreaking = true;
-                //if (!hasCalledBack)
-                //{
-                    //hasCalledBack = true;
-                    branchAvailable.PlayBroken(() =>
-                    {
-                        callback?.Invoke();
-                        /*
-                        if (branchAvailable.transform.parent != null)
-                        {
-                            branchAvailable.transform.parent.gameObject.SetActive(false);
-                        }*/
-                        //PoolingObject.Instance.ReturnObject(branchAvailable.gameObject);
-                        branchAvailable.ReturnToPool();
-                    });
-                //}
+                branchAvailable.PlayBroken(() =>
+                {
+                    callback?.Invoke();
+                    branchAvailable.ReturnToPool();
+                });
             }
             else
             {
                 branchAvailable.PlayBroken(() => 
                 {
-                    /*
-                    if (branchAvailable.transform.parent != null)
-                    {
-                        branchAvailable.transform.parent.gameObject.SetActive(false);
-                    }*/
-                    //PoolingObject.Instance.ReturnObject(branchAvailable.gameObject);
                     branchAvailable.ReturnToPool();
                 });
             }
@@ -234,4 +203,14 @@ public class GameDesignerWithJSON : MonoBehaviour
     }
     #endregion
 
+   public void ShuffleButton()
+    {
+        foreach(BaseBranch branch in branchesOnActive)
+        {
+            if (branch.birds.Count <= 0)
+                continue;
+            else 
+               branch.birds.Reverse();
+        }
+    }
 }

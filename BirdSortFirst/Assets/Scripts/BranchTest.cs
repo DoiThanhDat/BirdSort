@@ -87,36 +87,23 @@ public class BranchTest : MonoBehaviour
                 BaseBird birdToMove = sourceBranch.birds[sourceBranch.birds.Count - 1];
                 sourceBranch.RemoveBird(birdToMove);
                 int targetSlotIndex = targetBranch.birds.Count ;
-                
-
-                Vector3 targetPosToGroundInWorldPos = targetBranch.slotToGround[targetSlotIndex].position;
-                Vector3 targetPosToGroundInLocalPos = flyingLayer.InverseTransformPoint(targetPosToGroundInWorldPos);
-                //Vector3 targetPosToGround = targetBranch.GetSlotPositionToGround(targetSlotIndex);
-                Vector3 targetPos = targetBranch.GetSlotPosition(targetSlotIndex); // gan xuong dat
-                Vector3 targetWolrdPos = targetBranch.transform.TransformPoint(targetPos);
-
-                birdToMove.transform.SetParent(flyingLayer.transform, true);
-                birdToMove.transform.localScale = Vector3.one;
+                Vector3 targetPosToGround = targetBranch.GetSlotPositionToGround(targetSlotIndex);
+                Vector3 targetPos = targetBranch.GetSlotPosition(targetSlotIndex);
                 targetBranch.AddBird(birdToMove);
+                birdToMove.transform.SetParent(targetBranch.transform, true);
+                birdToMove.transform.localScale = Vector3.one;
 
-                if (birdToMove.transform.position.x <= targetWolrdPos.x)
+                if (birdToMove.transform.position.x <= targetPos.x)
                 {
                     birdToMove.SetFacing(1f);
                 }
                 else
                 {
-                    birdToMove.SetFacing(-1f);
+                    birdToMove.SetFacing(-1f);   
                 }
-                birdToMove.MoveTo(targetPosToGroundInLocalPos, () =>
+                birdToMove.MoveTo(targetPosToGround, () =>
                 {
-                    if (targetBranch.isRightBranch)
-                    {
-                        birdToMove.SetFacing(-1f);
-                    }
-                    else
-                    {
-                        birdToMove.SetFacing(1f);
-                    }
+                    birdToMove.SetFacing(1f);
                     targetBranch.BranchRotation();
                     birdToMove.transform.SetParent(targetBranch.transform, true);
                     birdToMove.GroundingAfterMoveMent(targetPos,callbak: () =>
@@ -174,6 +161,7 @@ public class BranchTest : MonoBehaviour
     }
     #endregion
 
+    #region Highlight
     public void TurnHighLight(BaseBranch branch, bool isOn)
     {
         List<BaseBird> topBirds = branch.CheckColor();
@@ -182,4 +170,7 @@ public class BranchTest : MonoBehaviour
             bird.SetHighlight(isOn);
         }
     }
+    #endregion
+
+   
 }
