@@ -90,14 +90,7 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
 
     #endregion
 
-    #region On Mouse Down
-    //public void OnMouseDown()
-    //{
-    //   if (m_gc != null)
-    //    {
-    //        m_gc.OnClickedBranch(this);
-    //    }
-    //}
+    #region On Pointer Down
     public void OnPointerDown(PointerEventData evenData)
     {
         if (m_gc != null)
@@ -266,6 +259,7 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
     }
     #endregion
 
+    #region On Enable
     void OnEnable()
     {
         birds.Clear();
@@ -276,8 +270,9 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
         body.AnimationState.ClearTracks();
         body.Skeleton.SetToSetupPose();
     }
+    #endregion
 
-
+    #region Return To Pool
     public void ReturnToPool()
     {
         if (ghostOfBranches != null)
@@ -287,7 +282,9 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
         }
         PoolingObject.Instance.ReturnObject(gameObject);
     }
+    #endregion
 
+    #region Is Branch Can CLick
     public bool IsBranchCanClick()
     {
         if (this.birds.Count == capacity)
@@ -307,4 +304,24 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
         }
          return true;
     }
+    #endregion
+
+    #region Shuffle Bird
+    public void ShuffleBird(System.Action onCOmplete = null)
+    {
+        if (birds == null || birds.Count <= 1 || isBreaking)
+        {
+            onCOmplete?.Invoke();
+            return;
+        }
+
+        for (int i = birds.Count - 1; i > 0; i-- )
+        {
+            int randomSlot = UnityEngine.Random.Range(0, i+ 1);
+            BaseBird temp = birds[i];
+            birds[i]= birds[randomSlot];
+            birds[randomSlot]= temp;
+        }
+    }
+    #endregion
 }

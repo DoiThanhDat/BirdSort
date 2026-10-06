@@ -170,4 +170,9 @@ public class BaseBird : MonoBehaviour
         SetHighlight(false);
         PlayIdle();
     }
+
+    public bool IsFlyingStatus()
+    {
+        return isFlying;
+    }
 }

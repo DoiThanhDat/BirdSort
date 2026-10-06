@@ -203,14 +203,39 @@ public class GameDesignerWithJSON : MonoBehaviour
     }
     #endregion
 
-   public void ShuffleButton()
+    #region Shuffle Button
+    public void ShuffleButton()
     {
-        foreach(BaseBranch branch in branchesOnActive)
+        if (m_gc.IsGameOver() || m_gc.SetGameFinishedState()) return;
+        foreach (BaseBranch branch in branchesOnActive)
         {
-            if (branch.birds.Count <= 0)
-                continue;
-            else 
-               branch.birds.Reverse();
+            if (branch != null || !branch.gameObject.activeInHierarchy) continue;
+            foreach (BaseBird bird in branch.birds)
+            {
+                if (bird != null && bird.GetStatus())
+                    return;
+            }
+        }
+        if (BranchTest.selectedBranch != null)
+        {
+            m_gc.TurnHighLight(BranchTest.selectedBranch, false);
+            BranchTest.selectedBranch = null;
+        }
+
+        bool hasShuffled = false;
+        foreach (BaseBranch branch in branchesOnActive)
+        {
+            if(branch == null || !branch.gameObject.activeInHierarchy) continue;
+            if (branch.isBreaking || branch.birds.Count <= 1 || !branch.IsBranchCanClick()) continue;
+            hasShuffled = true;
+            branch.ShuffleBird(() =>
+            {
+                CheckGameOver();
+                m_gc.CheckIsGameFinished();
+            });
         }
     }
+    #endregion
+
+   
 }

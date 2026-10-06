@@ -84,26 +84,28 @@ public class BranchTest : MonoBehaviour
             int completedCount = 0;
             for (int i = 0; i < birdsToEmptySlot; i++)
             {
+                // Lay chim de di chuyen
                 BaseBird birdToMove = sourceBranch.birds[sourceBranch.birds.Count - 1];
                 sourceBranch.RemoveBird(birdToMove);
-                int targetSlotIndex = targetBranch.birds.Count ;
+                // Tinh toan vi tri
+                int targetSlotIndex = targetBranch.birds.Count;
                 Vector3 targetPosToGround = targetBranch.GetSlotPositionToGround(targetSlotIndex);
                 Vector3 targetPos = targetBranch.GetSlotPosition(targetSlotIndex);
+                // Tinh toan quay mat
+                float startPosX = birdToMove.transform.position.x;
+                float targetPosX = targetBranch.transform.TransformPoint(targetPos).x;  
+                //Chuyen sang canh moi
                 targetBranch.AddBird(birdToMove);
                 birdToMove.transform.SetParent(targetBranch.transform, true);
                 birdToMove.transform.localScale = Vector3.one;
-
-                if (birdToMove.transform.position.x <= targetPos.x)
-                {
-                    birdToMove.SetFacing(1f);
-                }
-                else
-                {
-                    birdToMove.SetFacing(-1f);   
-                }
+                //Quay mat
+                float flyDirection = (targetPosX > startPosX) ? 1f : -1f;
+                float branchScaleX = targetBranch.transform.localScale.x;
+                birdToMove.SetFacing(flyDirection * branchScaleX);
                 birdToMove.MoveTo(targetPosToGround, () =>
                 {
-                    birdToMove.SetFacing(1f);
+                    float landDirection = targetBranch.isRightBranch? -1f : 1f;
+                    birdToMove.SetFacing(landDirection * branchScaleX);
                     targetBranch.BranchRotation();
                     birdToMove.transform.SetParent(targetBranch.transform, true);
                     birdToMove.GroundingAfterMoveMent(targetPos,callbak: () =>
