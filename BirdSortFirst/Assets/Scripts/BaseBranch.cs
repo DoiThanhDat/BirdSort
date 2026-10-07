@@ -307,11 +307,11 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
     #endregion
 
     #region Shuffle Bird
-    public void ShuffleBird(System.Action onCOmplete = null)
+    public void ShuffleBird(System.Action callback = null)
     {
         if (birds == null || birds.Count <= 1 || isBreaking)
         {
-            onCOmplete?.Invoke();
+            callback?.Invoke();
             return;
         }
 
@@ -321,6 +321,29 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
             BaseBird temp = birds[i];
             birds[i]= birds[randomSlot];
             birds[randomSlot]= temp;
+        }
+        int totalBirds = birds.Count;
+        for (int i = 0; i < totalBirds; i++)
+        {
+            BaseBird bird = birds[i];
+            RectTransform birdRect = bird.GetComponent<RectTransform>();
+            birdRect.DOKill();
+            Vector3 newPosToGround = GetSlotPositionToGround(i);
+            Vector3 newPosInBranch = GetSlotPosition(i);
+            float branchScaleX = this.transform.localScale.x;
+            float startPosX = bird.transform.position.x;
+            float targetPosX = transform.TransformPoint(newPosInBranch).x;
+            float flyDirection = (targetPosX >= startPosX) ? 1f : -1f;
+            bird.SetFacing(flyDirection * branchScaleX);
+            bird.BoosterMovement(newPosToGround, () =>
+            {
+                float landDirection = isRightBranch ? -1f : 1f;
+                bird.SetFacing(landDirection * branchScaleX);
+                bird.GroundingAfterMoveMent(newPosInBranch, callbak: () =>
+                {
+                    BranchRotation();
+                });
+            });
         }
     }
     #endregion

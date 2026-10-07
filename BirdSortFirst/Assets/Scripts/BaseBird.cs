@@ -82,7 +82,23 @@ public class BaseBird : MonoBehaviour
     }
     #endregion
 
-   public void GroundingAfterMoveMent(Vector3 pos, System.Action callbak = null)
+    #region BoosterMovement
+    public void BoosterMovement(Vector3 targetPosition, System.Action onMoveCompleted = null)
+    {
+        if (recttr == null) recttr = GetComponent<RectTransform>();
+        recttr.DOKill();
+        ChangeStatus(true);
+        PlayFly();
+        birdCanvas.overrideSorting = true;
+        birdCanvas.sortingOrder = 100;
+        recttr.DOAnchorPos(targetPosition, 0.5f).SetEase(Ease.Linear).OnComplete(() =>
+        {
+            onMoveCompleted?.Invoke();
+        });
+    }
+    #endregion
+
+    public void GroundingAfterMoveMent(Vector3 pos, System.Action callbak = null)
     {
         recttr.DOKill();
         if (recttr == null) recttr = GetComponent<RectTransform>();

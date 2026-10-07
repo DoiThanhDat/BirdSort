@@ -221,17 +221,15 @@ public class GameDesignerWithJSON : MonoBehaviour
             m_gc.TurnHighLight(BranchTest.selectedBranch, false);
             BranchTest.selectedBranch = null;
         }
-
-        bool hasShuffled = false;
         foreach (BaseBranch branch in branchesOnActive)
         {
-            if(branch == null || !branch.gameObject.activeInHierarchy) continue;
+            //bool hasShuffled = false;
+            if (branch == null || !branch.gameObject.activeInHierarchy) continue;
             if (branch.isBreaking || branch.birds.Count <= 1 || !branch.IsBranchCanClick()) continue;
-            hasShuffled = true;
+            //hasShuffled = true;
             branch.ShuffleBird(() =>
             {
-                CheckGameOver();
-                m_gc.CheckIsGameFinished();
+                
             });
         }
     }
