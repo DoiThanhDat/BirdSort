@@ -75,7 +75,7 @@ public class BaseBird : MonoBehaviour
         birdCanvas.sortingOrder = 100;
         float distance = Vector3.Distance(recttr.anchoredPosition, targetPosition);
         float moveDuration = distance / moveSpeed;
-        recttr.DOAnchorPos(targetPosition, moveDuration).SetEase(Ease.Linear).OnComplete(() =>
+        recttr.DOAnchorPos(targetPosition, moveDuration).SetEase(Ease.OutQuad).OnComplete(() =>
         {
             onMoveCompleted?.Invoke();
         });
@@ -91,7 +91,7 @@ public class BaseBird : MonoBehaviour
         PlayFly();
         birdCanvas.overrideSorting = true;
         birdCanvas.sortingOrder = 100;
-        recttr.DOAnchorPos(targetPosition, 0.5f).SetEase(Ease.Linear).OnComplete(() =>
+        recttr.DOAnchorPos(targetPosition, 0.5f).SetEase(Ease.OutQuad).OnComplete(() =>
         {
             onMoveCompleted?.Invoke();
         });

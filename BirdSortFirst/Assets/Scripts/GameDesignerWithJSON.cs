@@ -34,6 +34,7 @@ public class GameDesignerWithJSON : MonoBehaviour
         {
             return;
         }
+        m_gc.UndoHistoryClear();
         branchesOnActive.Clear();
         int currentLevelIndex = PlayerPrefs.GetInt("currentLevel", 1);
         TextAsset jsonLevelFile = Resources.Load<TextAsset>("Levels/level_" + currentLevelIndex);
@@ -216,6 +217,7 @@ public class GameDesignerWithJSON : MonoBehaviour
                     return;
             }
         }
+        m_gc.UndoHistoryClear();
         if (BranchTest.selectedBranch != null)
         {
             m_gc.TurnHighLight(BranchTest.selectedBranch, false);

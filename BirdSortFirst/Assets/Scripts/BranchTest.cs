@@ -7,6 +7,19 @@ using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
+public class MoveRecord
+{
+    public BaseBranch sourceBranch;
+    public BaseBranch targetBranch;
+    public int birdCount;
+    public MoveRecord(BaseBranch source, BaseBranch target, int count)
+    {
+        sourceBranch = source;
+        targetBranch = target;
+        birdCount = count;
+    }
+}
+
 public class BranchTest : MonoBehaviour
 {
     [SerializeField] Canvas gamePlayCanvas;
@@ -16,7 +29,9 @@ public class BranchTest : MonoBehaviour
     bool isGameFinished;
     UIManager m_ui;
     GameDesignerWithJSON m_gdJSON;
-    public Transform flyingLayer;
+    Stack<MoveRecord> undoHistory = new Stack<MoveRecord>();
+    bool isMovingBirds = false;
+
 
     private void Awake()
     {
@@ -81,6 +96,8 @@ public class BranchTest : MonoBehaviour
         bool canMove = emptySlots > 0 && (targetBranch.birds.Count == 0 || (targetBranch.birds[targetBranch.birds.Count - 1].ID == MovinBird[0].ID));
         if (canMove)
         {
+            undoHistory.Push(new MoveRecord(sourceBranch, targetBranch, birdsToEmptySlot));
+            isMovingBirds = true;
             int completedCount = 0;
             for (int i = 0; i < birdsToEmptySlot; i++)
             {
@@ -114,8 +131,13 @@ public class BranchTest : MonoBehaviour
                         completedCount++;
                         if (completedCount == birdsToEmptySlot)
                         {
+                            isMovingBirds = false;
                             //targetBranch.AddBird(birdToMove);
                             targetBranch.CheckPoint();
+                            if(targetBranch.isBreaking)
+                            {
+                                undoHistory.Clear();
+                            }
                             m_gdJSON.CheckGameOver();
                             CheckIsGameFinished();
                         }
@@ -125,6 +147,74 @@ public class BranchTest : MonoBehaviour
         }
     }
     #endregion
+
+    public void UndoButton()
+    {
+        //kiem tra dieu kien
+        if (IsGameOver() || SetGameFinishedState() || isMovingBirds) return;
+        if (undoHistory.Count == 0) return;
+        if (selectedBranch != null)
+        {
+            TurnHighLight(selectedBranch, false);
+            selectedBranch = null;
+        }
+        // Rut nuoc di gan nhat
+        MoveRecord lastMove = undoHistory.Pop();
+        BaseBranch sourceBranch = lastMove.sourceBranch;
+        BaseBranch targetBranch = lastMove.targetBranch;
+        int countToReturn = lastMove.birdCount;
+        if (targetBranch.birds.Count < countToReturn) return;
+        isMovingBirds = true;
+        int completedCount = 0;
+        for (int i = 0; i < countToReturn; i++)
+        {
+            //lay chim de tra ve
+            BaseBird birdToReturn = targetBranch.birds[targetBranch.birds.Count - 1];
+            targetBranch.RemoveBird(birdToReturn);
+
+            //tinh toan vi tri
+            int sourceSLotIndex = sourceBranch.birds.Count;
+            Vector3 targetPosToGround = sourceBranch.GetSlotPositionToGround(sourceSLotIndex);
+            Vector3 targetPos = sourceBranch.GetSlotPosition(sourceSLotIndex);
+
+            //tinh toan quay mat
+            float startPosX = birdToReturn.transform.position.x;
+            float targetPosX = sourceBranch.transform.TransformPoint(targetPos).x;
+
+            //them chim lai vao canh
+            sourceBranch.AddBird(birdToReturn);
+            birdToReturn.transform.SetParent(sourceBranch.transform, true);
+            birdToReturn.transform.localScale = Vector3.one;
+
+            //quay mat trc bay
+            float flyDirection = (targetPosX > startPosX) ? 1f : -1f;
+            float branchScaleX = sourceBranch.transform.localScale.x;
+            birdToReturn.SetFacing(flyDirection * branchScaleX);
+
+            //bay
+            birdToReturn.MoveTo(targetPosToGround, () =>
+            {
+                float landDirection = sourceBranch.isRightBranch ? -1f : 1f;
+                birdToReturn.SetFacing(landDirection * branchScaleX);
+                sourceBranch.BranchRotation();
+                birdToReturn.GroundingAfterMoveMent(targetPos, callbak: () =>
+                {
+                    birdToReturn.ChangeStatus(false);
+                    completedCount++;
+                    if (completedCount == countToReturn)
+                    {
+                        isMovingBirds = false;
+                        m_gdJSON.CheckGameOver();
+                    }
+                });
+            });
+        }
+    }
+    
+    public void UndoHistoryClear()
+    {
+        undoHistory.Clear();
+    }
 
     #region Check Dieu Kien Thang 
 
