@@ -49,7 +49,7 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
     public void BranchRotation(System.Action callback = null)
     {
         transform.DOKill();
-        transform.DOShakeRotation(duration: 1f, strength: new Vector3(0, 0, 1f), vibrato: 4, randomness: 90, fadeOut: false).OnComplete(() =>
+        transform.DOShakeRotation(duration: 1f, strength: new Vector3(0, 0, 1.15f), vibrato: 4, randomness: 90, fadeOut: false).OnComplete(() =>
         {
             transform.localRotation = Quaternion.identity;
             callback?.Invoke();
@@ -339,7 +339,7 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
             {
                 float landDirection = isRightBranch ? -1f : 1f;
                 bird.SetFacing(landDirection * branchScaleX);
-                bird.GroundingAfterMoveMent(newPosInBranch, callbak: () =>
+                bird.GroundingAfterMoveMent(newPosInBranch, callback: () =>
                 {
                     BranchRotation();
                 });

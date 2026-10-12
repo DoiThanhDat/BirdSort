@@ -99,6 +99,7 @@ public class BranchTest : MonoBehaviour
             undoHistory.Push(new MoveRecord(sourceBranch, targetBranch, birdsToEmptySlot));
             isMovingBirds = true;
             int completedCount = 0;
+            float delayBetweenMovement = 0.1f;
             for (int i = 0; i < birdsToEmptySlot; i++)
             {
                 // Lay chim de di chuyen
@@ -106,48 +107,69 @@ public class BranchTest : MonoBehaviour
                 sourceBranch.RemoveBird(birdToMove);
                 // Tinh toan vi tri
                 int targetSlotIndex = targetBranch.birds.Count;
+                //addbird vaf tinh vi tri dap dat
+                targetBranch.AddBird(birdToMove);
                 Vector3 targetPosToGround = targetBranch.GetSlotPositionToGround(targetSlotIndex);
                 Vector3 targetPos = targetBranch.GetSlotPosition(targetSlotIndex);
-                // Tinh toan quay mat
-                float startPosX = birdToMove.transform.position.x;
-                float targetPosX = targetBranch.transform.TransformPoint(targetPos).x;  
-                //Chuyen sang canh moi
-                targetBranch.AddBird(birdToMove);
-                birdToMove.transform.SetParent(targetBranch.transform, true);
-                birdToMove.transform.localScale = Vector3.one;
-                //Quay mat
-                float flyDirection = (targetPosX > startPosX) ? 1f : -1f;
+                //tinh vi tri cua canh va thoi gian delay bay
                 float branchScaleX = targetBranch.transform.localScale.x;
-                birdToMove.SetFacing(flyDirection * branchScaleX);
-                birdToMove.MoveTo(targetPosToGround, () =>
+                float delayTime = i * delayBetweenMovement;
+
+                System.Action excuteMovementFlow = () => // excute: thuc thi:))
                 {
-                    float landDirection = targetBranch.isRightBranch? -1f : 1f;
-                    birdToMove.SetFacing(landDirection * branchScaleX);
-                    targetBranch.BranchRotation();
                     birdToMove.transform.SetParent(targetBranch.transform, true);
-                    birdToMove.GroundingAfterMoveMent(targetPos,callbak: () =>
+                    birdToMove.transform.localScale = Vector3.one;
+                    //quay mat
+                    float startPosX = birdToMove.transform.position.x;
+                    float targetPosX = targetBranch.transform.TransformPoint(targetPos).x;
+                    float flyDirection = (targetPosX > startPosX) ? 1f : -1f;
+                    birdToMove.SetFacing(flyDirection * branchScaleX);
+                    //di chuyen
+                    birdToMove.MoveTo(targetPosToGround, () =>
                     {
-                        birdToMove.ChangeStatus(false);
-                        completedCount++;
-                        if (completedCount == birdsToEmptySlot)
+                        float landDirection = targetBranch.isRightBranch ? -1f : 1f;
+                        birdToMove.SetFacing(landDirection * branchScaleX);
+                        targetBranch.BranchRotation();
+                        birdToMove.transform.SetParent(targetBranch.transform, true);
+                        birdToMove.GroundingAfterMoveMent(targetPos, callback: () =>
                         {
-                            isMovingBirds = false;
-                            //targetBranch.AddBird(birdToMove);
-                            targetBranch.CheckPoint();
-                            if(targetBranch.isBreaking)
+                            birdToMove.ChangeStatus(false);
+                            completedCount++;
+                            if (completedCount == birdsToEmptySlot)
                             {
-                                undoHistory.Clear();
+                                isMovingBirds = false;
+                                //targetBranch.AddBird(birdToMove);
+                                targetBranch.CheckPoint();
+                                if (targetBranch.isBreaking)
+                                {
+                                    undoHistory.Clear();
+                                }
+                                m_gdJSON.CheckGameOver();
+                                CheckIsGameFinished();
                             }
-                            m_gdJSON.CheckGameOver();
-                            CheckIsGameFinished();
-                        }
+                        });
                     });
-                });
+                };
+
+                //kiem tra dieu kien delay di chuyen
+                if (delayTime<= 0f)
+                {
+                    excuteMovementFlow();
+                }
+                else
+                {
+                    DOVirtual.DelayedCall(delayTime, () => excuteMovementFlow());
+                }
             }   
         }
     }
     #endregion
 
+                
+
+               
+
+    #region Undo Button
     public void UndoButton()
     {
         //kiem tra dieu kien
@@ -197,7 +219,7 @@ public class BranchTest : MonoBehaviour
                 float landDirection = sourceBranch.isRightBranch ? -1f : 1f;
                 birdToReturn.SetFacing(landDirection * branchScaleX);
                 sourceBranch.BranchRotation();
-                birdToReturn.GroundingAfterMoveMent(targetPos, callbak: () =>
+                birdToReturn.GroundingAfterMoveMent(targetPos, callback: () =>
                 {
                     birdToReturn.ChangeStatus(false);
                     completedCount++;
@@ -210,11 +232,11 @@ public class BranchTest : MonoBehaviour
             });
         }
     }
-    
     public void UndoHistoryClear()
     {
         undoHistory.Clear();
     }
+    #endregion
 
     #region Check Dieu Kien Thang 
 

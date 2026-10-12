@@ -52,10 +52,9 @@ public class BaseBird : MonoBehaviour
 
     public void PlayGrounding()
     {
-        if (body != null && !string.IsNullOrEmpty(FLY))
+        if (body != null && !string.IsNullOrEmpty(GROUNDING))
         {
-            body.AnimationState.AddAnimation(0, GROUNDING, false, 0f);
-            body.AnimationState.AddAnimation(0, IDLE, true, 0f);
+            var trackEntry = body.AnimationState.SetAnimation(0, GROUNDING, false);
         }
         else
         {
@@ -98,7 +97,7 @@ public class BaseBird : MonoBehaviour
     }
     #endregion
 
-    public void GroundingAfterMoveMent(Vector3 pos, System.Action callbak = null)
+    public void GroundingAfterMoveMent(Vector3 pos, System.Action callback = null)
     {
         recttr.DOKill();
         if (recttr == null) recttr = GetComponent<RectTransform>();
@@ -106,12 +105,12 @@ public class BaseBird : MonoBehaviour
         PlayGrounding();
         recttr.DOLocalMove(pos, 1.167f).OnComplete(() =>
         {
+            PlayIdle();
             isFlying = false;
             birdCanvas.overrideSorting = false;
-            callbak?.Invoke();
+            callback?.Invoke();
         });
     }
-
     #region Escape
     public void Escape(Vector3 targetPosition, System.Action onMoveCompleted = null)
     {
