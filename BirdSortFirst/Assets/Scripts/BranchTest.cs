@@ -31,6 +31,8 @@ public class BranchTest : MonoBehaviour
     GameDesignerWithJSON m_gdJSON;
     Stack<MoveRecord> undoHistory = new Stack<MoveRecord>();
     bool isMovingBirds = false;
+    [SerializeField] GameObject ruleBreakerBackground;
+    bool isRuleBreakerActive = false;
 
 
     private void Awake()
@@ -93,9 +95,14 @@ public class BranchTest : MonoBehaviour
         List<BaseBird> MovinBird = sourceBranch.CheckColor(); //gán List BirdsToMove vừa return ở CheckColor(); Done 
         int emptySlots = targetBranch.capacity - targetBranch.birds.Count;
         int birdsToEmptySlot = Mathf.Min(MovinBird.Count, emptySlots);
-        bool canMove = emptySlots > 0 && (targetBranch.birds.Count == 0 || (targetBranch.birds[targetBranch.birds.Count - 1].ID == MovinBird[0].ID));
+        bool canMove = emptySlots > 0 && ((targetBranch.birds.Count == 0 || (targetBranch.birds[targetBranch.birds.Count - 1].ID == MovinBird[0].ID)) || isRuleBreakerActive);
         if (canMove)
         {
+            if (isRuleBreakerActive)
+            {
+                isRuleBreakerActive = false;
+                ruleBreakerBackground.SetActive(false);
+            }
             undoHistory.Push(new MoveRecord(sourceBranch, targetBranch, birdsToEmptySlot));
             isMovingBirds = true;
             int completedCount = 0;
@@ -163,11 +170,7 @@ public class BranchTest : MonoBehaviour
             }   
         }
     }
-    #endregion
-
-                
-
-               
+    #endregion              
 
     #region Undo Button
     public void UndoButton()
@@ -286,5 +289,15 @@ public class BranchTest : MonoBehaviour
     }
     #endregion
 
-   
+    #region Rule Breaker Button
+    public void RuleBreakerButton()
+    {
+        if (IsGameOver() || SetGameFinishedState() ||isMovingBirds) 
+        {
+            return;
+        }
+        isRuleBreakerActive = true;
+        ruleBreakerBackground.SetActive(true);
+    }
+    #endregion
 }

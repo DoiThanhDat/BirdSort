@@ -1,9 +1,11 @@
-using NUnit.Framework;
-using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.Rendering;
-using System;
 using JetBrains.Annotations;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using TMPro;
+using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class GameDesignerWithJSON : MonoBehaviour
 {
@@ -237,5 +239,107 @@ public class GameDesignerWithJSON : MonoBehaviour
     }
     #endregion
 
-   
+    public void AddBranchButton()
+    {
+        //kiem tra dieu kien
+        if (m_gc.IsGameOver() || m_gc.SetGameFinishedState()) return;
+        foreach (BaseBranch branch in branchesOnActive)
+        {
+            if (branch != null || !branch.gameObject.activeInHierarchy) continue;
+            foreach (BaseBird bird in branch.birds)
+            {
+                if (bird != null && bird.GetStatus())
+                    return;
+            }
+        }
+        if (BranchTest.selectedBranch != null)
+        {
+            m_gc.TurnHighLight(BranchTest.selectedBranch, false);
+            BranchTest.selectedBranch = null;
+        }
+        //Dem so luong canh con hoat dong
+        int activeRightCount = 0;
+        int activeLeftCount = 0;
+        foreach (BaseBranch branch in branchesOnActive)
+        {
+            if (branch != null && branch.gameObject.activeInHierarchy && !branch.isBreaking)
+            {
+                if (branch.isRightBranch) activeRightCount++;
+                else activeLeftCount++;
+            }
+        }
+        if (activeLeftCount > 9 && activeRightCount > 9)
+        {
+            Debug.Log("full canh, stop");
+            return;
+        }
+        bool spawnOnRight;
+        if (activeRightCount < activeLeftCount) spawnOnRight = true;
+        else if (activeRightCount > activeLeftCount) spawnOnRight = false;
+        else
+        {
+            spawnOnRight = (activeRightCount < 9);
+        }
+
+        List<Transform> targetPointList = spawnOnRight ? branchPointRight : branchPointLeft;
+        Transform availablePoint = null;
+        for (int i = 0; i < targetPointList.Count; i++)
+        {
+            Transform pt = targetPointList[i];
+            if (pt == null) continue;
+            if (pt.childCount == 0)
+            {
+                availablePoint = pt;
+                break;
+            }
+            else
+            {
+                bool hasActiveChild = false;
+                for (int j = 0; j < pt.childCount; j++)
+                {
+                    if (pt.GetChild(j).gameObject.activeInHierarchy)
+                    {
+                        hasActiveChild = true;
+                        break;
+                    }
+                }
+                if (!hasActiveChild)
+                {
+                    availablePoint = pt;
+                    break;
+                }
+            }
+        }
+        if (availablePoint == null)
+        {
+            Debug.LogWarning("Không tìm thấy điểm neo trống trên Scene!");
+            return;
+        }
+        //Sinh bong ma moi va ep cap nhat vi tri
+        Transform targetInfor = spawnOnRight ? pointRightInfor : pointLeftInfor;
+        GameObject newGhost = PoolingObject.Instance.GetObject(ghostPrefab, targetInfor);
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(targetInfor as RectTransform);
+        //Lay canh cay va chuan bi spawn 
+        BaseBranch newBranch = PoolingObject.Instance.GetObject(branches.gameObject, availablePoint).GetComponent<BaseBranch>();
+        newBranch.ghostOfBranches = newGhost;
+        branchesOnActive.Add(newBranch);
+        newBranch.birds.Clear();
+
+        if (spawnOnRight)
+        {
+            newBranch.isRightBranch = true;
+            newBranch.transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else
+        {
+            newBranch.isRightBranch = false;
+            newBranch.transform.localScale = Vector3.one;
+        }
+        //canh cay chui tu man hinh ra
+        float offScreenDistance = 12f;
+        Vector3 startPos = newGhost.transform.position + (spawnOnRight? Vector3.right: Vector3.left) * offScreenDistance;
+        newBranch.transform.position = startPos;
+    }
+    //adad
 }
