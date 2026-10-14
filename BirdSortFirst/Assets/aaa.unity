@@ -1203,9 +1203,9 @@ MonoBehaviour:
   - {fileID: 64477227}
   - {fileID: 243324668}
   - {fileID: 1556287017}
-  - {fileID: 315102665}
-  - {fileID: 258589624}
-  - {fileID: 933722498}
+  - {fileID: 845488644}
+  - {fileID: 1533954381}
+  - {fileID: 299024794}
   branchPointLeft:
   - {fileID: 377397001}
   - {fileID: 1258610578}
@@ -2125,9 +2125,9 @@ RectTransform:
   - {fileID: 290177774}
   - {fileID: 648819264}
   - {fileID: 1919268959}
+  - {fileID: 219303892}
   - {fileID: 1962674922}
   - {fileID: 2115742959}
-  - {fileID: 219303892}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

@@ -268,7 +268,7 @@ public class GameDesignerWithJSON : MonoBehaviour
                 else activeLeftCount++;
             }
         }
-        if (activeLeftCount > 9 && activeRightCount > 9)
+        if (activeLeftCount >= 9 && activeRightCount >= 9)
         {
             Debug.Log("full canh, stop");
             return;
