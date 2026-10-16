@@ -15,6 +15,9 @@ public class GameDesignerWithJSON : MonoBehaviour
     public List<Transform> branchPointLeft;
     public Transform pointRightInfor;
     public Transform pointLeftInfor;
+    public Transform pointRight;
+    public Transform pointLeft;
+
     [SerializeField] private List<BaseBranch> branchesOnActive;
     BranchTest m_gc;
 
@@ -239,6 +242,7 @@ public class GameDesignerWithJSON : MonoBehaviour
     }
     #endregion
 
+    #region Add Branch Button
     public void AddBranchButton()
     {
         //kiem tra dieu kien
@@ -268,7 +272,7 @@ public class GameDesignerWithJSON : MonoBehaviour
                 else activeLeftCount++;
             }
         }
-        if (activeLeftCount >= 9 && activeRightCount >= 9)
+        if (activeLeftCount >= 11 && activeRightCount >= 11)
         {
             Debug.Log("full canh, stop");
             return;
@@ -318,8 +322,7 @@ public class GameDesignerWithJSON : MonoBehaviour
         //Sinh bong ma moi va ep cap nhat vi tri
         Transform targetInfor = spawnOnRight ? pointRightInfor : pointLeftInfor;
         GameObject newGhost = PoolingObject.Instance.GetObject(ghostPrefab, targetInfor);
-        Canvas.ForceUpdateCanvases();
-        LayoutRebuilder.ForceRebuildLayoutImmediate(targetInfor as RectTransform);
+ 
         //Lay canh cay va chuan bi spawn 
         BaseBranch newBranch = PoolingObject.Instance.GetObject(branches.gameObject, availablePoint).GetComponent<BaseBranch>();
         newBranch.ghostOfBranches = newGhost;
@@ -336,10 +339,49 @@ public class GameDesignerWithJSON : MonoBehaviour
             newBranch.isRightBranch = false;
             newBranch.transform.localScale = Vector3.one;
         }
+
+        UpdateBranchScale();
+        Canvas.ForceUpdateCanvases();
+        LayoutRebuilder.ForceRebuildLayoutImmediate(targetInfor as RectTransform);
         //canh cay chui tu man hinh ra
         float offScreenDistance = 12f;
         Vector3 startPos = newGhost.transform.position + (spawnOnRight? Vector3.right: Vector3.left) * offScreenDistance;
         newBranch.transform.position = startPos;
     }
-    //adad
+    #endregion
+
+    public void UpdateBranchScale()
+    {
+        int activeRightCount = 0;
+        int activeLeftCount = 0;
+        foreach (BaseBranch branchToCheckScale in branchesOnActive)
+        {
+            if (branchToCheckScale!=null && branchToCheckScale.gameObject.activeInHierarchy && !branchToCheckScale.isBreaking)
+            {
+                if (branchToCheckScale.isRightBranch) activeRightCount++;
+                else activeLeftCount++;
+            }
+        }
+
+        float defaultScale = 4f;
+        float reduceStep = 0.15f;
+
+        float rightBranchScale = defaultScale;
+        if (activeRightCount > 6)
+        {
+            rightBranchScale = defaultScale - (activeRightCount - 5) * reduceStep;
+        }
+        Vector3 newRightScale = new Vector3(rightBranchScale, rightBranchScale, rightBranchScale);
+        pointRightInfor.localScale = newRightScale;
+        pointRight.localScale = newRightScale;
+
+        float leftBranchScale = defaultScale;
+        if (activeLeftCount > 6)
+        {
+            leftBranchScale = defaultScale - (activeLeftCount - 5) * reduceStep;
+        }
+        Vector3 newLeftScale = new Vector3(leftBranchScale, leftBranchScale, leftBranchScale);
+        pointLeftInfor.localScale = newLeftScale;
+        pointLeft.localScale = newLeftScale;
+    }
 }
