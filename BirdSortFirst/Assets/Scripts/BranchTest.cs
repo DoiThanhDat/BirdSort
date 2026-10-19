@@ -152,7 +152,8 @@ public class BranchTest : MonoBehaviour
                                     undoHistory.Clear();
                                 }
                                 m_gdJSON.CheckGameOver();
-                                CheckIsGameFinished();
+                                DOVirtual.DelayedCall(1f, () => { CheckIsGameFinished(); });
+                                //CheckIsGameFinished();
                             }
                         });
                     });

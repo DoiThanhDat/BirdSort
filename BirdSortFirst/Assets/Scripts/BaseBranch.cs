@@ -131,17 +131,19 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
                 if (demCungMau == capacity - 1)
                 {
                     isBreaking = true;
-                    PlayBroken();
+
                     foreach (BaseBird bird in birds)
                     {
                         bird.Escape(EscapePos(), () =>
                         {
                             bird.transform.SetParent(null);
-                            parentPoint.SetActive(false);
-                            //PoolingObject.Instance.ReturnObject(gameObject);
-                            ReturnToPool();
                         });
                     }
+                    PlayBroken(() =>
+                    {
+                        parentPoint.SetActive(false);
+                        ReturnToPool();
+                    });
                     birds.Clear();
                     m_gc.ScoreIncrement();
                 }

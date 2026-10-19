@@ -1,3 +1,4 @@
+using DG.Tweening;
 using JetBrains.Annotations;
 using NUnit.Framework;
 using System;
@@ -182,29 +183,33 @@ public class GameDesignerWithJSON : MonoBehaviour
     #region End Level
     public void EndLevel(System.Action callback = null)
     {
-       for (int i = 0; i< branchesOnActive.Count; i++)
+        List<BaseBranch> remainingBranches = new List<BaseBranch>();
+        for (int i = 0;i < branchesOnActive.Count;i++)
         {
             BaseBranch branchAvailable = branchesOnActive[i];
-            if (branchAvailable != null && branchAvailable.gameObject.activeInHierarchy && !branchAvailable.isBreaking)
+            if (branchAvailable.gameObject.activeInHierarchy && !branchAvailable.isBreaking)
             {
                 branchAvailable.isBreaking = true;
-                branchAvailable.PlayBroken(() =>
-                {
-                    callback?.Invoke();
-                    branchAvailable.ReturnToPool();
-                });
+                remainingBranches.Add(branchAvailable);
             }
-            else
+        }
+        if(remainingBranches.Count == 0)
+        {
+            callback?.Invoke();
+            return;
+        }
+        for (int i = 0; i < remainingBranches.Count; i++)
+        {
+            float delayTime = i * 0.35f;
+            BaseBranch branchAvailable = remainingBranches[i];
+            DOVirtual.DelayedCall(delayTime, () => 
             {
                 branchAvailable.PlayBroken(() => 
                 {
                     branchAvailable.ReturnToPool();
+                    callback?.Invoke();
                 });
-            }
-        }
-       if (callback != null)
-        {
-            callback.Invoke();
+            });
         }
     }
     #endregion

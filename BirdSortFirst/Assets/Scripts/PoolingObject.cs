@@ -41,6 +41,14 @@ public class PoolingObject : MonoBehaviour
     {
         obj.SetActive(false);
         obj.transform.SetParent (transform);
-        poolDictionary[obj.name].Enqueue(obj);
+        if (!poolDictionary.ContainsKey(obj.name))
+        {
+            poolDictionary[obj.name] = new Queue<GameObject>();
+        }
+
+        if (!poolDictionary[obj.name].Contains(obj))
+        {
+            poolDictionary[obj.name].Enqueue(obj);
+        }
     }
 }
