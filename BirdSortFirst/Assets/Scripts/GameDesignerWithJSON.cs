@@ -138,34 +138,6 @@ public class GameDesignerWithJSON : MonoBehaviour
     }
     #endregion
 
-    #region Check Game Over
-    public void CheckGameOver()
-    {
-        foreach (BaseBranch branches in branchesOnActive)
-        {
-            if (branches != null && branches.gameObject.activeInHierarchy && branches.birds.Count == 0)
-                return;
-        }
-        for (int i = 0; i < branchesOnActive.Count; i++)
-        {
-            if (branchesOnActive[i] == null && !branchesOnActive[i].gameObject.activeInHierarchy)
-                continue;
-            for (int j = 0; j < branchesOnActive.Count; j++)
-            {
-                if (i == j || branchesOnActive[j] == null || !branchesOnActive[j].gameObject.activeInHierarchy)
-                {
-                    continue;
-                }
-                if (branchesOnActive[i].CheckTopBird() == branchesOnActive[j].CheckTopBird())
-                {
-                    return;
-                }
-            }
-        }
-        m_gc.SetGameOverState(true);
-    }
-    #endregion
-
     #region Check All Bird Cleared
     public bool CheckAllBirdCleared()
     {
@@ -254,7 +226,7 @@ public class GameDesignerWithJSON : MonoBehaviour
         if (m_gc.IsGameOver() || m_gc.SetGameFinishedState()) return;
         foreach (BaseBranch branch in branchesOnActive)
         {
-            if (branch != null || !branch.gameObject.activeInHierarchy) continue;
+            if (branch == null || !branch.gameObject.activeInHierarchy) continue;
             foreach (BaseBird bird in branch.birds)
             {
                 if (bird != null && bird.GetStatus())
@@ -324,6 +296,8 @@ public class GameDesignerWithJSON : MonoBehaviour
             Debug.LogWarning("Không tìm thấy điểm neo trống trên Scene!");
             return;
         }
+        availablePoint.gameObject.SetActive(true);
+
         //Sinh bong ma moi va ep cap nhat vi tri
         Transform targetInfor = spawnOnRight ? pointRightInfor : pointLeftInfor;
         GameObject newGhost = PoolingObject.Instance.GetObject(ghostPrefab, targetInfor);
@@ -355,6 +329,7 @@ public class GameDesignerWithJSON : MonoBehaviour
     }
     #endregion
 
+    #region Update Branch Scale
     public void UpdateBranchScale()
     {
         int activeRightCount = 0;
@@ -389,4 +364,5 @@ public class GameDesignerWithJSON : MonoBehaviour
         pointLeftInfor.localScale = newLeftScale;
         pointLeft.localScale = newLeftScale;
     }
+    #endregion
 }

@@ -42,6 +42,7 @@ public class BranchTest : MonoBehaviour
     void Start()
     {
         m_ui = FindAnyObjectByType<UIManager>();
+        m_ui.SetScoreText("IQ: " + m_score);
     }
 
     // Update is called once per frame
@@ -151,8 +152,6 @@ public class BranchTest : MonoBehaviour
                                 {
                                     undoHistory.Clear();
                                 }
-                                m_gdJSON.CheckGameOver();
-                                DOVirtual.DelayedCall(1f, () => { CheckIsGameFinished(); });
                                 //CheckIsGameFinished();
                             }
                         });
@@ -230,7 +229,6 @@ public class BranchTest : MonoBehaviour
                     if (completedCount == countToReturn)
                     {
                         isMovingBirds = false;
-                        m_gdJSON.CheckGameOver();
                     }
                 });
             });
@@ -267,7 +265,9 @@ public class BranchTest : MonoBehaviour
         { return m_score; }
     public void ScoreIncrement()
     {
-        m_score++;
+        int randomIQ = UnityEngine.Random.Range(1, 3);
+        m_score += randomIQ;
+        m_ui.SetScoreText("IQ: " + m_score);
     }
     public void SetGameOverState(bool state)
     {

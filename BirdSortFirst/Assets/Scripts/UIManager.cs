@@ -1,5 +1,6 @@
 using DG.Tweening;
 using System.Security.Cryptography;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
@@ -7,12 +8,15 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    public Text scoreText;
+    public TextMeshProUGUI iqText;
     public GameObject gameOverPanel;
     public GameObject winPanel;
+    public GameObject winBox;
     public GameObject pausePanel;
     public GameObject pauseBox;
     public GameObject settingPanel;
+
+    #region Show Win & Lose Panel
     public void ShowGameOverPanel (bool isShow)
     {
         if (gameOverPanel)
@@ -20,13 +24,23 @@ public class UIManager : MonoBehaviour
             gameOverPanel.SetActive(isShow);
         }
     }
+    public void EscGameOverPanel()
+    {
+        gameOverPanel.SetActive(false);
+    }
     public void ShowWinPanel(bool isShow)
     {
-        if (winPanel)
-        {
-            winPanel.SetActive(isShow);
-        }
+        CanvasGroup canvasGroup = winPanel.GetComponent<CanvasGroup>();
+        winBox.transform.DOKill();
+        canvasGroup.alpha = 0f;
+        winBox.transform.localScale = Vector3.zero;
+        winBox.SetActive(isShow);
+        winPanel.SetActive(isShow);
+        winBox.transform.DOScale(Vector3.one, 0.5f)
+                            .SetEase(Ease.OutBack);
+        canvasGroup.DOFade(1f, 0.25f);
     }
+    #endregion
 
     #region Replay Button
     public void Replay()
@@ -93,5 +107,13 @@ public class UIManager : MonoBehaviour
             settingPanel.SetActive(false);
         });
     }
-#endregion
+    #endregion
+
+    #region IQ Text
+    public void SetScoreText(string text)
+    {
+        iqText.text = text;
+    }
+    #endregion
+
 }

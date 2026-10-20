@@ -131,7 +131,7 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
                 if (demCungMau == capacity - 1)
                 {
                     isBreaking = true;
-
+                    m_gc.ScoreIncrement();
                     foreach (BaseBird bird in birds)
                     {
                         bird.Escape(EscapePos(), () =>
@@ -146,6 +146,7 @@ public class BaseBranch : MonoBehaviour, IPointerDownHandler
                     });
                     birds.Clear();
                     m_gc.ScoreIncrement();
+                    DOVirtual.DelayedCall(1f, () => { m_gc.CheckIsGameFinished(); });
                 }
             }
             else
