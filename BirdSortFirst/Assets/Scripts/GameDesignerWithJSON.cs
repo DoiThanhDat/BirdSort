@@ -170,6 +170,7 @@ public class GameDesignerWithJSON : MonoBehaviour
             callback?.Invoke();
             return;
         }
+        int completedCount = 0;
         for (int i = 0; i < remainingBranches.Count; i++)
         {
             float delayTime = i * 0.35f;
@@ -179,7 +180,11 @@ public class GameDesignerWithJSON : MonoBehaviour
                 branchAvailable.PlayBroken(() => 
                 {
                     branchAvailable.ReturnToPool();
-                    callback?.Invoke();
+                    completedCount++;
+                    if (completedCount == remainingBranches.Count)
+                    {
+                        callback?.Invoke();
+                    }
                 });
             });
         }

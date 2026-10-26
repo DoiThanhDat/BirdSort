@@ -54,11 +54,6 @@ public class BranchTest : MonoBehaviour
             return;
         }
        
-       if (isGameFinished)
-        {
-            m_ui.ShowWinPanel(true);
-            return;
-        }
     }
 
     #region On Mouse Down
@@ -244,11 +239,14 @@ public class BranchTest : MonoBehaviour
 
     public void CheckIsGameFinished()
     {
+        if(isGameFinished) return;
+
         if (m_gdJSON.CheckAllBirdCleared())
         {
+            isGameFinished = true;
             m_gdJSON.EndLevel(callback: () =>
             {
-                isGameFinished = true;                          
+                m_ui.ShowWinPanel(true);                         
             });
         }
     }
